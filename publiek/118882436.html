@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : BSNk: registerStatusEIM</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-Auxillary-Systems_118882434.html">Interface Specifications Auxillary Systems</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-aux-MR---BSNk_118882431.html">Interface Specifications aux MR - BSNk</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : BSNk: registerStatusEIM
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified by <span class='editor'> Unknown User (willemijnsteens)</span> on Apr 17, 2019
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The most recent version of the technical BSNk specifications are available on <a rel="nofollow" class="external-link" href="https://wiki.bsn-koppelregister.nl/">https://wiki.bsn-koppelregister.nl/</a> or on request (beheerorganisatie BSNk through <a href="mailto:servicecentrum@logius.nl" rel="nofollow" class="external-link">servicecentrum@logius.nl)</a>. The information below is for information only.</p></div></div></p><p><br/>A MachtigingsRegister uses this interface to register the status the collection(s) of authorizations per person at the <span class="confluence-link">BSNk</span> <span class="confluence-link">Inzageregister</span>, every time when a new authorization is added or the status of the collection is changed. A MachtigingsRegister MUST register the status of every 'collection of authorizations' (with a description) <span class="confluence-link">BSNk</span> <span class="confluence-link">Inzageregister</span> that makes sense to the involved Person. A MachtigingsRegister MUST NOT register the status of every individual autorisation. As a minimum a MachtigingsRegister MUST make a distinction between autorisations with this Person as R<span class="italics">epresentative and as </span>R<span class="orth">epresentee. At this moment ETD only supports Representee! As a maximum a MachtigingsRegister can register multiple collections of authorizations at the <span class="confluence-link">BSNk</span> <span class="confluence-link">Inzageregister</span>, for instance with a specific purpose eg &quot;Business authorizations for administrative employees&quot;.</span></p><p><br/></p><p>The interface described in this document is used to implement the <span class="inline-comment-marker" data-ref="97ce67d5-6ad5-48f8-bf72-79551fb386f9">use case </span><a href="AUC6-Activeren-BSN_118882798.html">AUC6 Activeren BSN</a> and MUST be implemented by every MachtigingsRegister.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">WSDL registerStatusEIM</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:bsnk="urn:nl-gdi-eid:1.0:webservices"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  name="BSNK_registerStatusEIM"
+                  targetNamespace="urn:nl-gdi-eid:1.0:webservices"&gt;
+
+    &lt;wsdl:types&gt;
+        &lt;xsd:schema targetNamespace="urn:nl-gdi-eid:1.0:webservices"
+                    attributeFormDefault="unqualified"
+                    elementFormDefault="qualified"&gt;
+
+            &lt;xsd:element name="RegisterStatusEIMRequest" type="bsnk:RegisterStatusEIMRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Request message to register a EIM status.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="RegisterStatusEIMRequestType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideRequestBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="EncryptedPseudonym" type="bsnk:EncryptedPseudonymType" /&gt;
+                            &lt;xsd:element name="DeprecatedEP" type="bsnk:EncryptedPseudonymType" minOccurs="0"/&gt;
+                            &lt;xsd:element name="MeansNumber" type="bsnk:MeansNumberType" /&gt;
+                            &lt;xsd:element name="StatusDateTime" type="xsd:dateTime" /&gt;
+                            &lt;xsd:element name="LevelOfAssurance" type="bsnk:LevelOfAssuranceType" /&gt;
+                            &lt;xsd:element name="MeansType" type="bsnk:MeansType" /&gt;
+                            &lt;xsd:element name="Domains" type="bsnk:DomainsType" minOccurs="0"/&gt;
+                            &lt;xsd:element name="ReadableCardInfo" type="bsnk:ReadableCardInfoType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="IDP" type="bsnk:OINType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="Status" type="bsnk:StatusType" /&gt;
+                            &lt;xsd:element name="RevocationURL" type="bsnk:RevocationURLType" minOccurs="0" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideRequestBasetype" abstract="true"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Requester" type="bsnk:OINType" /&gt;
+                &lt;/xsd:sequence&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="RequestID" type="xsd:ID" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="MeansNumberType"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="16" /&gt;
+&lt;!--                     &lt;xsd:pattern value="[0-9]+"&gt;&lt;/xsd:pattern&gt; --&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="LevelOfAssuranceType"&gt;
+                &lt;xsd:restriction base="xsd:anyURI"&gt;
+&lt;!--                     &lt;xsd:maxLength value="128" /&gt; --&gt;
+                    &lt;xsd:enumeration value="http://eidas.europa.eu/LoA/substantial" /&gt;
+                    &lt;xsd:enumeration value="http://eidas.europa.eu/LoA/high" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="DomainsType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Domain" type="bsnk:DomainType" minOccurs="1" maxOccurs="2"/&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="DomainType"&gt;
+                &lt;xsd:restriction base="xsd:token"&gt;
+                    &lt;xsd:enumeration value="Private" /&gt;
+                    &lt;xsd:enumeration value="Public" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="MeansType"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="25" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="StatusType"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="64" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="EncryptedPseudonymType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Pseudonym encrypted as an EncryptedPseudonym
+                        according to Polymorphic Pseudonimization.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:base64Binary" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="ReadableCardInfoType"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="40" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="RevocationURLType"&gt;
+                &lt;xsd:restriction base="xsd:anyURI"&gt;
+                    &lt;xsd:maxLength value="1024" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="OINType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;OIN type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:length value="20" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:element name="RegisterStatusEIMResponse" type="bsnk:RegisterStatusEIMResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Response to a RegisterStatusEIMRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="RegisterStatusEIMResponseType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideResponseBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="Status" type="bsnk:StatusType" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideResponseBasetype" abstract="true"&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="ResponseID" type="xsd:ID" use="required" /&gt;
+                &lt;xsd:attribute name="InResponseTo" type="xsd:NCName" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:element name="RegisterStatusEIMFault" type="bsnk:RegisterStatusEIMFaultType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Fault response to a RegisterStatusEIMRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="RegisterStatusEIMFaultType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="FaultReason" type="bsnk:RegisterStatusEIMFaultReasonType" /&gt;
+                    &lt;xsd:element name="FaultDescription" type="bsnk:FaultDescriptionType" maxOccurs="unbounded" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="RegisterStatusEIMFaultReasonType"&gt;
+                &lt;xsd:union memberTypes="bsnk:FaultReasons bsnk:RegisterStatusEIMFaultReasons" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="FaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NotFound"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information results in
+                                zero matches.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="AuthorizationError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Authentication invalid or access denied.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="SyntaxError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request invalid.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="TemporarilyUnavailable"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request could temporarily not be
+                                processed. A new request for activation MAY be send
+                                at a later moment by the requesting party.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="RegisterStatusEIMFaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NotUnique"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information results in
+                                more than one match.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="RegistrationRefused"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Registration refused for other
+                                (non-disclosed) reason.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="FaultDescriptionType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:string"&gt;
+                        &lt;xsd:attribute name="lang" type="xsd:language" /&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+        &lt;/xsd:schema&gt;
+    &lt;/wsdl:types&gt;
+
+    &lt;wsdl:message name="BSNK_RegisterStatusEIMRequest"&gt;
+        &lt;wsdl:part name="in" element="bsnk:RegisterStatusEIMRequest" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNK_RegisterStatusEIMResponse"&gt;
+        &lt;wsdl:part name="out" element="bsnk:RegisterStatusEIMResponse" /&gt;
+    &lt;/wsdl:message&gt;
+ 
+    &lt;wsdl:message name="BSNK_RegisterStatusEIMFault"&gt;
+        &lt;wsdl:part name="fault" element="bsnk:RegisterStatusEIMFault" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:portType name="BSNK_RegisterStatusEIM_Port"&gt;
+        &lt;wsdl:operation name="BSNK_RegisterStatusEIM"&gt;
+            &lt;wsdl:input message="bsnk:BSNK_RegisterStatusEIMRequest" wsam:Action="urn:nl-gdi-eid:1.0:webservices:RegisterStatusEIMRequest" /&gt;
+            &lt;wsdl:output message="bsnk:BSNK_RegisterStatusEIMResponse" wsam:Action="urn:nl-gdi-eid:1.0:webservices:RegisterStatusEIMResponse" /&gt;
+            &lt;wsdl:fault message="bsnk:BSNK_RegisterStatusEIMFault" name="BSNK_RegisterStatusEIM_Fault"/&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:portType&gt;
+
+    &lt;wsdl:binding name="BSNK_RegisterStatusEIM_SOAP" type="bsnk:BSNK_RegisterStatusEIM_Port"&gt;
+        &lt;soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" /&gt;
+        &lt;wsdl:operation name="BSNK_RegisterStatusEIM"&gt;
+            &lt;soap:operation soapAction="urn:nl-gdi-eid:1.0:webservices:RegisterStatusEIMRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="BSNK_RegisterStatusEIM_Fault"&gt;
+                &lt;soap:fault name="BSNK_RegisterStatusEIM_Fault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:binding&gt;
+ 
+    &lt;wsdl:service name="BSNK_RegisterStatusEIM_Service"&gt;
+        &lt;wsdl:port binding="bsnk:BSNK_RegisterStatusEIM_SOAP" name="BSNK_RegisterStatusEIM"&gt;
+            &lt;soap:address location="https://.../TODO/RegisterStatusEIM" /&gt;
+        &lt;/wsdl:port&gt;
+    &lt;/wsdl:service&gt;
+
+&lt;/wsdl:definitions&gt;</pre> 
+ </div>
+</div><p><br/></p><p><strong><span>Request</span></strong></p><p>Consists of a <span class="inline-comment-marker" data-ref="6f8b35a9-e2c8-4f8b-8c2f-451905305387">registration request message</span> &lt;<span style="color: rgb(0,0,0);"><span class="inline-comment-marker" data-ref="1c3b5131-e5f0-467d-8c2c-65b885ca6a2f">RegisterStatusEIM</span><span class="inline-comment-marker" data-ref="2c98833a-2008-4029-a3eb-cdbea6a2bcce"><span class="inline-comment-marker" data-ref="1c3b5131-e5f0-467d-8c2c-65b885ca6a2f">Request</span></span>&gt; in the SOAP body</span> of the request message. SOAP should be implemented accoording to the <a href="Web-services_118882799.html">Web services</a> requirements .</p><div class="table-wrap"><table class="wrapped relative-table confluenceTable" style="width: 99.92%;"><colgroup><col style="width: 13.2%;"/><col style="width: 3.49%;"/><col style="width: 83.29%;"/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p>@DateTime</p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd">Time of issuing of the request.</td></tr><tr><th colspan="1" class="confluenceTh">@RequestID</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier for this request</td></tr><tr><th colspan="1" class="confluenceTh">&lt;Requester&gt;</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">EntityID (OIN) of the requesting MachtigingsRegister<span style="color: rgb(0,0,0);">.</span></td></tr><tr><th class="confluenceTh"><p><span>&lt;EncryptedPseudonym&gt;</span></p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd"><p>Encrypted Pseudonym of the user to be transformed to a pseudonym for the <span class="confluence-link">BSNk</span> <span class="confluence-link">Inzageregister</span></p></td></tr><tr><th colspan="1" class="confluenceTh">&lt;LevelOfAssurance&gt;</th><td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="e8730bee-eeaa-4b9d-99c5-e579771cf492">1</span></td><td colspan="1" class="confluenceTd"><p>Choice <a href="http://eidas.europa.eu/LoA/substantial" rel="nofollow" class="external-link">http://eidas.europa.eu/LoA/substantial</a> or <a href="http://eidas.europa.eu/LoA/high" class="external-link" rel="nofollow">http://eidas.europa.eu/LoA/high</a>. Specifies the (highest) LoA of any active registered authorization (either as &quot;R<span class="italics">epresentative&quot;</span> or &quot;R<span class="orth">epresentee&quot;</span>). </p></td></tr><tr><th class="confluenceTh"><span>&lt;MeansNumber&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">1</span></td><td class="confluenceTd"><p>For a MachtigingsRegister MeansNumber identifies the 'collection of authorizations' to which the status applies.  As a minimum a MachtigingsRegister MUST make a distinction between (a collection with) autorisations with this Person as Representative and as Representee. At this moment ETD only supports Representee! As a maximum a MachtigingsRegister can register multiple collections of authorizations at the BSNk Inzageregister, that makes sense for this specific Person. A MachtigingsRegister MUST NOT register the status of every individual autorisation.   MeansNumber MUST be unique per user , but MUST not be usable to identify the user. For privacy reasons this MeansNumber MUST have a low entropy, preferably 01, 02 ...09, so that many users have the same MeansNumber(s).</p></td></tr><tr><th class="confluenceTh"><span>&lt;StatusDateTime&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">1</span></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="a86815a2-df48-4a06-8523-663a7c19ee56">DateTime</span> of status change, MUST not be after @DateTime of this request. The resolution of this field MUST be between (inclusive) minutes and milliseconds. </span></p></td></tr><tr><th class="confluenceTh"><span>&lt;<span><span>MeansType</span></span>&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="cb3495ce-e41a-4103-926a-2de73a6fa302">1</span></span></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="b19a7088-c8f9-4621-a63b-d5bf6be5089c"><span class="inline-comment-marker" data-ref="cb3495ce-e41a-4103-926a-2de73a6fa302">String max 25 chars</span></span><span class="inline-comment-marker" data-ref="cb3495ce-e41a-4103-926a-2de73a6fa302">. MeansType represents a – for the user – readable version of the type of authorizations'. For the ETD MachtigingsRegister the type SHOULD always be &quot;Machtiging&quot;. Note, other authorization types (not ETD) could be &quot;Wettelijke Vertegenwoordiging&quot; or &quot;Volmacht&quot;.</span></span></p></td></tr><tr><th colspan="1" class="confluenceTh">&lt;Domains&gt;</th><td colspan="1" class="confluenceTd">0..1</td><td colspan="1" class="confluenceTd">The domains where the autorisations can be used, optional.</td></tr><tr><th colspan="1" class="confluenceTh">    &lt;Domain&gt;</th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd">One element per domain for which the autorisations can be used. Allowed values are 'Public' and 'Private'.</td></tr><tr><th class="confluenceTh">&lt;ReadableCard<span>Info</span>&gt;</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>String max 60 chars. ReadableCardInfo is text that – combined with the MeansType – has just enough information for a user to recognise the specific 'collection of authorizations' in the domain of the MachtigingsRegister. ReadableCardInfo MUST be unique per user, but<span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"> MUST not be usable to identify the user. </span><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">For privacy reasons this <span>ReadableCardInfo </span>MUST have a low entropy so that many users have this same <span>ReadableCardInfo</span>.<span style="color: rgb(255,0,0);"> </span></span></p><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span style="color: rgb(255,0,0);"> </span></span>For Autorisations a second part has to be added with the date of the last added Autorisation eg &quot;Last Authorization added at 31-01-2018&quot;. Therefor the MR has to register a new status with every new autorisation. For MachtigingsRegister this element is required for every registration to have the most actual &quot;Last Autorisation&quot; (any new will overwrite the old text).</p></div></td></tr><tr><th class="confluenceTh"><span>&lt;Status&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="16b62c38-1c20-4a70-9552-97d1f544b097">1</span></span></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><em><span class="inline-comment-marker" data-ref="c8970b9c-877d-4b8f-8aeb-b1c51b6c91bb">MUST</span> contain one of the specified statusses:</em><strong><em> </em></strong><strong><em>Activated</em> </strong>(as long as any authorization in this collection is active in the BSN Domain), <strong><em>Suspended  </em></strong>(if the last active authorization in this collection is suspended), <em><strong>Expired</strong></em><strong> </strong>(if the last active authorization in this collection is expired) or <strong><em><span class="inline-comment-marker" data-ref="971c3baf-25fe-49c5-a472-45986974be7c">Revoked</span></em> </strong>(if the last active authorization in this collection is Revoked). This element is required for every registration to have the most actual status. <span class="inline-comment-marker" data-ref="20d462bb-da02-4ae0-aff0-4e1b52bb2161">Any new status will overwrite the old status.</span></span><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="20d462bb-da02-4ae0-aff0-4e1b52bb2161"><br/></span></span></p></td></tr><tr><th colspan="1" class="confluenceTh">&lt;<span>RevocationURL</span>&gt;</th><td colspan="1" class="confluenceTd">0..1</td><td colspan="1" class="confluenceTd"><p>String max 1024 chars. RevocationURL is a valid URL which can be used by mijnoverheid (when providing the user an overview of electronic identification means) to redirect the user to the MachtigingsRegister for managing this collection of autorisations, for instance suspending authorizations. For privacy reasons this RevocationURL can have a random collection-specific unique-ID (not a userid!), but otherwise MUST consist of low entropy data. The URL could use other elements from this registration request message (except <span>EncryptedPseudonym).  </span></p><p><span>In the Metadata the RoleDescriptor for MachtigingsRegister already has a generic URL to the MachtigingsRegister authorization management function. That URL will be default unless a RevocationURL is provided. This RevocationURL could be used to direct the user directly to the appropriate collection of authorizations. Or a RevocationURL with a random collection-specific unique-ID could me used to immediately Suspend the collection for a short period of time , possibly even without authenticating the user. </span></p><span class="inline-comment-marker" data-ref="6f8b35a9-e2c8-4f8b-8c2f-451905305387"><span class="inline-comment-marker" data-ref="6f8b35a9-e2c8-4f8b-8c2f-451905305387"> </span></span><p><span>Any new will overwrite the old text and empty string can be used to cancel the (working of this) RevocationURL.  </span></p><p><br/></p></td></tr></tbody></table></div><p><strong><span>Processing rules for Status Registration Request</span></strong></p><p><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095">A requesting MachtigingsRegister </span></p><ul style="list-style-type: square;"><li><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095">MUST await a successful response or retry to send the request. <span class="inline-comment-marker" data-ref="12f26e56-142a-4ba4-a053-d601e1ede628">Requests MUST be buffered and retried during 7 days</span>.</span></li><li><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095">SHOULD adhere to a maximum of 1 status update per unit of the resolution of the StatusDateTime, otherwise the MU SHOULD increase the resolution of the StatusDateTime.</span></li><li><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095">MUST log and investigate failures.</span><br/><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095"><br/></span></li></ul><p><strong><span>Response</span></strong></p><p>Consists of a response message &lt;RegisterStatusEIMResponse&gt; in the SOAP body of the request message. In case a response is received, the request resulted in new or a unique and valid match of an existing electronic identification means. In case an error occurs a SOAP fault will be used. The SOAP fault will contain error codes as &lt;FaultReason&gt; as described below, with one (or more) localized &lt;FaultDescription&gt;.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p>@DateTime</p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd">Time of issuing of the response.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@ResponseID</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the response</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@InResponseTo</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the request this is a response to (@RequestID of request)</td></tr></tbody></table></div><p>  </p><p><strong><span>FaultReasons</span></strong></p><p>The following response codes are used to indicate the status of a response.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>ResponseCode</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh">NotUnique</th><td class="confluenceTd">Request rejected. Provided information results in more than one match.</td></tr><tr><th class="confluenceTh">NotFound</th><td class="confluenceTd">Request rejected. Provided information results in zero matches.</td></tr><tr><th colspan="1" class="confluenceTh"><span class="inline-comment-marker" data-ref="1b2199b5-90f3-408a-963c-dd7de12fe6b1">RegistrationRefused</span></th><td colspan="1" class="confluenceTd">Request <span style="color: rgb(0,0,0);">rejected. Registration refused</span> for other non-disclosed reason.</td></tr><tr><th class="confluenceTh">AuthorizationError</th><td class="confluenceTd">Request rejected. Authentication invalid or access denied. A HTTP 403 status response MAY be given instead of a SOAP-fault with this response.</td></tr><tr><th class="confluenceTh">SyntaxError</th><td class="confluenceTd">Request rejected. Request invalid.</td></tr><tr><th colspan="1" class="confluenceTh">TemporarilyUnavailable</th><td colspan="1" class="confluenceTd">Request could temporarily not be processed. A new request for registration MAY be sent at a later moment by the requesting party.</td></tr></tbody></table></div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882436/118884705.png">image2015-9-28 10:20:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882436/118884708.png">image2015-9-28 10:21:0.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

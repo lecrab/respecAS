@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Interface specifications DV-HM</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications-web_118882412.html">Interface specifications web</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Interface specifications DV-HM
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (joyceeering)</span> on Jan 19, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><br/></p><p><br/></p><div class="table-wrap"><table class="wrapped confluenceTable"><tbody><tr><th class="confluenceTh">DV-HM sequence diagram</th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="150" src="attachments/118882577/118884021.png" data-image-src="attachments/118882577/118884021.png" data-unresolved-comment-count="0" data-linked-resource-id="118884021" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2015-9-28 10:18:31.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882577" data-linked-resource-container-version="134"></span></div></td></tr></tbody></table></div><p>This page describes the messages for the interface specification between a <a href="118882704.html">Dienstverlener (DV)</a> (service provider) and an <a href="118882705.html">Herkenningsmakelaar (HM)</a> (broker).</p><p>For eIDAS Outbound, the eIDAS Berichtenservice acts as a DV, and as Dienstbemiddelaar (DB) for the BRP. Any statement in this page about the DV should therefore be interpreted as &quot;DA (BRP) and/or EB&quot;.<br/></p><p>The interface specification described in this document is used to implement the use case <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> (Use eToegang as service consumer) and MUST (with the exception of alternative <a href="Bindings_118882730.html">Bindings</a>) be implemented by every Herkenningsmakelaar and offered to their customers, the DVs. This is in order to prevent lock-in and enables middleware suppliers to write generic code that can be used by all Herkenningsmakelaars.</p><p>In the interface described here, the use case <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> is populated with an SAML 2.0 AuthnRequest and Response.</p><p>The specific contents of these messages is described below. A column in a message description that starts with 'SAML:' indicates that this is a standard value within the official SAML specification. A value that starts with 'Elektronische Toegangsdiensten' indicates that the value is specific to Elektronische Toegangsdiensten.</p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><div class='toc-macro'>[ <a href='#InterfacespecificationsDVHM-AuthnRequest(1)'>AuthnRequest (1)</a> ] [ <a href='#InterfacespecificationsDVHM-Rulesforprocessingrequests'>Rules for processing requests</a> ] [ <a href='#InterfacespecificationsDVHM-Response(2)'>Response (2)</a> ] [ <a href='#InterfacespecificationsDVHM-HMSummaryassertion'>HM Summary assertion</a> ] [ <a href='#InterfacespecificationsDVHM-AttributeStatement'>AttributeStatement</a> ] [ <a href='#InterfacespecificationsDVHM-Rulesforprocessingresponses'>Rules for processing responses</a> ] [ <a href='#InterfacespecificationsDVHM-LogoutRequest'>LogoutRequest</a> ] [ <a href='#InterfacespecificationsDVHM-ProvideKeyMaterial'>ProvideKeyMaterial</a> ]</div></p><h3 id="InterfacespecificationsDVHM-AuthnRequest(1)">AuthnRequest (1)</h3><p>This section describes regular Authentication Requests.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Element/@Attribute</th><th class="confluenceTh">0..n</th><th class="confluenceTh">Description</th></tr><tr><th class="confluenceTh"><p>@ID</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Unique message characteristic. MUST identify the message uniquely within the scope of the sender and receiver for a period of at least 12 months.</p></td></tr><tr><th class="confluenceTh"><p>@Version</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Version of the SAML protocol. The value MUST be '2.0'.</p></td></tr><tr><th class="confluenceTh"><p>@IssueInstant</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Time of issuing of the request.</p></td></tr><tr><th class="confluenceTh"><p>@Destination</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: URL of the HM on which the message is offered. MUST match the HM's metadata.</p></td></tr><tr><th class="confluenceTh"><p>@Consent</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MAY be included. When Consent is included, the default value MUST contain urn:oasis:names:tc:SAML:2.0:consent:unspecified.</p></div></td></tr><tr><th class="confluenceTh"><p>@ForceAuthn</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: The value 'true' indicates that an existing single sign-on session MUST NOT be used for the request in question. <span class="inline-comment-marker" data-ref="425b2e85-66d9-4a3f-82da-5a59d42ce032">If the value is 'false' or empty or the specification is missing, the AD MAY use an existing SSO session if present.</span></p></div></td></tr><tr><th class="confluenceTh"><p>@IsPassive</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MAY be included. If IsPassive is included, the value MUST be 'false'.</p></div></td></tr><tr><th class="confluenceTh"><p>@ProtocolBinding</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><p>SAML: Specifies the used binding. MUST only be used when an @<em>AssertionConsumerServiceURL</em> is used, MUST NOT be used in combination with an @<em>AssertionConsumerServiceIndex</em>.</p></td></tr><tr><th class="confluenceTh"><p>@AssertionConsumerServiceIndex</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: This attribute element specifies the URL to which the HM sends the response for the DV. If present this index MUST refer to an endpoint of an AssertionConsumerService in the <a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a>.</p><p>MUST NOT be present if <em>@AssertionConsumerServiceURL</em> is present.</p><p>If neither <em>@AssertionConsumerServiceIndex</em> or <em>@AssertionConsumerServiceURL</em> is present, the HM MUST send the response to the endpoint in the metadata that is marked with 'isDefault=true'</p></div></td></tr><tr><th class="confluenceTh"><p>@AssertionConsumerServiceURL</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><p>SAML: If present, URL MUST point to a SAML endpoint acknowlegded in the <a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a>. If present, the participant MUST check whether the <em>@AssertionConsumerServiceUrl</em> is included in the DV's<span> </span><a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a>. If it is not included in the metadata, the participant MUST reject the message with the status code RequestDenied.</p><p>MUST NOT be present if <em>@AssertionConsumerServiceIndex</em> is present.</p></td></tr><tr><th class="confluenceTh"><p>@AttributeConsumingServiceIndex</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>SAML: If present, MUST refer to an AttributeConsumingService in the DV's metadata. If absent, the AttributeConsumingService marked as default in the <a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a> SHOULD be used.</p><p>The AttributeConsumingService MUST contain exactly <em>one</em> attribute with a name that is the same as a long formatted <a href="ServiceID_118882758.html">ServiceID</a>. The AttributeConsumingService MAY contain attributes to be requested.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Multiple AttributeConsumingService elements MAY be present in the <a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a> and can be mapped to the same ServiceID. This allows DVs to request authentication for a single service with varying attributes depending on the context. The union of all attributes that may be queried for a ServiceID MUST be declared in the Service Catalog.</p></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">An application that cannot pass an AttributeConsumingServiceIndex can now retrieve different services and/or attribute contracts by exchanging metadata between different <a href="EntityID_118882757.html">EntityID</a>s. </div></div></div></td></tr><tr><th class="confluenceTh"><p>@ProviderName</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten (DV): MAY contain a more detailed description of the service, complimentary to the entry in the service catalog</p><p>Elektronische Toegangsdiensten MAY NOT contain personally identifiable information</p></div></td></tr><tr><th class="confluenceTh"><p>Issuer</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="EntityID_118882757.html">EntityID</a> of the DV.</p></div></td></tr><tr><th class="confluenceTh">@NameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPNameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@Format</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPProvidedID</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh"><p>Signature</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="Digital-signature_118882764.html">Digital signature</a> of the DV for the envelopping message.</p></div></td></tr><tr><th class="confluenceTh"><p>Extensions</p></th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>Subject</p></th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>NameIDPolicy</p></th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>Conditions</p></th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>RequestedAuthnContext</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MAY be used to explicitly request a specific LoA. If specified, the HM summary response will communicate the detailed LoA, rather than SAML 'unspecified'.</p><p>If present it MUST be used to request a <em>equal to or <em>lo</em>wer than the level of assurance</em> specified in the <a href="Service-catalog_118882581.html">Service catalog</a>. A lower LoA can for instance be used in requests to allow read-only access to services.</p><p>If RequestedAuthnContext is absent, then the request will be further processed, using the <a href="Level-of-assurance_118882584.html">Level of assurance</a> (AuthnContextClassRef) as specified in the service catalog for the requested service.</p></div></td></tr><tr><th class="confluenceTh">@Comparison</th><td class="confluenceTd">1</td><td class="confluenceTd">MUST use the value 'minimum'.</td></tr><tr><th class="confluenceTh">AuthnContextClassRef</th><td class="confluenceTd">1</td><td class="confluenceTd"><span style="color: rgb(51,51,51);">MUST be one of the following requested <a href="Level-of-assurance_118882584.html">Level of assurance</a>.</span></td></tr><tr><th class="confluenceTh"><p>Scoping</p></th><td class="confluenceTd">0<strong>..</strong>1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST be included in case an AD is pre-selected by the user at the DV, MUST NOT be included otherwise.</p></div></td></tr><tr><th class="confluenceTh">IDPList</th><td class="confluenceTd">1</td><td class="confluenceTd">MUST be present in case of pre-selection of an AD.</td></tr><tr><th class="confluenceTh">IDPEntry</th><td class="confluenceTd">1</td><td class="confluenceTd">MUST be present in case of pre-selection of an AD.</td></tr><tr><th class="confluenceTh">@ProviderID</th><td class="confluenceTd">1</td><td class="confluenceTd">EntityID of the AD selected by the user.</td></tr><tr><th class="confluenceTh">@Name</th><td class="confluenceTd">0</td><td class="confluenceTd">MUST NOT be present.</td></tr><tr><th class="confluenceTh">@Loc</th><td class="confluenceTd">0..1</td><td class="confluenceTd">In case an AD has multiple endpoints in the <a href="Network-metadata_118882616.html">Network metadata</a>, the endpoint selected by the user MUST be provided.</td></tr></tbody></table></div><h4 id="InterfacespecificationsDVHM-Rulesforprocessingrequests">Rules for processing requests</h4><p>A requesting DV:</p><ul><li>MUST sign the &lt;AuthnRequest&gt;.</li><li>MUST request a serviceID that is listed for that ServiceProvider itself in the Service Catalog. Requesting services of other Service Providers is not allowed. A <a href="118882605.html">Dienstbemiddelaar (DB)</a> (Service Intermediary) can intermediate another service, if permitted by the Dienstaanbieder (Service Supplier), by indicating this in the Service Catalog (@IntermediatedService in ServiceInstance).</li><li>MAY use the <em>@AttributeConsumingServiceIndex</em> to reference the service (as specified in the metadata).</li><li>MAY use the &lt;RequestedAuthnContext&gt; to indicate a requested level of assurance, optionally lower than the LoA listed in the Service Catalogue for the requested Service. <br/>NB. Using the &lt;RequestedAuthnContext&gt; indicates the DV can accept/process the LoA in the &lt;AuthnContextClassRef&gt; in the response as well. (NB. this may restrict out-of-box-processing by appliances!)</li><li>MAY pass AD pre-selected for authentication. In this case:</li><ul><li>the DV MUST use an authentic list (signed by BO/HM) of accredited ADs. The list SHOULD be updated at least once every 15 minutes, the list MUST NOT be older than 30 minutes.</li><li>the DV MUST show the OrganizationDisplayName of all valid, applicable ADs, in alphabetic order and equal appearance. Applicable means an AD supporting at least a LevelOfAssurance equal to or greater than the minimum requested level of assurance and the requested NameIDFormat(s) (=EntityConcernedType). The OrganizationDisplayName MUST be taken from the beforementioned list of accredited ADs, which MUST contain an exact copy from the <a href="Network-metadata_118882616.html">Network metadata</a>.<ul><li>In case of a Portal request the eIDAS-berichtenservice MUST NOT be offered in the list of AD's to be selected. </li><li>If eIDAS-inbound is supported for the service, the eIDAS-berichtenservice MUST be displayed as a separate option / brand for authentication, next to eHerkenning. The EB MUST NOT be part of the eHerkenning AD list.</li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The list of AD's for eHerkenning as returned by service requestADList will not contain the eIDAS Berichtenservice (anymore).</p></div></div><p><br/></p><ul><li>In case of multiple OrganizationDisplayNames: if a user-specified preference or user interface language is available, the DV MUST present the OrganizationDisplayName with a matching LanguageQualifier; else if an OrganizationDisplayName with LanguageQualifier &quot;nl&quot; is present, this Dutch OrganizationDisplayName MUST be displayed; else if an OrganizationDisplayName with LanguageQualifier &quot;en&quot; is present, this English OrganizationDisplayName MUST be displayed; else, the first OrganizationDisplayName with a different LanguageQualifier MUST be displayed.</li></ul></li><li>the DV MUST show the logo of the applicable brand of the service classifier specified by the DV: <div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><thead><tr><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">Domain</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">LoA in request</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">EntityConcernedType in service catalog</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">Branding</div></div></th></tr></thead><tbody><tr><td colspan="1" class="confluenceTd">Business</td><td colspan="1" class="confluenceTd">1, 2, 2+, 3, 4</td><td colspan="1" class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:KvKnr</p><p>urn:etoegang:<span>1.9:</span><span>EntityConcernedID:RSIN</span></p><p>urn:etoegang:1.13:EntityConcernedID:PROBASnr</p><p>urn:etoegang:1.11:EntityConcernedID:eIDASLegalIdentifier</p></td><td colspan="1" class="confluenceTd">eHerkenning</td></tr><tr><td colspan="1" class="confluenceTd">Business, Consumer</td><td colspan="1" class="confluenceTd">1, 2, 2+, 3, 4</td><td colspan="1" class="confluenceTd"><p>urn:etoegang:1.12:EntityConcernedID:PseudoID</p><p>urn:etoegang:1.9:EntityConcernedID:Pseudo</p></td><td colspan="1" class="confluenceTd">eHerkenning</td></tr><tr><td colspan="1" class="confluenceTd">Citizen*</td><td colspan="1" class="confluenceTd">3, 4</td><td colspan="1" class="confluenceTd">urn:etoegang:1.12:EntityConcernedID:BSN</td><td colspan="1" class="confluenceTd">eHerkenning</td></tr></tbody></table></div><p>* Citizen: r1.12 only EU-citizens via eIDAS BerichtenService</p></li><li>in case an AD has multiple endpoints (SingleSignOnService elements): the user MUST be allowed to select one of the endpoints, based on the eme:name attribute of applicable SingleSignOnService endpoints, by listing an AD multiple times with the eme:name appended.</li><li><p>Additionally a DV MUST present A separate  &quot;eIDAS&quot; login option , to opt for the eIDAS-berichtenservice as an AD for login with an eIDAS-authentication scheme from another eIDAS-member state:</p></li><ul><li><span class="inline-comment-marker" data-ref="d40ea4ed-db73-4e01-b59a-82742f48c5cf">The Dienstverlener MUST use the <a href="Richtlijnen-communicatie-eIDAS_118882322.html">Richtlijnen communicatie eIDAS</a> to present the eIDAS. Berichtenservice to the user.</span></li><li><span class="inline-comment-marker" data-ref="d40ea4ed-db73-4e01-b59a-82742f48c5cf">The Dienstverlener MUST use the EntityID to refer to the EB in the AuthnRequest to the HM.</span></li><li>Since this reference is static, a Dienstverlener is not bound to honour the update requirements of a refresh atleast once every 15 minutes as mentioned above.</li><li>When presenting &quot;eIDAS&quot; link/button  the &quot;eHerkenning&quot; button MAY also be presented by the DV to allow access to the full list of regular ADs as specified above.</li></ul><li>A DV MAY offer the user to save the selection of the AD as default, except for eIDAS. However, if an error occurs when authenticating at a user-preselected default AD, the DV MUST retrieve a current list of accredited AD's from the HM and prompt the user to choose an AD.</li><li style="list-style-type: disc;">The ASTA's MUST NOT be requested by DV's, ONLY the EB and BRP MAY request ASTA's</li></ul></ul><p>A responding HM:</p><ul><li>MUST only process requests from contracted DVs.</li><li>MUST validate all signatures to be valid before further processing any request. Message (elements) MUST be signed using a certificate as listed in the <a rel="nofollow" class="external-link" href="https://afsprakenstelsel.etoegang.nl/display/as/DV+metadata+for+HM">DV Metadata for HM</a> for the purpose of signing for a SPSSODescriptor of the requesting DV.</li><li>MUST verify the structure and contents of the request.</li><li>MUST request authentication, authorization, <span class="inline-comment-marker" data-ref="3ceafe56-4064-4fcf-8f90-1c6efd6f167a">sectorIDs</span> and attributes on behalf of the DV, as applicable to the requested Service and User's choices. </li><li>In case of service intermediation the HM MUST verify the Service Intermediary is still authorized by the <a href="118882600.html">Dienstaanbieder (DA)</a> (Service Supplier) by verifying the authorization status of the mediated service (@intermediationAllowed) in the Service Catalog.</li><li>MUST support the IDPEntry element from the Scoping element in the AuthnRequest. In case the element Scoping is present, the HM MUST use the IDPEntry as reference for the AD selected by the user, bypassing the AD-selection page (applying use case GUC1-alt and GUC3-alt).</li><li>MUST verify the chosen AD and optional endpoint provided in the IDPEntry element reference a valid AD/EB as listed in the <a href="Network-metadata_118882616.html">Network metadata</a>.</li><li>MUST sanitize @ProviderName to remove any script or formatting before displaying</li><li><p><span class="inline-comment-marker" data-ref="ff26b3b8-cd05-4bb6-9e13-b0f16d1dbdb9">MUST </span><span class="inline-comment-marker" data-ref="c8f57386-856e-4650-aecf-03cce6850926"><span class="inline-comment-marker" data-ref="ff26b3b8-cd05-4bb6-9e13-b0f16d1dbdb9">determine the branding to use based on </span></span><span><span class="inline-comment-marker" data-ref="ff26b3b8-cd05-4bb6-9e13-b0f16d1dbdb9">the service classifier specified by the DV</span></span><span>.</span><br/><br/><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><thead><tr><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">Domain</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">LoA in request</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">EntityConcernedType in service catalog</div></div></th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner"><div class="tablesorter-header-inner">Branding</div></div></th></tr></thead><tbody><tr><td colspan="1" class="confluenceTd">Business</td><td colspan="1" class="confluenceTd">1, 2, 2+, 3, 4</td><td colspan="1" class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:KvKnr</p><p>urn:etoegang:<span>1.9:</span><span>EntityConcernedID:RSIN</span></p><p>urn:etoegang:1.13:EntityConcernedID:PROBASnr</p><p>urn:etoegang:1.11:EntityConcernedID:eIDASLegalIdentifier</p></td><td colspan="1" class="confluenceTd">eHerkenning</td></tr><tr><td colspan="1" class="confluenceTd">Business, Consumer</td><td colspan="1" class="confluenceTd">1, 2, 2+, 3, 4</td><td colspan="1" class="confluenceTd"><p>urn:etoegang:1.12:EntityConcernedID:PseudoID</p><p>urn:etoegang:1.9:EntityConcernedID:Pseudo</p></td><td colspan="1" class="confluenceTd">eHerkenning</td></tr><tr><td colspan="1" class="confluenceTd">Citizen*</td><td colspan="1" class="confluenceTd">3, 4</td><td colspan="1" class="confluenceTd">urn:etoegang:1.12:EntityConcernedID:BSN</td><td colspan="1" class="confluenceTd">eHerkenning</td></tr></tbody></table></div><p>* Citizen: r1.12 only EU-citizens via eIDAS BerichtenService</p></p><p><span class="inline-comment-marker" data-ref="c5afcaa6-9f3e-4011-91a8-c6e54a7b0538">If one of the criteria is not met, the HM must handle this as a non-recoverable error</span> (see <a href="Error-handling_118882578.html">Error handling</a>).</p><p>Note: When a HM receives a DV request on a specific version of the DV-HM interface, it should only show AD’s that list eme:version in the Metadata with the same, or higher version.</p><p>Note: When a HM receives a response from an AD, and the AD specifies an MR that is not of the same version, the HM must handle this as a non-recoverable error.</p></li></ul><ul><li>In case a portal service request is made at the eIDAS-berichtenservice, the HM MUST return a error message containing ResultMajor &quot;RequesterError&quot; and ResultMinor &quot;NotSupported&quot;</li></ul><p>With regards to determining the user's choice of AD/MR, the following processing rules apply;</p><ul><li>A HM MAY maintain user preferences (selected AD and MR, and 'Representation' use), except for eIDAS-inbound requests, and use these values for determining applicable AD/MR queries, else;</li><li>When the EntityConcernedTypesAllowed for the requested service signify a representation scenario (i.e. KVK, RSIN etc.), t<span class="inline-comment-marker" data-ref="f2358680-807e-4ca3-ab76-6903614f30e9">he HM MUST NOT query the user if it wants to authenticate on behalf of himself or another</span>.</li><ul><li>In such a scenario a HM MAY opt to only offer a selection list for AD's (<a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a>). This facilitates the current common practice that the AD already knows the MR so that the user will not be confronted with a potential confusing new choice to make whilst this information is already known within the scheme. (However this does invoke the possibility that AD will be confronted with lacking logistic information; see processing rules HM-AD). In case of a Portal request the eIDAS-berichtenservice MUST NOT be offered in the list of AD's to be selected.</li></ul></ul><p>Note: The examples below show only the AuthnRequest. Additional wrapping elements can be present in case of HTTP Artifact binding.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DV AuthnRequest</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    ID="_6984066c-de03-11e4-a571-080027a35b78"
+    ForceAuthn="true"
+    IsPassive="false"
+    Destination="https://..."
+    ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+    AssertionConsumerServiceURL="https://"
+    AttributeConsumingServiceIndex="1"
+    IssueInstant="2015-04-08T16:30:03Z"
+    Version="2.0"&gt;
+    &lt;saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;urn:etoegang:DV:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+        &lt;ds:SignedInfo&gt;
+            &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+            &lt;ds:Reference URI=" "&gt;
+                &lt;ds:Transforms&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+                &lt;/ds:Transforms&gt;
+                &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+                &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+            &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue&gt;...&lt;/ds:SignatureValue&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+    &lt;/ds:Signature&gt;
+    &lt;samlp:RequestedAuthnContext Comparison="minimum"&gt;
+        &lt;saml:AuthnContextClassRef xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+    &lt;/samlp:RequestedAuthnContext&gt;
+&lt;/samlp:AuthnRequest&gt;</pre> 
+ </div>
+</div><p><span style="line-height: 1.5625;font-size: 16.0px;"> </span></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DV AuthnRequest - minimal</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    ID="_2962ac7c-de04-11e4-9801-080027a35b78"
+    Destination="https://..."
+    IssueInstant="2015-04-08T16:30:07Z"
+    Version="2.0"&gt;
+    &lt;saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;urn:etoegang:DV:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+        &lt;ds:SignedInfo&gt;
+            &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+            &lt;ds:Reference URI="#_2962ac7c-de04-11e4-9801-080027a35b78"&gt;
+                &lt;ds:Transforms&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+                &lt;/ds:Transforms&gt;
+                &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+                &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+            &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue&gt;...&lt;/ds:SignatureValue&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+    &lt;/ds:Signature&gt;
+&lt;/samlp:AuthnRequest&gt;</pre> 
+ </div>
+</div><h3 id="InterfacespecificationsDVHM-Response(2)"><span style="line-height: 1.5625;font-size: 16.0px;">Response (2)</span></h3><p>For chain authorizations (<a class="createlink" href="/pages/createpage.action?spaceKey=BEHEERAS&amp;title=Vervallen_Interface+specifications+HM-MR+chain+authorization&amp;linkCreation=true&amp;fromPageId=118882669">Vervallen_Interface specifications HM-MR chain authorization</a>), the identification number of the represented service consumer are included in the assertion for the HM in the same way as for single authorizations. The additional information about the chain is stored in a separate attribute.<p>Note: The HM will not identify the MRs from which the underlying assertions originate. Additional attributes relate to the represented service consumer or the user. There is no mechanism to include an additional attribute that relates specifically to an intermediary.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Element/@Attribute</th><th class="confluenceTh">0..n</th><th class="confluenceTh">Description</th></tr><tr><th class="confluenceTh"><p>@ID</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Unique message characteristic. MUST identify the message uniquely within the scope of the sender and receiver for a period of at least 12 months.</p></td></tr><tr><th class="confluenceTh"><p>@InResponseTo</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Unique attribute of the AuthnRequest for which this Response message is the answer.</p></td></tr><tr><th class="confluenceTh"><p>@Version</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Version of the SAML protocol. The value MUST be '2.0'.</p></td></tr><tr><th class="confluenceTh"><p>@IssueInstant</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Time of issuing of the Response.</p></td></tr><tr><th class="confluenceTh"><p>@Destination</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: URL of the endpoint of the DV on which the message is offered. MUST match the DV's metadata.</p></td></tr><tr><th class="confluenceTh"><p>@Consent</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MAY be included. When Consent is included, the default value MUST contain urn:oasis:names:tc:SAML:2.0:consent:unspecified.</p></div></td></tr><tr><th class="confluenceTh"><p>Issuer</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/EntityID">EntityID</a> of the HM.</p></div></td></tr><tr><th class="confluenceTh">@NameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPNameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@Format</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPProvidedID</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh"><p>Signature</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Digital+signature">Digital signature</a> of the HM for the enveloping message.</p><p><span style="color: rgb(51,51,51);">When communicated within a ArtifactResolveResponse the signature on the SAML:Response MAY be omitted, since the parent message already guarantees the integrity.</span></p></div></td></tr><tr><th class="confluenceTh"><p>Extensions</p></th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>Status</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain a StatusCode element with the status of the authentication. See <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Error+handling">Error handling</a>.</p></div></td></tr><tr><th class="confluenceTh"><p>StatusCode</p></th><td class="confluenceTd">1</td><td class="confluenceTd">SAML: MUST be present in a Status element.</td></tr><tr><th class="confluenceTh">@Value</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>If not 'success' additional information should be provided. (conform Elektronische Toegangsdiensten specifications).</p></div></td></tr><tr><th class="confluenceTh">StatusCode</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><p>Only present if top-level StatusCode is not <span>'</span>success<span>'</span>.</p></td></tr><tr><th class="confluenceTh">@Value</th><td class="confluenceTd">1</td><td class="confluenceTd"><p>In the event of a cancellation or error, the element MUST be populated with the value AuthnFailed. See <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Error+handling">Error handling</a>.</p></td></tr><tr><th class="confluenceTh">StatusMessage</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><p>Only present if top-level StatusCode is not <span>'</span>success<span>'</span>.</p></td></tr><tr><th class="confluenceTh">StatusDetail</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh"><p>Assertion</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the &lt;Assertion&gt; that is delivered in the response, if the request was processed successfully. See below.</p></div></td></tr><tr><th class="confluenceTh">EncryptedAssertion</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example message</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    ID="_5e702d5c-de06-11e4-a5a1-080027a35b78"
+    InResponseTo="6984066c-de03-11e4-a571-080027a35b78"
+    Version="2.0"
+    Destination="https://..."
+    IssueInstant="2015-04-08T16:30:06Z"&gt;
+    &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature&gt;
+        &lt;ds:SignedInfo&gt;
+            &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+            &lt;ds:Reference URI="#_5e702d5c-de06-11e4-a5a1-080027a35b78"&gt;
+                &lt;ds:Transforms&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+                &lt;/ds:Transforms&gt;
+                &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+                &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+            &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue&gt;...&lt;/ds:SignatureValue&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+    &lt;/ds:Signature&gt;
+    &lt;samlp:Status&gt;
+        &lt;samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success" /&gt;
+    &lt;/samlp:Status&gt;
+    &lt;saml:Assertion Version="2.0"
+        ID="_535162e2-de06-11e4-98a2-080027a35b78"
+        IssueInstant="2015-04-08T16:30:05Z"&gt;
+        &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+        ...
+    &lt;/saml:Assertion&gt;
+&lt;/samlp:Response&gt;</pre> 
+ </div>
+</div><h3 id="InterfacespecificationsDVHM-HMSummaryassertion">HM Summary assertion</h3><p>This paragraph describes a HM summary &lt;Assertion&gt;</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Element/@Attribute</th><th class="confluenceTh">0..1</th><th class="confluenceTh">Description</th></tr><tr><th class="confluenceTh"><p>@ID</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: <span style="color: rgb(51,51,51);">MUST identify the &lt;Assertion&gt; uniquely within the scope of the Issuer for a period of at least 12 months.</span></p></td></tr><tr><th class="confluenceTh"><p>@Version</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Version of the SAML protocol. The value MUST be '2.0'.</p></td></tr><tr><th class="confluenceTh"><p>@IssueInstant</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Time <span style="color: rgb(51,51,51);">of issuing of the assertion.</span></p></td></tr><tr><th class="confluenceTh"><p>Issuer</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/EntityID">EntityID</a> of the HM</p></div></td></tr><tr><th class="confluenceTh">@NameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPNameQualifier</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@Format</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">@SPProvidedID</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh"><p>Signature</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: <span style="color: rgb(51,51,51);">MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Digital+signature">Digital signature</a> of the Issuer (HM) for the enveloping Assertion</span>.</p></div></td></tr><tr><th class="confluenceTh"><p>Subject</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST be included.</p></div></td></tr><tr><th class="confluenceTh">BaseID</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">NameID</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><p><a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+DV-HM#InterfacespecificationsDVHM-Rulesforprocessingrequests">Rules for processing request</a> requires NameID to contain a TransientID or an <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/ActingEntityID">ActingEntityID</a> (DV connects to r1.09 or older, for older specifications see <a class="external-link" rel="nofollow" href="https://afsprakenstelsel.etoegang.nl/display/archief/Archief">https://afsprakenstelsel.etoegang.nl/display/archief/Archief</a>).</p></td></tr><tr><th class="confluenceTh">EncryptedID</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST NOT be included.</p></div></td></tr><tr><th class="confluenceTh">SubjectConfirmation</th><td class="confluenceTd">1...2</td><td class="confluenceTd">SAML: Contains the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/SubjectConfirmation">SubjectConfirmation</a> conform the WebSSO profile. <br/><p>Other SubjectConfirmation or SubjectConfirmationData elements MUST NOT be included.</p></td></tr><tr><th class="confluenceTh"><p>Conditions</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST be included.</p></div></td></tr><tr><th class="confluenceTh">@NotBefore</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST be included.</div></td></tr><tr><th class="confluenceTh">@NotOnOrAfter</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MAY be included.</div></td></tr><tr><th class="confluenceTh">Condition</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be used.</div></td></tr><tr><th class="confluenceTh">AudienceRestriction</th><td class="confluenceTd">1</td><td class="confluenceTd">SAML: MUST be included.</td></tr><tr><th class="confluenceTh">Audience</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: Contains the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/EntityID">EntityID</a>(s) for all relevant parties that are intended to receive and process this assertion, as per SAML WebSSO profile. In case of Dienstbemiddeling (service intermediation), both the Dienstaanbieder (service supplier) and Dienstbemiddelaar (service intermediary) are a relevant party and must be listed as audience. For a Dienstaanbieder for whom only the OIN is known, the notation 'urn:etoegang:DV:<em>&lt;OIN&gt;</em>' is to be used.</div></td></tr><tr><th class="confluenceTh">ProxyRestriction</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh"><p>Advice</p></th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: SHOULD be included. See below under processing rules.</p></div></td></tr><tr><th class="confluenceTh">AssertionIDRef</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">AssertionURIRef</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh">Assertion</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: Contains the original &lt;Assertion&gt; elements this assertion is composed of.</div></td></tr><tr><th class="confluenceTh">EncryptedAssertion</th><td class="confluenceTd">0</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST NOT be included.</div></td></tr><tr><th class="confluenceTh"><p>AuthnStatement</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST be included.</p><p>The AuthenticatingAuthority element MUST be populated with the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/EntityID">EntityID</a> of the AD that performed the authentication.</p></div></td></tr><tr><th class="confluenceTh">@AuthnInstant</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the time of authentication.</p></div></td></tr><tr><th class="confluenceTh">@SessionIndex</th><td class="confluenceTd">0..1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MAY be included.</div></td></tr><tr><th class="confluenceTh">AuthnContext</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten: MUST be included.</div></td></tr><tr><th class="confluenceTh">AuthnContextClassRef</th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST be included. Contains either the value 'urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified' (default) or the obtained effective <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Level+of+assurance">Level of assurance</a>, see below under &quot;rules for processing responses&quot;.</p></div></td></tr><tr><th class="confluenceTh"><p>AttributeStatement</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain an &lt;AttributeStatement&gt; in accordance with the following section and the rules for processing responses.</p></div></td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM Assertion</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml:Assertion Version="2.0"
+    ID="_535162e2-de06-11e4-98a2-080027a35b78"
+    IssueInstant="2015-04-08T16:30:05Z"&gt;
+    &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature&gt;
+        &lt;ds:SignedInfo&gt;
+            &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+            &lt;ds:Reference URI="#_535162e2-de06-11e4-98a2-080027a35b78"&gt;
+                &lt;ds:Transforms&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+                &lt;/ds:Transforms&gt;
+                &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+                &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+            &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue&gt;...&lt;/ds:SignatureValue&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+    &lt;/ds:Signature&gt;
+    &lt;saml:Subject&gt;        
+        &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+            &lt;saml:SubjectConfirmationData Recipient="https://..." NotOnOrAfter="2015-04-08T16:40:03Z" InResponseTo="_6984066c-de03-11e4-a571-080027a35b78"/&gt;
+        &lt;/saml:SubjectConfirmation&gt;
+    &lt;/saml:Subject&gt;
+    &lt;saml:Conditions NotBefore="2015-04-08T16:29:04Z" NotOnOrAfter="2015-04-08T17:00:04Z"&gt;
+        &lt;saml:AudienceRestriction&gt;
+            &lt;saml:Audience&gt;urn:etoegang:DV:...&lt;/saml:Audience&gt;
+        &lt;/saml:AudienceRestriction&gt;
+    &lt;/saml:Conditions&gt;
+    &lt;saml:Advice&gt;
+        &lt;saml:Assertion IssueInstant="2015-04-08T16:30:04Z" ID="_8a792d9e-de07-11e4-9db2-080027a35b78" Version="2.0"&gt;
+            &lt;saml:Issuer&gt;urn:etoegang:AD:...&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of AD declaration of identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+    &lt;/saml:Advice&gt;
+    &lt;saml:AuthnStatement AuthnInstant="2015-04-08T16:30:04Z"&gt;
+        &lt;saml:AuthnContext&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa4&lt;/saml:AuthnContextClassRef&gt;
+        &lt;/saml:AuthnContext&gt;
+    &lt;/saml:AuthnStatement&gt;
+    &lt;saml:AttributeStatement&gt;
+        ...
+    &lt;/saml:AttributeStatement&gt;
+&lt;/saml:Assertion&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM Assertion for minimal DV request</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&nbsp;&lt;saml:Assertion Version="2.0"
+    ID="_535162e2-de06-11e4-98a2-080027a35b78"
+    IssueInstant="2015-04-08T16:30:05Z"&gt;
+    &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature&gt;
+        ...
+   &nbsp;&lt;/ds:Signature&gt;
+    &lt;saml:Subject&gt;        
+        &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+            &lt;saml:SubjectConfirmationData Recipient="https://..." NotOnOrAfter="2015-04-08T16:40:03Z" InResponseTo="_6984066c-de03-11e4-a571-080027a35b78"/&gt;
+        &lt;/saml:SubjectConfirmation&gt;
+    &lt;/saml:Subject&gt;
+    &lt;saml:Conditions NotBefore="2015-04-08T16:29:04Z" NotOnOrAfter="2015-04-08T17:00:04Z"&gt;
+        &lt;saml:AudienceRestriction&gt;
+            &lt;saml:Audience&gt;urn:etoegang:DV:...&lt;/saml:Audience&gt;
+        &lt;/saml:AudienceRestriction&gt;
+    &lt;/saml:Conditions&gt;
+    &lt;saml:Advice&gt;
+        &lt;saml:Assertion IssueInstant="2015-04-08T16:30:04Z" ID="_8a792d9e-de07-11e4-9db2-080027a35b78" Version="2.0"&gt;
+            &lt;saml:Issuer&gt;urn:etoegang:AD:...&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of AD declaration of identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+    &lt;/saml:Advice&gt;
+    &lt;saml:AuthnStatement AuthnInstant="2015-04-08T16:30:04Z"&gt;
+        &lt;saml:AuthnContext&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa4&lt;/saml:AuthnContextClassRef&gt;
+        &lt;/saml:AuthnContext&gt;
+    &lt;/saml:AuthnStatement&gt;
+    &lt;saml:AttributeStatement&gt;
+        ...
+    &lt;/saml:AttributeStatement&gt;
+&lt;/saml:Assertion&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM Assertion for Representation</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&nbsp;Vraag het op bij de BO / Ask BO</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM Assertion for citizen domain</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&nbsp;&lt;saml:Assertion Version="2.0"
+    ID="_535162e2-de06-11e4-98a2-080027a35b78"
+    IssueInstant="2015-04-08T16:30:05Z"&gt;
+    &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+    &lt;ds:Signature&gt;
+        ...
+    &lt;/ds:Signature&gt;
+   &nbsp;&lt;saml:Subject&gt;       
+        &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+            &lt;saml:SubjectConfirmationData Recipient="https://..." NotOnOrAfter="2015-04-08T16:40:03Z" InResponseTo="_6984066c-de03-11e4-a571-080027a35b78"/&gt;
+        &lt;/saml:SubjectConfirmation&gt;
+    &lt;/saml:Subject&gt;
+    &lt;saml:Conditions NotBefore="2015-04-08T16:29:04Z" NotOnOrAfter="2015-04-08T17:00:04Z"&gt;
+        &lt;saml:AudienceRestriction&gt;
+            &lt;saml:Audience&gt;urn:etoegang:DV:...&lt;/saml:Audience&gt;
+        &lt;/saml:AudienceRestriction&gt;
+    &lt;/saml:Conditions&gt;
+    &lt;saml:Advice&gt;
+        &lt;saml:Assertion IssueInstant="2015-04-08T16:30:04Z" ID="_8a792d9e-de07-11e4-9db2-080027a35b78" Version="2.0"&gt;
+            &lt;saml:Issuer&gt;urn:etoegang:AD:...&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of AD declaration of identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+        &lt;saml:Assertion IssueInstant="2015-04-08T16:30:04Z" ID="_8a792d9e-de07-11e4-9db2-080027a35b78" Version="2.0"&gt;
+            &lt;saml:Issuer&gt;urn:etoegang:KR:...&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of KR declaration of sectoral identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+   &nbsp;&lt;/saml:Advice&gt;
+    &lt;saml:AuthnStatement AuthnInstant="2015-04-08T16:30:04Z"&gt;
+        &lt;saml:AuthnContext&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa4&lt;/saml:AuthnContextClassRef&gt;
+        &lt;/saml:AuthnContext&gt;
+    &lt;/saml:AuthnStatement&gt;
+    &lt;saml:AttributeStatement&gt;
+        ...
+    &lt;/saml:AttributeStatement&gt;
+&lt;/saml:Assertion&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example - HM Assertion - eIDAS-OUT withService Intermediation</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Confluence; collapse: true" data-theme="Confluence">&lt;saml2:Assertion ID="_67d2200a8bd8401dc1b7274106731ca6" IssueInstant="2019-02-26T10:35:43.000Z" Version="2.0" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+    &lt;saml2:Issuer xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"&gt;urn:etoegang:HM:00000003271247010000:entities:7611&lt;/saml2:Issuer&gt;
+    &lt;ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+        &lt;ds:SignedInfo&gt;
+            &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+            &lt;ds:Reference URI="#_67d2200a8bd8401dc1b7274106731ca6"&gt;
+                &lt;ds:Transforms&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+                    &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"&gt;
+                        &lt;ec:InclusiveNamespaces PrefixList="xs" xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+                    &lt;/ds:Transform&gt;
+                &lt;/ds:Transforms&gt;
+                &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/&gt;
+                &lt;ds:DigestValue/&gt;
+            &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue/&gt;
+        &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            &lt;ds:KeyName&gt;f04a58c387f4f8b5f1fa3a614f79f073f3f08953&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+    &lt;/ds:Signature&gt;
+    &lt;saml:Subject xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;ed3d5655-b6ee-47bf-87d5-fb77302e14b4&lt;/saml:NameID&gt;
+        &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+            &lt;saml:SubjectConfirmationData InResponseTo="_d3fda417414c17b2667995961cf79fc5" NotOnOrAfter="2019-02-26T10:37:39Z" Recipient="https://brk.eid-tst.ad.nl/brk/HM1CServiceProvider" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"/&gt;
+        &lt;/saml:SubjectConfirmation&gt;
+    &lt;/saml:Subject&gt;
+    &lt;saml2:Conditions NotBefore="2019-02-26T10:35:43Z" NotOnOrAfter="2019-02-26T10:37:43Z" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml2:AudienceRestriction&gt;
+            &lt;saml2:Audience&gt;urn:etoegang:DV:00000001111111110000:entities:9113&lt;/saml2:Audience&gt;
+            &lt;saml2:Audience&gt;urn:etoegang:DV:00000002222222220000:entities:9613&lt;/saml2:Audience&gt;
+        &lt;/saml2:AudienceRestriction&gt;
+    &lt;/saml2:Conditions&gt;
+    &lt;saml:AuthnStatement AuthnInstant="2019-04-08T16:30:07Z"&gt;
+        &lt;saml:AuthnContext&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa4&lt;/saml:AuthnContextClassRef&gt;
+        &lt;/saml:AuthnContext&gt;
+    &lt;/saml:AuthnStatement&gt;
+    &lt;saml2:Advice&gt;
+        &lt;saml:Assertion IssueInstant="2019-04-08T16:30:04Z" ID="_8a792d9e-de07-11e4-9db2-080027a35b78" Version="2.0"&gt;
+            &lt;saml:Issuer&gt; urn:etoegang:AD:00000004444444445001:entities:9042&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of AD declaration of identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+        &lt;saml:Assertion IssueInstant="2019-04-08T16:30:07Z" ID="dd4dae83-0f35-4695-b24a-29d470a63ea7" Version="2.0"&gt;
+            &lt;saml:Issuer&gt; urn:etoegang:MR:00000005555555555001:entities:9042&lt;/saml:Issuer&gt;
+            &lt;!-- Verbatim copy of MR declaration of identity contents --&gt;
+        &lt;/saml:Assertion&gt;
+    &lt;/saml2:Advice&gt;
+    &lt;saml2:AuthnStatement AuthnInstant="2019-02-26T10:35:43Z" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml2:AuthnContext&gt;
+            &lt;saml2:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa4&lt;/saml2:AuthnContextClassRef&gt;
+            &lt;saml2:AuthenticatingAuthority&gt;urn:etoegang:AD:00000004444444445001:entities:9042&lt;/saml2:AuthenticatingAuthority&gt;
+        &lt;/saml2:AuthnContext&gt;
+    &lt;/saml2:AuthnStatement&gt;
+    &lt;saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        . . . . . 
+    &lt;/saml2:AttributeStatement&gt;
+&lt;/saml2:Assertion&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM assertion - Attribute Statement - eIDAS-OUT using Service Intermediation</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Confluence; collapse: true" data-theme="Confluence">&lt;saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+    &lt;saml2:Attribute Name="urn:etoegang:core:ServiceUUID"&gt;
+        &lt;saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string"&gt;dafca82e-4806-408e-956e-3a7092643e54&lt;/saml2:AttributeValue&gt;
+    &lt;/saml2:Attribute&gt;
+    &lt;saml2:Attribute Name="urn:etoegang:core:ServiceID"&gt;
+        &lt;saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string"&gt;urn:etoegang:DV:00000001111111110000:services:8002&lt;/saml2:AttributeValue&gt;
+    &lt;/saml2:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:Representation" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:boolean"&gt;true&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;!-- igv de service via de Service Catalog vraagt om een ServiceRestriction en de MR--&gt;
+    &lt;!-- heeft een service restriction bij de machtiging. Vb restrictie op KvK Vestigingsnr--&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:ServiceRestriction:Vestigingsnr"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;123456789012&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ActingSubjectID" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml:AttributeValue&gt;
+            &lt;!-- # ActingSubjectID - BSN:VP@RVO (PseudoID voor de EB) --&gt;
+            &lt;saml:EncrypedID&gt;
+                &lt;xenc:EncryptedData Id="_cd52e15a16e2a0aa751725ce76a6b866" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:RetrievalMethod Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey"URI="#_15531f42aa31bbd4" /&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;...&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                &lt;/xenc:EncryptedData&gt;
+                &lt;xenc:EncryptedKey Id="_15531f77a9f1e0b5e0cce442aa31bbd4" Recipient="urn:etoegang:DV:00000001111111110000:entities:9613"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+                        &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+                    &lt;/xenc:EncryptionMethod&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;yRy923JJlgAi2MTgx1qohLiDBgi...&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                    &lt;xenc:ReferenceList&gt;
+                        &lt;xenc:DataReference URI="#_cd52e15a16e2a0aa751725ce76a6b866" /&gt;
+                    &lt;/xenc:ReferenceList&gt;
+                &lt;/xenc:EncryptedKey&gt;
+            &lt;/saml:EncrypedID&gt;
+        &lt;/saml:AttributeValue&gt;
+        &lt;saml:AttributeValue&gt;
+            &lt;!-- # ActingSubjectID - BSN:VI@RVIG (BSN voor BRP-Attributendienst)--&gt;
+            &lt;saml:EncrypedID&gt;
+                &lt;xenc:EncryptedData Id="_ed3457856888ad576a0aa751725ce76a6b866" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:RetrievalMethod Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey"URI="#_4567788aa31bbd4" /&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;...&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                &lt;/xenc:EncryptedData&gt;
+                &lt;xenc:EncryptedKey Id="_15531f77a9f1e0b5e0cce442aa31bbd4" Recipient="urn:etoegang:DV:00000002222222220000"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+                        &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+                    &lt;/xenc:EncryptionMethod&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;UtEw923JJlgAi2MTgx1qohLiDBgi...&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                    &lt;xenc:ReferenceList&gt;
+                        &lt;xenc:DataReference URI="#_cd52e15a16e2a0aa751725ce76a6b866" /&gt;
+                    &lt;/xenc:ReferenceList&gt;
+                &lt;/xenc:EncryptedKey&gt;
+            &lt;/saml:EncrypedID&gt;
+        &lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:LegalSubjectID" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+        &lt;saml:AttributeValue&gt;
+            &lt;!-- # LegalSubjectID - KvK voor de EB)--&gt;
+            &lt;saml:EncryptedID&gt;
+                &lt;xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Id="_6bc1c98ef545444da370efd74371ff6f" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+                    &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+                        &lt;ds:RetrievalMethod URI="#_105e787ebce14ea2b6655adb4d736b86" Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey" /&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;lx922tGEfI9T7WgoduHAZ941XA....&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                &lt;/xenc:EncryptedData&gt;
+                &lt;xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Id="_105e787ebce14ea2b6655adb4d736b86" Recipient="urn:etoegang:DV:00000001111111110000:entities:9613"&gt;
+                    &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+                        &lt;ds:DigestMethod xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+                    &lt;/xenc:EncryptionMethod&gt;
+                    &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+                        &lt;ds:KeyName&gt;022A8DEA6C6F6CFA466BF18AF714F4CD0611DF3A4CAF23CF67B8BB8F7FC07CAF&lt;/ds:KeyName&gt;
+                    &lt;/ds:KeyInfo&gt;
+                    &lt;xenc:CipherData&gt;
+                        &lt;xenc:CipherValue&gt;gNDIheioi3mgjeyCTviEXDui3.....&lt;/xenc:CipherValue&gt;
+                    &lt;/xenc:CipherData&gt;
+                    &lt;xenc:ReferenceList&gt;
+                        &lt;xenc:DataReference URI="#_6bc1c98ef545444da370efd74371ff6f" /&gt;
+                    &lt;/xenc:ReferenceList&gt;
+                &lt;/xenc:EncryptedKey&gt;
+            &lt;/saml:EncryptedID&gt;
+        &lt;/saml:AttributeValue&gt;
+        &lt;! # LegalSubjectID - Geen KvK voor de dienstaanbieder.&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;!-- # CompanyName werkgever voor de EB.--&gt;
+    &lt;saml:EncryptedAttribute&gt;
+        &lt;xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Id="_67947663adfasdf9410780097b9bf2f04fa8" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+            &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+                &lt;ds:DigestMethod xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+            &lt;/xenc:EncryptionMethod&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:KeyName&gt;57890EA6C6F6CFA466BF18AF714F4CD0611DF3A4CAF23CF67B8BB8F7FC07CAF&lt;/ds:KeyName&gt;
+            &lt;/ds:KeyInfo&gt;
+            &lt;xenc:CipherData&gt;
+                &lt;xenc:CipherValue&gt;WYuIOsaf1aNbZdRQPXepQjlw4Tg...&lt;/xenc:CipherValue&gt;
+            &lt;/xenc:CipherData&gt;
+        &lt;/xenc:EncryptedData&gt;
+    &lt;/saml:EncryptedAttribute&gt;
+    &lt;!-- # Optionele Bedrijfs attributen (CompanyName) voor de EB.--&gt;
+    &lt;saml:EncryptedAttribute&gt;
+        &lt;xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Id="_6974a3dsdf9410780097b9bf2f04fa8" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+            &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+                &lt;ds:DigestMethod xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+            &lt;/xenc:EncryptionMethod&gt;
+            &lt;!-- # EB should recognise KeyName.--&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:KeyName&gt;57890EA6C6F6CFA466BF18AF714F4CD0611DF3A4CAF23CF67B8BB8F7FC07CAF&lt;/ds:KeyName&gt;
+            &lt;/ds:KeyInfo&gt;
+            &lt;xenc:CipherData&gt;
+                &lt;xenc:CipherValue&gt;WYuIOsaf1aNbZdRQPXepQjlw4Tg...&lt;/xenc:CipherValue&gt;
+            &lt;/xenc:CipherData&gt;
+        &lt;/xenc:EncryptedData&gt;
+    &lt;/saml:EncryptedAttribute&gt;
+&lt;/saml2:AttributeStatement&gt;</pre> 
+ </div>
+</div><p><br/></p><p><br/></p><h3 id="InterfacespecificationsDVHM-AttributeStatement">AttributeStatement</h3><p>The &lt;AttributeStatement&gt; in the summary assertion MUST hold the relevant attribute values obtained in the assertions of the authentication process. The HM MUST NOT add any attributes that are not present in the gathered assertion. </p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Element/@Attribute</th><th class="confluenceTh">0..1</th><th class="confluenceTh">Description</th></tr><tr><th class="confluenceTh"><p>Attribute</p></th><td class="confluenceTd">0..n</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten:</p><p>Depending on <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+DV-HM#InterfacespecificationsDVHM-Rulesforprocessingrequests">Rules for processing request</a>:</p><ul><li>one or more <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/ActingSubjectID">ActingSubjectID</a>'s</li><li>one or more <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/LegalSubjectID">LegalSubjectID</a></li><li>one or more <a href="https://afsprakenstelsel.etoegang.nl/pages/viewpage.action?pageId=118882544">EntityConcernedID</a></li><li><a href="https://afsprakenstelsel.etoegang.nl/pages/viewpage.action?pageId=118882528">ServiceID</a> as multi-valued XACML attribute</li><li>exactely one IntermediateEntityID, the identity of <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/IntermediateSubjectID+*nieuw+RFC2362">Intermediate</a></li><li>one or more ServiceRestrictions, eg <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/ServiceRestriction%3AVestigingsnr">ServiceRestriction:Vestigingsnr</a></li></ul><p>In case of <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Ketenmachtiging">Ketenmachtiging</a>, MUST contain the attribute IntermediateEntityID.</p></div></td></tr><tr><th class="confluenceTh">EncryptedAttribute</th><td class="confluenceTd">0..n</td><td class="confluenceTd"><div class="content-wrapper"><p>Depending on <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+DV-HM"><span style="color: rgb(0,102,204);">Rules for processing request</span></a> </p><ul><li>one or more EncryptedAttributes  requested by the DV and provided by the AD and/or MR</li></ul><p><br/></p></div></td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM AttributeStatement for citizen domain</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml:AttributeStatement&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceUUID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;1ff84f14-df64-11e4-ba1a-080027a35b78&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:AuthorizationRegistryID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;urn:etoegang:AD:...&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+&lt;/saml:AttributeStatement&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM AttributeStatement for consumer domain</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml:AttributeStatement&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceUUID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;0013c492-84cd-4c4b-8206-b13007ac2a1c&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:EncryptedAttribute&gt;
+        &lt;xenc:EncryptedData Id="_copy_Encrypted_FirstName" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+            &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:Keyname&gt;...&lt;/ds:Keyname&gt;
+            &lt;/ds:KeyInfo&gt;
+            &lt;xenc:CipherData&gt;
+                &lt;xenc:CipherValue&gt;...&lt;/xenc:CipherValue&gt;
+            &lt;/xenc:CipherData&gt;
+        &lt;/xenc:EncryptedData&gt;
+    &lt;/saml:EncryptedAttribute&gt;
+    &lt;saml:EncryptedAttribute&gt;
+        &lt;xenc:EncryptedData Id="_copy_Encrypted_18OrOlder" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+            &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:Keyname&gt;...&lt;/ds:Keyname&gt;
+            &lt;/ds:KeyInfo&gt;
+            &lt;xenc:CipherData&gt;
+                &lt;xenc:CipherValue&gt;...&lt;/xenc:CipherValue&gt;
+            &lt;/xenc:CipherData&gt;
+        &lt;/xenc:EncryptedData&gt;
+    &lt;/saml:EncryptedAttribute&gt;
+&lt;/saml:AttributeStatement&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM AttributeStatement for business domain</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml:AttributeStatement&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;urn:etoegang:DV:...:services:...&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceUUID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;dd4dae83-0f35-4695-b24a-29d470a63ea7&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:EntityConcernedID:KvKnr"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;12345678&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:ServiceRestriction:Vestigingsnr"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;123456789012&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+&lt;/saml:AttributeStatement&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM AttributeStatement for business domain with multiple entityconcernedtypes</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml:AttributeStatement&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;urn:etoegang:DV:...:services:...&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:core:ServiceUUID"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;dd4dae83-0f35-4695-b24a-29d470a63ea7&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:EntityConcernedID:KvKnr"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;12345678&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:EntityConcernedID:RSIN"&gt;         
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;987654321&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute Name="urn:etoegang:1.9:ServiceRestriction:Vestigingsnr"&gt;
+        &lt;saml:AttributeValue xsi:type="xs:string"&gt;123456789012&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+&lt;/saml:AttributeStatement&gt;</pre> 
+ </div>
+</div><h4 id="InterfacespecificationsDVHM-Rulesforprocessingresponses">Rules for processing responses</h4><p>On a successful authentication the HM MUST generate a 'Summary Assertion' based on the Assertions gathered during the authentication process, using the following processing rules.</p><ul><li>MUST sign the enclosed &lt;Assertion&gt; as well as the &lt;Response&gt; (and/or the enclosing &lt;ArtifactResponse&gt;).</li><li>MUST verify each collected assertion has at minimum the Level of Assurance as requested by the DV. If verification fails, MUST handle the received responses as an unrecoverable error.</li><li>MUST provide an &lt;AuthnContextClassRef&gt;:<br/><ul><li>By default fill the AuthnContextClassRef with the value 'urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified'.</li><li><p>When a DV explicitly requests a detailed LoA by including an AuthnContextClassRef in its AuthnRequest (see above): The HM MUST communicate the effective Level of Assurance of the combined assertions. The effective Level of assurance is the minimum of the LoA of the Authentication assertion and (if applicable) the LoA of the Representation authorization assertion(s).<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The MR communicates two Levels of Assurance in its Assertion. A LevelOfAssurance (requested) and a LevelOfAssuranceUsed (actually obtained). The HM MUST use the LevelOfAssuranceUsed from the MR Assertion as the LoA of the Representation authorization.</p></div></div>.</p></li></ul></li><li>HM MUST provide an &lt;Subject&gt; with the following &lt;NameID&gt;<ul><li><p><em>IF</em> DV connects to r1.13 (or newer) AND non-represenation THEN copy AD-assertion: Subject.NameID.TransientID</p></li><li><em>IF</em> DV connects to r1.13 (or newer) AND representation THEN copy MR-assertion: Subject.NameID.TransientID</li><li><em>IF</em> DV connects to r1.11 (or older) <em>THEN</em> copy MR-assertion: XACMLAuthz-Decision.Subject.ActingEntityID</li></ul></li><li>HM MUST provide an &lt;AttributeStatement&gt; with the following &lt;Attributes&gt; and &lt;EncryptedAttributes&gt;<ul><li><em>IF</em> DV connects to r1.13 (or newer) <em>THEN </em><ul><li><em><em style="text-align: left;">the HM must</em><span style="color: rgb(23,43,77);"> </span><span style="color: rgb(23,43,77);">copy all relevant information (see <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+DV-HM">Interface specifications DV-HM</a>) from the below sources to the ActingSubjectID attribute:</span></em><br/><ul><li>MR-Assertion: XACMLAuthz-Decision.Subject.ActingSubjectID (EncryptedID) </li><li>AD-assertion: Response.Assertion.AttributeStatement.ActingSubjectID. </li><li>copy all relevant AD-assertion: AttributeStatement.EncryptedAttribute</li></ul></li></ul></li><li>IF Representation THEN <ul><li>IF DV connects to r1.13 (or newer) THEN<ul><li>copy all relevant EncryptedID from MR-Assertion: XACMLAuthz-Decision.Subject.LegalSubjectID to &lt;LegalSubjectID&gt;</li><li>copy all relevant EncryptedID from MR-Assertion: XACMLAuthz-Decision.Subject.ActingSubjectID to &lt;ActingSubjectID&gt;  </li><li>copy<span> all relevant </span> MR-assertion: XACMLAuthz-Decision.Resource.EncryptedAttribute</li></ul></li><li><em>IF</em> DV connects to r1.11 (or older) <em>AND</em> Representation <em>THEN</em> copy MR-assertion: XACMLAuthz-Decision.Resource.EntityConcernedID</li><li>copy MR-Assertion: XACMLAuthz-Decision.Statement.Request.Resource.ServiceID</li><li><em>IF </em>available copy all MR-assertion: XACMLAuthz-Decision.Resource.ServiceRestrictions</li><li><em>IF </em><a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Ketenmachtiging">Ketenmachtiging</a> <em>THEN</em> copy MR2-Assertion: XACMLAuthz-Decision.Statement.Request.Resource.IntermediateEntityID</li></ul></li></ul></li></ul><ul><li style="list-style-type: none;"><ul><li>MUST provide an &lt;Advice&gt;, by default filled with verbatim copy of all Assertions – so that original signatures over the assertions remains verifiable – gathered during the authentication process. HM MAY offer their DV to omit this information, if they archive this information and allow for later retrieval.</li></ul></li></ul><p><br/></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>NOTE: When copying encrypted XML elements (&lt;EncryptedID&gt;, &lt;EncryptedAttribute&gt;) to create the summary declaration the HM MUST substitute used XML identifiers to point at the EncryptedTypes for a guaranteed unique identifier. This MAY be accomplished by pre- or suffixing the used identifier in the copy.</p><p>(Rationale: <em>@ID</em> values must uniquely identify the elements which bear them. Identifiers that appear once in the summary assertion and once in the advice assertion(s) will break schema validation of assertions).</p></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>All relevant</p><p style="text-decoration: none;margin-left: 0.0px;">all &lt;EncryptedID&gt; or &lt;EncryptedAttribute&gt; elements except those encrypted for MR</p></div></div><p>A receiving DV:</p><ul><li>MUST verify the response matches with the Request responded to.</li><li>MUST validate the signature on the Assertion as well as the Response (and/or the enclosing ArtifactResponse). Message (elements) MUST be signed using a certificate as listed in the SAML metadata of the HM for the purpose of signing for an IDPSSODescriptor of the responding HM. (NB this should correspond to the certificate as published in the network metadata).</li><li>MUST be able to process DeprecatedActingSubjectID to facilitate migration or replacements of identifiers.</li><li>SHOULD verify the structure and contents of the Response.</li><li>SHOULD validate the signature and linking of the Evidence assertions.</li><li>In case the receiving DV is a Dienstbemiddelaar, the Dienstbemiddelaar MUST provide a verbatim copy of the assertion – so that original signatures over the assertions remains verifiable – to the Dienstaanbieder (service supplier).</li><li>IF the DV wants to decrypt urn:etoegang:1.12:EntityConcernedID:PseudoID or urn:etoegang:1.12:EntityConcernedID:BSN the DV must use preinstalled BSNk-keymaterial and software to obtain the actual identifier.</li><li>IF the DV receives a pseudonym THEN the DV SHOULD create a mapping from the obtained Pseudonym to a user account, rather than using the obtained pseudoniem directly as unique key for an account.</li><li>MUST decrypt an Encrypted Pseudonym or Encrypted Identity in the EncryptedID in the Attribute Statement of the Assertion using preinstalled keymaterial and software to obtain the actual identifier.<ul><li style="list-style-type: none;background-image: none;"><ul><li>SHOULD create a mapping from the obtained identifier to a user account, rather than using the obtained identifier directly as unique key for an account. This so that a <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Persistent+Pseudonym">Persistent Pseudonym</a> as well as deprecatedID can be in use at the same time to access an account during migrations.</li></ul></li></ul></li></ul><h3 id="InterfacespecificationsDVHM-LogoutRequest">LogoutRequest</h3><p>For single logout, the Single Logout Profile that is part of the SAML 2.0 Web Browser SSO Profile is applied, although considering that the logout message is sent to the AD via the HM. Only supported, is the DV's LogoutRequest where the user chooses to log out from the AD. The DV should never expect a LogoutRequest or a LogoutResponse. The interface for this message is described below.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>@ID</p></th><td class="confluenceTd"><p>SAML: Unique message characteristic</p></td></tr><tr><th class="confluenceTh"><p>@Version</p></th><td class="confluenceTd"><p>SAML: Version of the SAML protocol. The value MUST be '2.0'.</p></td></tr><tr><th class="confluenceTh"><p>@IssueInstant</p></th><td class="confluenceTd"><p>SAML: Time the message was created</p></td></tr><tr><th class="confluenceTh"><p>@Destination</p></th><td class="confluenceTd"><p>SAML: URL of the HM on which the message is offered.</p></td></tr><tr><th class="confluenceTh"><p>NameID</p></th><td class="confluenceTd"><div class="content-wrapper"><p><span>Elektronische Toegangsdiensten: </span>MUST contain a NameID element with the transient from the Subject of the concomitant AD assertion. This MUST NOT contain any identifier of the user.</p></div></td></tr><tr><th class="confluenceTh"><p>Issuer</p></th><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/EntityID">EntityID</a> of the DV.</p></div></td></tr><tr><th class="confluenceTh"><p>Signature</p></th><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MUST contain the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Digital+signature">Digital signature</a> of the DV for the envelopping message.</p></div></td></tr></tbody></table></div><p><strong style="font-size: 16.0px;"><br/></strong></p><p><strong style="font-size: 16.0px;">RequestKeyMaterial</strong></p><p class="confluence-link">The DV may request the HM for DV-specific key material which the DV can use to decrypt the EncryptedPseudonym into a DV-specific pseudonym or BSN, as per <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/AUC9+Verstrekken+sleutelmateriaal+Dienstverleners">AUC9 Verstrekken sleutelmateriaal Dienstverleners</a>. The HM can request the keys at the BSNk (see<span class="confluence-link"> <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+aux+HM-BSNk+-+ProvideDVkeys">Interface specifications aux HM-BSNk - ProvideDVkeys</a></span>).</p><p>A PKIo-certificate of the DV is required, the PKIo-certificate MUST have a (extended) key usage that allows for keyEncipherment. If the DV may request a BSN, the PKIo-certificate MUST have a Subject.serialNumber containing the organizations OIN. </p><h3 id="InterfacespecificationsDVHM-ProvideKeyMaterial"><strong>ProvideKeyMaterial</strong></h3><p>The Herkenningsmakelaar MUST transfer the PKIo-encrypted key material to the DV unaltered. The HM will receive the DV-keys from the BSNk (see <span class="confluence-link"><a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Interface+specifications+aux+HM-BSNk+-+ProvideDVkeys">Interface specifications aux HM-BSNk - ProvideDVkeys</a></span>).</p><p>The DV can decrypt the DV-keys using its private key corresponding with the PKIo-certificate used in the request.</p></p><p><br/></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882577/118884021.png">image2015-9-28 10:18:31.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

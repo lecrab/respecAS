@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Metadata for participants</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SAML-metadata_118882580.html">SAML metadata</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Metadata for participants
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (joyceeering)</span> on Feb 23, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    A participant MUST supply metadata to the <a href="118882701.html">Beheerorganisatie (BO)</a> for every system that implements the <span class="inline-comment-marker" data-ref="62a10e2e-c893-493f-9704-a67d077b7686">role</span> of <span>HM, AD, MR, EB or KR </span>in the network. A participant MUST NOT supply metadata for a role or functionality it has not been assigned.<p>This requirement is for metadata for the production network. This requirement does not apply to metadata for the test network, because it must also be possible to test the systems of parties that have not yet joined.</p><p>A participant that has several roles in the network MUST supply metadata for each role separately.</p><h3 id="Metadataforparticipants-EntityDescriptor"><span class="inline-comment-marker" data-ref="fd41e0ec-a998-4e60-a659-f2406f7bcf94">EntityDescriptor</span></h3><p>The participant MUST publish SAML metadata for the Beheerorganisatie complying to the specifications defined for the namespace urn:oasis:names:tc:SAML:2.0:metadata, with one signed EntitiesDescriptor element. Signing metadata MUST meet the requirements for signing, see <a href="Digital-signature_118882764.html">Digital signature</a>.</p><p>The EntitiesDescriptor element MUST contain an attribute Name with a value formatted as urn:etoegang:&lt;scheme version&gt;:&lt;omgeving&gt;:&lt;sequence number&gt;, whereby &lt;scheme version&gt; indicates the version of the framework, &lt;omgeving&gt; the respective environment (P or T), and &lt;sequence number&gt; is a sequence number that distinguishes the different versions of metadata.</p><p>The EntitiesDescriptor MAY contain an Extensions element that contains a PublicationInfo element with the URL and creation date of the metadata file.</p><p>The EntitiesDescriptor element contains one or more EntityDescriptor elements.</p><p class="confluence-link">Each EntityDescriptor element MUST contain the EntityID and an additional version attribute, MAY contain a SAML validUntil, EH validFrom, name and ISOname attributes and MUST NOT contain other SAML attributes. The version attribute contains the version of the interface specifications on which the entity communicates. The additional attributes are described below.</p><p>The EntityDescriptor MUST contain one or more elements of the type ContactPerson containing an administrative non-personal name, email address, and telephone number that can be contacted by participants or the Beheerorganisatie in the event of an incident. The field 'company' is optional for Contactperson but may be filled in. In case the Contactperson is employed by a different company, the field 'company' of the contactperson MUST be filled in.<strong> </strong>&quot;The metadata MUST NOT contain personally identifiable information in the sense of the GDPR/AVG.</p><p>The metadata MUST contain data about one's own organization by including one element of the type Organization, which describes the name (OrganizationName), the readable name for users (OrganizationDisplayName), and the website (OrganizationURL). </p><p>The same role MAY be filled by several systems. Metadata is supplied for each of the systems. The metadata MUST contain a different EntityID in which the Organization element is the same.</p><h4 id="Metadataforparticipants-urn:etoegang:1.13:metadata-extension">urn:etoegang:1.13:metadata-e<span class="inline-comment-marker" data-ref="d41ec746-e102-4fa8-999e-2f86c967ba9c">xtension</span></h4><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>ValidFrom</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>Electronische toegangsdiensten: For communicating a time specific change on an Entity, a participant can use SAML attribute validUntil and Elektronische Toegangsdiensten specific attribute validFrom (see schema below) on the EntityDescriptor. This can for instance be used to facilitate the transition to a new version, replacing certificates, etc...</p></td></tr><tr><th class="confluenceTh"><p>Version</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>Electronische toegangsdiensten:  Denotes the ETD version of an endpoint.</p></td></tr><tr><th class="confluenceTh"><p>Name</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>Electronische toegangsdiensten:  MUST be included if there is more than one SingleSignOnService element defined </p></td></tr><tr><th class="confluenceTh"><p>ISOName</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>Electronische toegangsdiensten:  MAY be implemented to denote the countrycode (formatted according ISO 3166-1 alpha-2 for an endpoint. MAY be used by other configuration elements.</p></td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Participant EntitiesDescriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;md:EntitiesDescriptor
+    ID="[reference for dsig]"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:eme="urn:etoegang:1.13:metadata-extension"
+    Name="urn:etoegang:1.13:metadata:P:23"&gt;
+ 
+    &lt;ds:Signature&gt;...&lt;/ds:Signature&gt;    
+    &lt;md:Extensions&gt;
+        &lt;mdrpi:PublicationInfo publisher="https://.../productie_metadata.xml" creationInstant="2019-04-07T10:39:03Z"/&gt;
+    &lt;/md:Extensions&gt;
+  
+    &lt;md:EntityDescriptor
+        entityID="urn:etoegang:HM:9999990000010000:entities:0001"
+        eme:version="1.9"
+        eme:validFrom="2019-04-01T0:04:00Z"&gt;
+        ...
+        &lt;md:Organization&gt;
+            ...
+        &lt;/md:Organization&gt;
+        ...
+        &lt;md:ContactPerson&gt;
+            ... 
+        &lt;/md:ContactPerson&gt;
+    &lt;/md:EntityDescriptor&gt;
+  
+&lt;/md:EntitiesDescriptor&gt;
+</pre> 
+ </div>
+</div><h3 id="Metadataforparticipants-Versions">Versions</h3><p>When a system can send messages based on different versions of the framework, metadata MUST be supplied for each version. So, if an entity can communicate on several versions of the interface, both are included in the EntitiesDescriptor as separate EntityDescriptor. These EntityDescriptor elements MAY have the same or different EntityIDs.</p><p>An HM MUST include separate EntityDescriptor elements in the metadata for the different logical systems that support the individual versions of the Elektronische Toegangsdiensten interfaces. So, an HM that can communicate on several versions of the interface will include both versions in the metadata as separate EntityDescriptor in the EntitiesDescriptor. These EntityDescriptors MAY have the same or different values for their EntityID attributes.</p><p>An AD/KR/MR MUST inspect the values of version in the metadata to determine which EntityDescriptor is to be used to communicate with an HM. Only communication details from the applicable version MUST be used for processing requests and for authentication and securing of communication.</p><h3 id="Metadataforparticipants-ValidFromandValidUntil">ValidFrom and ValidUntil</h3><p>For communicating a time specific change on an Entity, a participant can use SAML attribute validUntil and Elektronische Toegangsdiensten specific attribute validFrom (see schema below) on the EntityDescriptor. This can for instance be used to facilitate the transition to a new version, replacing certificates, etc...</p><p>An HM MAY have one valid EntityDescriptor per supported version at any given time. If validFrom and/or validUntil are present, an AD/KR/MR MUST only accept requests from an HM using the communication details from a valid EntityDescriptor.</p><p>An AD/KR/MR has only one valid EntityDescriptor at a given point in time. An AD/KR/MR MAY provide exactly two different EntityDescriptor elements, one of these EntityDescriptor elements MUST contain a validUntil, the other EntityDescriptor element MUST contain a validFrom. The dateTime value of both fields MUST be the same. These two EntityDescriptors MAY have the same or different EntityIDs. An HM MUST use the validFrom and validUntil in the metadata, if present, to determine which EntityDescriptor is valid for communication with an AD/KR/MR.</p><p>Different EntityDescriptor elements for the same role MUST always be contained in a single EntitiesDescriptor element.</p><p>See example <a href="attachments/118882614/118882859.xml" data-linked-resource-id="118882859" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Example 2  ED - versions and validity.1.13.xml" data-nice-type="XML File" data-linked-resource-content-type="text/xml" data-linked-resource-container-id="118882614" data-linked-resource-container-version="81">Example 2 ED - versions and validity.1.13.xml</a></p><h3 id="Metadataforparticipants-Levelofassurance">Level of assurance</h3><p>An AD or MR MUST include the <a href="Level-of-assurance_118882584.html">Level of assurance</a> at which recognition requests can be processed in the EntityDescriptor, in the form of an extension of the EntityDescriptor element as described in the document <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-assurance-profile-cd-01.pdf" class="external-link" rel="nofollow">SAML V2.0 Identity Assurance Profiles</a>.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example LoA</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">... 
+    &lt;md:Extensions xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+        xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"
+        xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+
+        &lt;mdattr:EntityAttributes&gt; 
+            &lt;saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="urn:oasis:names:tc:SAML:attribute:assurance-certification"&gt; 
+                &lt;saml:AttributeValue&gt;urn:etoegang:assurance-class:loa3&lt;/saml:AttributeValue&gt;
+            &lt;/saml:Attribute&gt;
+        &lt;/mdattr:EntityAttributes&gt;
+
+    &lt;/md:Extensions&gt; 
+...</pre> 
+ </div>
+</div><h3 id="Metadataforparticipants-Discoveryendpoint"><strong>Discovery endpoint</strong></h3><p>An MR MUST include an endpoint which can be used by other MR's for the discovery service as specified on <a href="Discovery-Interface-MR-MR-chain-authorisations_118882333.html">Discovery Interface MR-MR chain authorisations</a> This endpoint is defined as an attribute in the following manner:</p><p><br/></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Attribute name</th><th class="confluenceTh">Value</th></tr><tr><td class="confluenceTd">Name</td><td class="confluenceTd">urn:etoegang:service:discovery:V1</td></tr><tr><td class="confluenceTd">NameFormat</td><td class="confluenceTd">urn:oasis:names:tc:SAML:2.0:attrname-format:uri</td></tr><tr><td colspan="1" class="confluenceTd">AttributeValue</td><td colspan="1" class="confluenceTd">&lt;URL VALUE OF ENDPOINT&gt;</td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example discovery endpoint</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Confluence; collapse: true" data-theme="Confluence">&lt;md:EntityDescriptor eme:version="1.13" entityID="urn:etoegang:MR:...:entities:...."&gt;
+    &lt;md:Extensions&gt;
+        &lt;mdattr:EntityAttributes&gt;
+            ...
+            &lt;saml:Attribute
+                    NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
+                    Name="urn:etoegang:service:discovery:V1"&gt;
+                &lt;saml:AttributeValue&gt;https://example.mr.nl/discoveryEndpoint&lt;/saml:AttributeValue&gt;
+            &lt;/saml:Attribute&gt;
+			...
+        &lt;/mdattr:EntityAttributes&gt;
+    &lt;/md:Extensions&gt;
+    ...
+&lt;/md:EntityDescriptor&gt;</pre> 
+ </div>
+</div><h3 id="Metadataforparticipants-RoleDescriptors"><span class="inline-comment-marker" data-ref="49b43d0a-2836-43f4-8bd4-c10ec13bb2b7">RoleDescriptors</span></h3><h4 id="Metadataforparticipants-ADIDPSSODescriptor">AD IDPSSODescriptor</h4><p>An AD MUST include one IDPSSODescriptor element. The descriptor MUST contain <span class="inline-comment-marker" data-ref="842612d5-3dc3-4610-b2f0-64ac892e5968">at least one SingleSignOnService element</span>, one SingleLogoutService and at least one ArtifactResolutionService element. The descriptor MUST NOT include any other elements. The first SingleSignOnService MUST indicate it supports the SAML Artifact Binding with the attributes Binding and Location. In case multiple SingleSignOnService elements are present, each MUST have an eme:name attribute, allowing Users to select an applicable endpoint. A SingleSignOnService and SingleLogoutService elements MUST indicate it supports the SAML Artifact binding with the attributes Binding and Location, and MUST NOT contain any other attributes.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>AD Example Descriptor</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse" data-theme="Eclipse">...
+&lt;md:IDPSSODescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; WantAuthnRequestsSigned=&quot;true&quot;&gt;
+    ...
+    &lt;md:ArtifactResolutionService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;https://...&quot; index=&quot;1&quot; /&gt;
+    &lt;md:SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;https://....&quot;/&gt;
+    &lt;md:SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;https://....&quot; eme:name=&quot;AD1SAMLendpoint1&quot;/&gt;
+    ...
+&lt;/md:IDPSSODescriptor&gt;
+...</pre>
+</div></div><h4 id="Metadataforparticipants-MRIDPSSODescriptor">MR IDPSSODescriptor</h4><p>A MR MUST include one IDPSSODescriptor element. The descriptor MUST contain at least one SingleSignOnService elements and at least one ArtifactResolutionService element. The descriptor MUST NOT include any other elements. The first SingleSignOnService and SingleLogoutService elements MUST indicate it supports the SAML Artifact binding with the attributes Binding and Location, and MUST NOT contain any other attributes. In case a MR supports chain authorizations, another SingleSignOnService element MUST be present, with the indication it supports the SAML SOAP binding with the attributes Binding and Location, and MUST NOT contain any other attributes. The <span class="inline-comment-marker" data-ref="3055cba1-129e-41db-8508-b86d964029e0">SingleLogoutService MUST NOT be defined</span> as part of the MR IDPSSODescriptor element.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>MR Example Descriptor</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse" data-theme="Eclipse">...
+&lt;md:IDPSSODescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; WantAuthnRequestsSigned=&quot;true&quot;&gt;
+    ...
+    &lt;md:ArtifactResolutionService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;https://...&quot; index=&quot;1&quot; /&gt;
+    &lt;md:SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;https://....&quot; eme:name=&quot;AD1SAMLendpoint1&quot;/&gt;
+    ...
+&lt;/md:IDPSSODescriptor&gt;
+...</pre>
+</div></div><h4 id="Metadataforparticipants-EBIDPSSODescriptor">EB IDPSSODescriptor</h4><p>The eIDAS-berichtenservice (EB) MUST provide an IDPSSODescriptor in its metadata, identical <span class="inline-comment-marker" data-ref="f9321751-3fec-48f6-ab1c-493108ab843c">to one an AD/MR</span> would supply.</p><h4 id="Metadataforparticipants-HMSPSSODescriptors">HM SPSSODescriptors</h4><p>An HM MUST include only one IDPSSODescriptor and only one SPSSODescriptor and MUST NOT include any other elements. The IDPSSODescriptor from the HM MAY contain several SingleSignOnService and SingleLogoutService elements and MUST contain at least one SingleSignOnService and one SingleLogoutService element for which the Binding attribute has the value urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact. The SPSSODescriptor from the HM MUST contain two AssertionConsumerService elements with a Binding attribute which has the value urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact, and with indices 1 and 2 for responses from ADs and MRs, MUST contain at least one ArtifactResolutionService element with the SOAP binding and MAY NOT contain any other elements. </p><p>If the HM offers support for eIDAS, the the SPSSODescriptor from the HM MUST contain one (extra) AssertionConsumerService element with a Binding attribute which has the value urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact, and with index 5.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example HM descriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAuthnRequestsSigned="true"&gt;
+    ...
+    &lt;md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://..." index="1" /&gt;
+    &lt;md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://...."/&gt;
+   &nbsp;...
+    &lt;md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://...."/&gt;
+	...
+&lt;/md:IDPSSODescriptor&gt;
+&lt;md:SPSSODescriptor AuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+    ...
+    &lt;md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://..." index="1" /&gt;
+    ...
+    &lt;md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://..." index="1"/&gt;
+    &lt;md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://..." index="2"/&gt;
+&nbsp;&lt;/md:SPSSODescriptor&gt;
+...</pre> 
+ </div>
+</div><p><strong>BSNk</strong></p><p>BSNk fulfills two roles within the <a href="118882646.html">Netwerk (voor Elektronische Toegangsdiensten)</a>:</p><ul><li>The role of Sleutelbeheerder (SB).</li><li>The role of cryptographic service provider.</li></ul><p>The BSNk is a <span class="inline-comment-marker" data-ref="fb4b8f36-57bc-4c06-bda6-d014acbc89f1">special participant</span> as the Beheerorganisatie (BO) uses the metadata published (and as specified) by the BSNk (Link will follow)</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example metadata BSNk</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;md:EntityDescriptor entityID="urn:nl-gdi-eid:entity:99999999012345670000"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"&gt;
+     &lt;md:IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+        &lt;md:KeyDescriptor use="signing"&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:X509Data&gt;
+                    &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+            &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+        &lt;md:KeyDescriptor use="encryption"&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:X509Data&gt;
+                    &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+            &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+        &lt;md:KeyDescriptor&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;!--  PIP/PP/PI public signing key U for BSNk-activate in test network --&gt;
+                &lt;ds:KeyName&gt;urn:nl-gdi-eid:pp-key:test:1:U:1&lt;/ds:KeyName&gt;
+                &lt;ds:KeyValue&gt;
+                    &lt;ds11:ECKeyValue&gt;
+                        &lt;ds11:NamedCurve URI="urn:oid:1.3.36.3.3.2.8.1.1.9"/&gt;
+                        &lt;ds11:PublicKey&gt;Mwo=...&lt;/ds11:PublicKey&gt;
+                    &lt;/ds11:ECKeyValue&gt;
+                &lt;/ds:KeyValue&gt;
+            &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+        &lt;md:NameIDFormat&gt;urn:nl-gdi-eid:1.0:id:Pseudonym&lt;/md:NameIDFormat&gt;
+        &lt;md:NameIDFormat&gt;urn:nl-gdi-eid:1.0:id:BSN&lt;/md:NameIDFormat&gt;
+        &lt;md:SingleSignOnService Location="https://bsnk.exmaple.nl/kr/activate" Binding="http://schemas.xmlsoap.org/soap/http" /&gt;
+        &lt;md:NameIDMappingService Location="https://bsnk.exmaple.nl/kr/tranform" Binding="http://schemas.xmlsoap.org/soap/http" /&gt;
+    &lt;/md:IDPSSODescriptor&gt;
+    &lt;md:Organization&gt;
+        &lt;md:OrganizationName xml:lang="nl"&gt;Voorbeeld BSNk&lt;/md:OrganizationName&gt;
+        &lt;md:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld BSNk&lt;/md:OrganizationDisplayName&gt;
+        &lt;md:OrganizationURL xml:lang="nl"&gt;https://bsnk.example.nl/&lt;/md:OrganizationURL&gt;
+    &lt;/md:Organization&gt;
+    &lt;md:ContactPerson contactType="technical"&gt;
+        &lt;md:SurName&gt;BSNk koppelregister&lt;/md:SurName&gt;
+        &lt;md:EmailAddress&gt;koppelregister@bsnk.example.nl&lt;/md:EmailAddress&gt;
+        &lt;md:TelephoneNumber&gt;+31-10-1234567&lt;/md:TelephoneNumber&gt;
+    &lt;/md:ContactPerson&gt;
+&lt;/md:EntityDescriptor&gt; 
+</pre> 
+ </div>
+</div><p>The BSNk as Key Management Authority MUST publish its details as an SPSSODescriptor. The AssertionConsumerEndpoint element MUST contain the endpoint for obtaining Dienstverlener keys (AUC10 Verstrekken sleutelmateriaal Dienstverleners).</p><p>The EntityDescriptor of the Sleutelbeheerder MUST contain an AdditionalMetadataLocation element, containing the location where the Autorisatielijst BSN can be obtained.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example SleutelBeheer EntityDescriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;md:EntityDescriptor entityID="urn:nl-gdi-eid:entity:99999999012345670000"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"&gt;
+
+    &lt;md:SPSSODescriptor WantAssertionsSigned="true" AuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+        &lt;md:KeyDescriptor use="signing"&gt;
+            &lt;ds:KeyInfo&gt;
+                &lt;ds:X509Data&gt;
+                    &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+            &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+        &lt;md:NameIDFormat&gt;urn:nl-gdi-eid:1.0:id:Pseudonym&lt;/md:NameIDFormat&gt;
+        &lt;md:AssertionConsumerService Location="https://bsnk.example.nl/keymgmt/dv/key-request" index="1" isDefault="true" Binding="http://schemas.xmlsoap.org/soap/http" /&gt;
+    &lt;/md:SPSSODescriptor&gt;
+    &lt;md:Organization&gt;
+        &lt;md:OrganizationName xml:lang="nl"&gt;Voorbeeld BSNk&lt;/md:OrganizationName&gt;
+        &lt;md:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld BSNk&lt;/md:OrganizationDisplayName&gt;
+        &lt;md:OrganizationURL xml:lang="nl"&gt;https://bsnk.example.nl/&lt;/md:OrganizationURL&gt;
+    &lt;/md:Organization&gt;
+    &lt;md:ContactPerson contactType="technical"&gt;
+        &lt;md:SurName&gt;BSNk sleutelbeheer&lt;/md:SurName&gt;
+        &lt;md:EmailAddress&gt;sleutelbeheer@bsnk.example.nl&lt;/md:EmailAddress&gt;
+        &lt;md:TelephoneNumber&gt;+31-10-1234567&lt;/md:TelephoneNumber&gt;
+    &lt;/md:ContactPerson&gt;
+&lt;/md:EntityDescriptor&gt;
+</pre> 
+ </div>
+</div><h4 id="Metadataforparticipants-WantAuthnRequestsSigned">WantAuthnRequestsSigned</h4><p>An IDPSSODescriptor element MUST contain the WantAuthnRequestsSigned XML attribute with value &quot;true&quot; and MUST NOT contain any other optional attributes. An SPSSODescriptor element MUST contain the AuthnRequestsSigned XML attribute with value &quot;true&quot; and a WantAssertionsSigned XML attribute with value &quot;true&quot; and MUST NOT contain any other optional attributes.</p><h4 id="Metadataforparticipants-NameIDFormat">NameIDFormat</h4><p>An IDPSSODescriptor element MUST contain one or more NameIDFormat XML <span class="inline-comment-marker" data-ref="07e36493-d7b5-49fe-bae7-760ab0044013">attribute</span>(s), containing the <a href="Identificerende-kenmerken_118882780.html">Identificerende kenmerken</a> (EntityConcernedTypes) the participant supports. A SPSSODescriptor of a Participant (as used by HM) MUST NOT contain a NameIDFormat.</p><p>The <span class="inline-comment-marker" data-ref="0e4f7906-60b8-453c-b942-ee1ebb62ef0c">following</span> NameIDFormats should be included per role, if certified for the applicable <span class="inline-comment-marker" data-ref="34eb4428-ac0d-4cb0-bdf2-7305d01f5cab">domain</span> (and conditions):</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Role</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Application domain</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Additional condition</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">include NameIDFormat</div></th></tr></thead><tbody><tr><td class="confluenceTd">HM</td><td class="confluenceTd">*Citizen domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd">urn:etoegang:1.12:EntityConcernedID:PseudoID<p>urn:etoegang:1.12:EntityConcernedID:BSN</p></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Consumer domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:Pseudo</p><p>urn:etoegang:1.12:EntityConcernedID:PseudoID</p></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Business domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:KvKnr</p><p>urn:etoegang:1.9:EntityConcernedID:RSIN</p><p>urn:etoegang:1.13:EntityConcernedID:PROBASnr</p></td></tr><tr><td class="confluenceTd">AD</td><td class="confluenceTd">Consumer domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:Pseudo</p><p>urn:etoegang:1.12:EntityConcernedID:PseudoID</p></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Business domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:KvKnr</p><p>urn:etoegang:1.9:EntityConcernedID:RSIN</p><p>urn:etoegang:1.13:EntityConcernedID:PROBASnr</p></td></tr><tr><td class="confluenceTd">MR</td><td class="confluenceTd">Business domain</td><td class="confluenceTd">eHerkenning branding; KvKnr supported</td><td class="confluenceTd">urn:etoegang:1.9:EntityConcernedID:KvKnr</td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd"><br/></td><td class="confluenceTd">eHerkenning branding; RSIN nummer supported</td><td class="confluenceTd"><p>urn:etoegang:1.9:EntityConcernedID:RSIN</p></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd"><br/></td><td style="text-align: left;" class="confluenceTd">eHerkenning branding; PROBASnr supported</td><td style="text-align: left;" class="confluenceTd">urn:etoegang:1.13:EntityConcernedID:PROBASnr</td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd"><br/></td><td class="confluenceTd">eHerkenning branding; KvKnr + chain authorization supported</td><td class="confluenceTd">urn:etoegang:1.9:IntermediateEntityID:KvKnr</td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd"><br/></td><td class="confluenceTd">eHerkenning branding; RSIN nummer chain authorization supported</td><td class="confluenceTd"><p>urn:etoegang:1.9:IntermediateEntityID:RSIN</p></td></tr><tr><td class="confluenceTd">EB</td><td class="confluenceTd">*Citizen domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd"><p>urn:etoegang:1.12:EntityConcernedID:BSN</p><p>urn:etoegang:1.12:EntityConcernedID:PseudoID</p></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Consumer domain</td><td class="confluenceTd">eHerkenning branding</td><td class="confluenceTd">urn:etoegang:1.9:EntityConcernedID:Pseudo</td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Business domain </td><td class="confluenceTd">eHerkenning branding </td><td class="confluenceTd">urn:etoegang:1.11:EntityConcernedID:eIDASLegalIdentifier </td></tr></tbody></table></div><p>  *Citizen domein: only voor EU Citizens</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example NameIDFormat</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:IDPSSODescriptor&gt;
+    ...
+	&lt;md:NameIDFormat&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/md:NameIDFormat&gt;
+	&lt;md:NameIDFormat&gt;urn:etoegang:1.9:EntityConcernedID:Pseudo&lt;/md:NameIDFormat&gt;
+    ...
+&lt;/md:IDPSSODescriptor&gt;
+...</pre> 
+ </div>
+</div><h3 id="Metadataforparticipants-KeyDescriptor">KeyDescriptor</h3><p>An IDPSSODescriptor, SPSSODescriptor or AttributeAuthorityDescriptor element MUST contain one or more KeyDescriptor elements with the use XML attribute with value &quot;signing&quot;. The IDPSSODescriptor of a MR or the AttributeAuthorityDescriptor of a KR MUST contain at least one or more KeyDescriptor with the use XML attribute with value &quot;encryption&quot;. Alternatively, at least one KeyDescriptor without a use XML attribute MAY be included, indicating the default that the key is for both signing and encryption. Every KeyDescriptor element marked for &quot;signing&quot; MUST contain a KeyName element and a valid <a href="PKIoverheid_118882760.html">PKIoverheid</a> certificate with which the participant's SAML messages and/or direct TLS connections can be authenticated. KeyDescriptors marked for &quot;signing&quot; MAY contain valid certificates for authenticating direct TLS connections that are not PKIoverheid, as long as they comply with the requirements in <a href="Secure-connection_118882762.html">Secure connection</a>. Every KeyDescriptor element marked for &quot;encryption&quot; MUST contain a KeyName element and a valid PKIoverheid certificate for encrypting IDs and attributes for that participant.</p><p>In case a role is a source or recipient for Polymorphic Pseudonyms (or Polymorphic Identities), this roles has one or more PP-scheme specific keys. These keys are versioned, to allow for key-management.</p><p>A role MAY have one or more versions of PP-KeySet in use. In case no version is specified, the default value &quot;1&quot; is to be used as keyset version. In case multiple KeySetVersions are listed, one MUST be marked as&quot;default&quot;.</p><p>Additional KeyDescriptor elements without specificied &quot;use&quot; attribute MAY be included, to describe (derived) keys used in the Polymorphic Pseudonymzation algorithm. These KeyDescriptor MUST contain a KeyInfo element, with a KeyName element using 'urn:nl-gdi-eid:1.0:pp-key:&lt;Environment&gt;:&lt;SchemeKeySetVersion&gt;:&lt;KeyName&gt;:&lt;KeyVersion&gt;' to describe the key. In case of public keys, these MUST be included as KeyValue element using a ECKeyValue and a NamedCurve with PublicKey (NOTE: ECKeyValue is specified in XML-signature 1.1). In case of derived keys, other elements MUST NOT be included.</p><div class="confluence-information-macro confluence-information-macro-information"><p class="title">Note</p><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">Service providers and participants MUST process all of the described KeyDescriptor elements. KeyName in the signatures and protocol messages indicates which certificate in the metadata is used for the signature.</div></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example KeyDescriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:KeyDescriptor&gt;
+    &lt;ds:KeyInfo&gt;
+        &lt;ds:KeyName&gt;urn:nl-gdi-eid:1.0:pp-key:test:1:AA_D99999999012345670000:1&lt;/ds:KeyName&gt;
+    &lt;/ds:KeyInfo&gt;
+&lt;/md:KeyDescriptor&gt;
+&lt;md:KeyDescriptor&gt;
+    &lt;ds:KeyInfo&gt;
+        &lt;!-- PIP/PP/PI public signing key for BSNk-activate in test network --&gt;
+        &lt;ds:KeyName&gt;urn:nl-gdi-eid:1.0:pp-key:test:1:U:1&lt;/ds:KeyName&gt;
+            &lt;ds:KeyValue&gt;
+            &lt;ds11:ECKeyValue&gt;
+                &lt;!-- brainpool P320r1 curve --&gt;
+                &lt;ds11:NamedCurve URI="urn:oid:1.3.36.3.3.2.8.1.1.9"/&gt;
+                &lt;ds11:PublicKey&gt;
+                   MQo=...
+                &lt;/ds11:PublicKey&gt;
+            &lt;/ds11:ECKeyValue&gt;
+        &lt;/ds:KeyValue&gt;
+    &lt;/ds:KeyInfo&gt;
+&lt;/md:KeyDescriptor&gt;
+...</pre> 
+ </div>
+</div><p><br/>To request an identifier from the preceding version 1.11 of the Afsprakenstelsel for migration purposes, the MR MAY request a DeprecatedActingSubjectID. To receive encrypted pseudonyms based on earlier OINs or recipientkeysetversions, the MR MAY include a DeprecatedRelyingPartyID with a DeprecatedEntityID and DeprecatedRecipientKeysetVersion. To indicate whether to receive an internal pseudonym or persistent pseudonym, the MR MUST supply a UserTypeRequested in the metadata: InternalPseudonym for the internal pseudonym, PseudoID for the Encrypted Pseudonym.</p><p>See examples: <a href="attachments/118882614/118882869.xml" data-linked-resource-id="118882869" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Example 3 - example metadata extension.xml" data-nice-type="XML File" data-linked-resource-content-type="text/xml" data-linked-resource-container-id="118882614" data-linked-resource-container-version="81">Example 3 - example metadata extension.xml</a> and <a href="attachments/118882614/118882858.xsd" data-linked-resource-id="118882858" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="XML schema metadata extension.1.13.xsd" data-linked-resource-content-type="application/octet-stream" data-linked-resource-container-id="118882614" data-linked-resource-container-version="81">XML schema metadata extension.1.13.xsd</a></p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882614/118882858.xsd">XML schema metadata extension.1.13.xsd</a> (application/octet-stream)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882614/118882859.xml">Example 2  ED - versions and validity.1.13.xml</a> (text/xml)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882614/118882860.xml">Example  metadata extension.1.13..xml</a> (text/xml)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882614/118882869.xml">Example 3 - example metadata extension.xml</a> (text/xml)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

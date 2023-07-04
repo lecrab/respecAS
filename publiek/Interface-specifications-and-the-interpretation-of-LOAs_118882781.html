@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Interface specifications and the interpretation of LOAs</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Interface specifications and the interpretation of LOAs
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (liannedevries)</span>, last modified on Nov 23, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><p>The ETD framework uses the LOA quite loosely to define a level at which a login means or authorisation MUST be in order for a user to login. Because these LOA levels are defined in various locations around the framework, this page will give an overview of all of them and how they interact with each other.</p><p><br/></p><p>Locations of LOA:</p><div class="table-wrap"><table class="relative-table wrapped confluenceTable" style="width: 100.0%;"><colgroup><col style="width: 18.96%;"/><col style="width: 19.57%;"/><col style="width: 61.44%;"/></colgroup><thead><tr><th class="confluenceTh"><p>Location in AS</p></th><th colspan="1" class="confluenceTh"><p>Field/location</p></th><th class="confluenceTh"><p>Rationale</p></th></tr></thead><tbody><tr><td class="confluenceTd"><a href="Service-catalog_118882581.html">Service catalog</a></td><td colspan="1" class="confluenceTd">(<span style="color: rgb(23,43,77);">AuthnContextClassRef<span> </span></span>)</td><td class="confluenceTd">This is the maximum LOA as defined by the DV. Means and authorisations need to have this LOA or higher to login.</td></tr><tr><td class="confluenceTd"><p><a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a></p></td><td colspan="1" class="confluenceTd">(Request/<span style="color: rgb(23,43,77);">RequestedAuthnContext/AuthnContextClassRef</span>)</td><td class="confluenceTd">This allows a DV to override its own minimum LOA downward. Therefore can only be lower or equal than the one in the service catalog. Also known as the minimum-minimumLOA. (Minimal LOA for minimal functionality)</td></tr><tr><td colspan="1" class="confluenceTd"><p><a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a></p></td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">AuthnContextClassRef</span>)</td><td colspan="1" class="confluenceTd">This is the LOA which is communicated back to the DV</td></tr><tr><td colspan="1" class="confluenceTd"><p><a href="Interface-specifications-HM-AD_118882755.html">Interface specifications HM-AD</a></p></td><td colspan="1" class="confluenceTd">(Request/<span style="color: rgb(23,43,77);">RequestedAuthnContext)</span></td><td colspan="1" class="confluenceTd">This allows a DV to override its own minimum LOA downward. Therefore can only be lower than the one in the service catalog. Also known as the minimum-minimumLOA. (Minimal LOA for minimal functionality) This LOA is passed on by the HM.</td></tr><tr><td colspan="1" class="confluenceTd"><p><a href="Interface-specifications-HM-AD_118882755.html">Interface specifications HM-AD</a></p></td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">AuthnStatement</span>)</td><td colspan="1" class="confluenceTd">This communicates the level at which the user has authenticated himself. This level needs to be higher or equal to the level as stated in the service catalog or the request.</td></tr><tr><td colspan="1" class="confluenceTd"><p><a href="Interface-specifications-HM-MR_118882753.html">Interface specifications HM-MR</a></p></td><td colspan="1" class="confluenceTd">(Request/LevelOfAssurance)</td><td colspan="1" class="confluenceTd">This allows a DV to override its own minimum LOA downward. Therefore can only be lower than the one in the service catalog. Also known as the minimum-minimumLOA. (Minimal LOA for minimal functionality) This LOA is passed on by the HM.</td></tr><tr><td colspan="1" class="confluenceTd"><p><a href="Interface-specifications-HM-MR_118882753.html">Interface specifications HM-MR</a></p></td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">LevelOfAssuranceUsed<span> </span></span>)</td><td colspan="1" class="confluenceTd">This communicates the level at which the authorisation was registered. This level needs to be higher or equal to the level as stated in the service catalog or the request.</td></tr></tbody></table></div><p><br/></p><p>Schematically the attributes are passed like this:</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><p>DV-&gt;HM</p></th><th class="confluenceTh"><p>HM-&gt;AD</p></th><th class="confluenceTh"><p>HM-&gt;MR</p></th><th class="confluenceTh"><p>AD-&gt;HM</p></th><th class="confluenceTh"><p>MR-&gt;HM</p></th><th class="confluenceTh"><p>HM-&gt;DV</p></th></tr></thead><tbody><tr><td class="confluenceTd">(Request/<span style="color: rgb(23,43,77);">RequestedAuthnContext/AuthnContextClassRef</span>)</td><td class="confluenceTd">(Request/<span style="color: rgb(23,43,77);">RequestedAuthnContext)</span></td><td class="confluenceTd">(Request/LevelOfAssurance)</td><td class="confluenceTd">X</td><td class="confluenceTd">X</td><td class="confluenceTd">X</td></tr><tr><td colspan="1" class="confluenceTd">X</td><td colspan="1" class="confluenceTd">X</td><td colspan="1" class="confluenceTd">X</td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">AuthnStatement</span>)</td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">LevelOfAssuranceUsed<span> </span></span>)</td><td colspan="1" class="confluenceTd">(Response/<span style="color: rgb(23,43,77);">AuthnContextClassRef</span>)</td></tr></tbody></table></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

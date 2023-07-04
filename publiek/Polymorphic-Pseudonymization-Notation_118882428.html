@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Polymorphic Pseudonymization Notation</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Polymorphic Pseudonymization Notation
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified on Jan 10, 2019
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Polymorfe encryptie en pseudonimisering, uses scheme wide keys. To facilitate key management procedures, all scheme-wide keys are versioned using schemeKeySetVersion. For the BSNk documentation you can contact Logius.</p><p>This paragraph describes the technical format of polymorphic identities and pseudonyms and related key formats. Polymorphic identities and pseudonyms in the scheme are based on cryptographic properties of elliptic curves. </p><h4 id="PolymorphicPseudonymizationNotation-UsagesofPolymorphicPseudonymization">Usages of Polymorphic Pseudonymization</h4><ul><li>Activation<ul><li>Polymorphic Identity or Pseudonym</li><li>Encrypted Identity or Pseudonym</li></ul></li><li>Usage (transformation and decryption)<br/><ul><li>Encrypted Identity or Pseudonym</li><li>Identity or Pseudonym</li></ul></li></ul><h4 id="PolymorphicPseudonymizationNotation-FormatforPolymorphicIdentityorPseudonym">Format for Polymorphic Identity or Pseudonym</h4><p>A Polymorphic Identity or Pseudonym is a combination of points on an elliptic curve. In order for the Identity or Pseudonym to be properly usable in the scheme, some additional information is needed. This information is necessary for practical management and secure implementation of Identity or Pseudonym in the Scheme and consists of elements like versioning (for key management) and recipient. The syntax for expressing an Identity or Pseudonym with this information is listed below.</p><p>Values of the notations below SHALL be represented as (the base64 encoding of) the DER-encoded structure in ASN.1 notation.</p><h5 id="PolymorphicPseudonymizationNotation-PolymorphicIdentityorPseudonym">Polymorphic Identity or Pseudonym</h5><p>A Polymorphic Identity or Pseudonym consists of 3 points on an elliptic curve. Polymorphic Identity or Pseudonym are provided via the beheerorganisatie BSNk. They are used via the interface spec BSNk: transform. The notation for a complete Polymorphic Identity or Pseudonym is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Polymorphic Identity or Pseudonym ASN.1 notation</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">PolymorphicIdentity ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-polymorphic-identity),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    points SEQUENCE (SIZE (3)) OF ECPoint
+}
+
+PolymorphicPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-polymorphic-pseudonym),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    type INTEGER, 
+    points SEQUENCE (SIZE (3)) OF ECPoint
+}</pre>
+</div></div><p>Herein the schemeVersion indicates the version of the cryptographic scheme and this syntax and SHALL start at 1. The <span class="inline-comment-marker" data-ref="0bffaede-facf-4426-92b1-0bc52f2e3479">schemeKeySetVersion</span> is a version that SHALL start at 1 and represents the effective set of long term scheme master keys (PP-M, PD-M, etc...). The schemeVersion defines the elliptic curve used in the scheme as well. The creator SHALL contain the entityID (OIN) of the creator, and the recipient SHALL contain the entityID (OIN) of the recipient. The recipientKeySetVersion holds the version number for the set of recipient's keys for Polymorphic Identities and <span>Pseudonyms</span> (PA-Di). Note: In schemeVersion 1 the recipientKeySetVersion for MUs and ADs is a sequence starting at 1. Type defines the identity type the Pseudonym is derived of, e.g. from a <a href="BSN_118882698.html">BSN</a> or an eIDAS Uniqueness Identifier. This field is not necessary in identity based forms as here the identity type will become clear as part of decryption of the final structure, i.e. the Encrypted Identity. The values currently defined are the ASCII value of 'B' (0x42) for <a href="BSN_118882698.html">BSN</a> based and 'E' (0x45) when based on a eIDAS uniqueness identifier. <span class="inline-comment-marker" data-ref="d7aa2198-ed79-41cc-bd06-7384f95bafb3">ECPoint</span> is identical to ECPoint as defined in BSI TR 03111 and ANSI X9.62 (2005). Here two encodings are specified, compressed and compressed. Both encodings are allowed, with a <span class="inline-comment-marker" data-ref="e1b2be2c-3b99-4dc0-b11e-bcd8ce49487d">preference</span> for uncompressed encoding.</p><p>A Polymorphic Identity of Polymorphic Pseudonym can be signed for integrity protection:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">SignedPolymorphicIdentity ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-polymorphic-identity-signed),
+    signedPI SEQUENCE {
+        polymorphicIdentity PolymorphicIdentity,
+        auditElement OCTET STRING,
+        signingKeyVersion INTEGER
+    },
+    signatureValue ECDSA-Signature
+}
+
+SignedPolymorphicPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-polymorphic-pseudonym-signed),
+    signedPP SEQUENCE {
+        polymorphicPseudonym PolymorphicPseudonym, 
+        auditElement OCTET STRING,
+        signingKeyVersion INTEGER
+    },
+    signatureValue ECDSA-Signature
+}</pre>
+</div></div><p>An auditElement holds an audit value consisting of an identifier for the creator, a timestamp and a sequence number from that creator. This <span class="inline-comment-marker" data-ref="11aa9c68-04b6-4a4c-9930-c5e073b3a808">auditElement</span> is 16 bytes in big-endian (32-bit origin, 32-bit timestamp and 64-bit sequence-number). The origin identifies the party providing the Polymorphic/Encrypted Identity or Pseudonym and the unique device used. The timestamp and sequence number can be used in case of a compromise or dispute, so that mitigating measure or resolution can be accomplished. Note: the timestamp is 32-bit in seconds since 1 jan 1970 UTC. The auditElement is encrypted under a key only retrievable by the supervisor of the scheme, which is provided to the supervisior by the keymanagement role.</p><p class="inline-comment-marker">The signatureValue can be used to assert the authenticity of the (polymorphic/encrypted) Identity or Pseudonym. The signature is applied to the byte sequence of the complete DER-encoded signed sequence (e.g. signedPP in a SignedPolymorphicPseudonym). The public key for verification can be retrieved using the creator from the structure covered under the signature and the signingKeyVersion.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">-- ECPoint is described in ANSI X9.62 (2005), annex E.6.
+-- In particular, encoding from point to octet string and
+-- from octet string to a point is defined in annex A.5.7
+-- and A.5.8 of ANSI X9.62.
+ECPoint ::= OCTET STRING
+
+ECDSA-Signature ::= SEQUENCE {
+    signatureType      OBJECT IDENTIFIER (ecdsa-with-SHA384),
+    signatureValue     EC-Sig-Value
+}
+
+-- EC-Sig-Value is identitical to BSI TR 03111 ECDSA-Sig-Value.
+-- which is identical to ECDSA-Sig-Value defined in RFC5480 as well.
+EC-Sig-Value ::= SEQUENCE {
+    r  INTEGER,
+    s  INTEGER
+}
+
+ecdsa-with-SHA384 OBJECT IDENTIFIER ::= {
+    iso(1) member-body(2) us(840) ansi-X9-62(10045) signatures(4)
+    ecdsa-with-SHA2(3) 3 }
+
+id-BSNk-scheme-nl OBJECT IDENTIFIER ::= { joint-iso-itu-t(2) country(16) nl(528) nederlandse-organisatie(1) nederlandse-overheid(1003) logius-beheer-usve(10) }
+
+id-BSNk-identifiers OBJECT IDENTIFIER ::= { id-BSNk-scheme-nl 1 }
+
+id-BSNk-polymorphics OBJECT IDENTIFIER ::= { id-BSNk-identifiers 1 }
+
+id-BSNk-polymorphic-identity OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 1 }
+
+id-BSNk-polymorphic-pseudonym OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 2 }
+
+id-BSNk-polymorphic-identity-signed OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 3 }
+
+id-BSNk-polymorphic-pseudonym-signed OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 4 } </pre>
+</div></div><h5 id="PolymorphicPseudonymizationNotation-PIP–PPCAoptimized">PIP – PPCA optimized</h5><p>For privacy enhanced implementation, Polymorphic Identities and Pseudonyms can be implemented on a smartcard. This is called a PP-card application, or PPCA. A Polymorphic Identity and a Polymorphic Pseudonym can be combined to 5 points on an elliptic curve rather than six, for optimization in a smartcard implementation. The PPCA-optimized PIP version of Polymorphic Identities or Pseudonyms are provided in Interface spec BSNk: activate.</p><p>The combined notation for an Polymorphic Identity and Pseudonym is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Polymorphic Identity and Pseudonym (PIP) ASN.1 notation</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">PIP ::= SEQUENCE {
+    notationIdentifier  OBJECT IDENTIFIER (id-BSNk-polymorphic-pip),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    type INTEGER, 
+    points SEQUENCE (SIZE (5)) OF ECPoint
+}
+</pre>
+</div></div><p>The first, second and fourth ECPoint in a PIP correspond to those of a PI. Similarly, the first, third and fifth correspond to those of a PP. In this fashion one can extract a PI and PP from a PIP.</p><p>There also exists a signed version of a PIP:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">SignedPIP::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-polymorphic-pip-signed),
+    signedPIP SEQUENCE {
+        pip PIP,
+        auditElement OCTET STRING,
+        signingKeyVersion INTEGER
+    },
+    signatureValue ECDSA-Signature
+}</pre>
+</div></div><p>Which follows the same concepts as described for a Polymorphic Identity or Polymorphic Pseudonym.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">id-BSNk-polymorphic-pip OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 5 }
+
+id-BSNk-polymorphic-pip-signed OBJECT IDENTIFIER ::= { id-BSNk-polymorphics 6 }
+
+-- the following OID is reserved for usage in the specifications of the protocol for PP on smartcard (polymorphic card application)
+id-PCA OBJECT IDENTIFIER ::= { id-BSNk-scheme-nl 9 }</pre>
+</div></div><h5 id="PolymorphicPseudonymizationNotation-EncryptedIdentityorPseudonym">Encrypted Identity or Pseudonym</h5><p>An Encrypted Identity or Pseudonym consists of 3 points on an elliptic curve. The notation for a complete Encrypted Identity and an Encrypted Pseudonym is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Encrypted pseudoID ASN.1 notation</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">EncryptedIdentity ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-identity),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    points SEQUENCE (SIZE (3)) OF ECPoint
+}
+
+EncryptedPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-pseudonym),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    diversifier IA5String OPTIONAL,
+    type INTEGER,
+    points SEQUENCE (SIZE (3)) OF ECPoint
+}
+
+SignedEncryptedIdentity ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-identity-signed),
+    signedEI SEQUENCE {
+        encryptedIdentity EncryptedIdentity,
+        auditElement OCTET STRING
+    },
+    signatureValue EC-Schnorr-Signature
+}
+
+SignedEncryptedPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-pseudonym-signed),
+    signedEP SEQUENCE {
+        encryptedPseudonym EncryptedPseudonym,
+        auditElement OCTET STRING
+    },
+    signatureValue EC-Schnorr-Signature
+}
+
+DirectEncryptedPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-direct-pseudonym),
+    schemeVersion INTEGER,
+    schemeKeySetVersion INTEGER,
+    creator IA5String,
+    recipient IA5String,
+    recipientKeySetVersion INTEGER,
+    type INTEGER,
+    points SEQUENCE (SIZE (3)) OF ECPoint
+}
+
+SignedDirectEncryptedPseudonym ::= SEQUENCE {
+    notationIdentifier OBJECT IDENTIFIER (id-BSNk-encrypted-direct-pseudonym-signed),
+    signedDEP SEQUENCE {
+        directEncryptedPseudonym DirectEncryptedPseudonym,
+        auditElement OCTET STRING,
+        signingKeyVersion INTEGER
+    },
+    signatureValue ECDSA-Signature
+}</pre>
+</div></div><p>The fields correspond to the same fields in a Polymorphic Identity or Pseudonym. The recipientKeySetVersion holds the version number for the set of recipient's keys for Identities and Pseudonyms (PD-Di, PC-Di and PI-Di). Note: In schemeVersion 1 the recipientKeySetVersion for DVs is a value of 8 decimal digits corresponding with the issue date (notBefore) of the certificate, in the format YYYYMMDD, used to request the PEM file at the party generating the keys within the scheme.</p><p>A <span class="inline-comment-marker" data-ref="2b3fe089-9c66-4fe4-aba8-d96b3189ef5a">Direct</span>EncryptedPseudonym is – with the exception of the diversifier – identical<span style="color: rgb(255,0,0);"> </span>to an EncryptedPseudonym, although an additonal key and processing step are needed for decryption. The signed form uses a ECDSA instead of a Schnorr signature. This form is (currently) only applicable for reporting from BSNk_registration to CIF.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">EC-Schnorr-Signature ::= SEQUENCE {
+        signatureType      OBJECT IDENTIFIER (ecschnorr-plain-SHA384),
+        signatureValue     EC-Sig-Value
+}
+
+bsi-de OBJECT IDENTIFIER ::= {
+    itu-t(0) identified-organization(4) etsi(0)
+    reserved(127) etsi-identified-organization(0) 7
+}
+
+id-ecc OBJECT IDENTIFIER ::= { bsi-de algorithms(1) 1 }
+
+ecschnorr-plain-signatures OBJECT IDENTIFIER ::= { id-ecc signatures(4) 3 }
+
+ecschnorr-plain-SHA384 OBJECT IDENTIFIER ::= { ecschnorr-plain-signatures 3 }</pre>
+</div></div><p>The auditElement is similar to the auditElement of a Polymorphic Identity or Pseudonym. The signature is a Schnorr signature for efficiency.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">id-BSNk-encrypted OBJECT IDENTIFIER ::= { id-BSNk-identifiers 2 }
+
+id-BSNk-encrypted-identity OBJECT IDENTIFIER ::= { id-BSNk-encrypted 1 }
+
+id-BSNk-encrypted-pseudonym OBJECT IDENTIFIER ::= { id-BSNk-encrypted 2 }
+
+id-BSNk-encrypted-identity-signed OBJECT IDENTIFIER ::= { id-BSNk-encrypted 3 }
+
+id-BSNk-encrypted-pseudonym-signed OBJECT IDENTIFIER ::= { id-BSNk-encrypted 4 }
+
+id-BSNk-encrypted-direct-pseudonym OBJECT IDENTIFIER ::= { id-BSNk-encrypted 5 }
+
+id-BSNk-encrypted-direct-pseudonym-signed OBJECT IDENTIFIER ::= { id-BSNk-encrypted 6 }</pre>
+</div></div><h5 id="PolymorphicPseudonymizationNotation-IdentityorPseudonym">Identity or Pseudonym</h5><p>Finally, an Encrypted Identity or Pseudonym can be decrypted into a Identity or Pseudonym respectively, consisting of (the <span class="inline-comment-marker" data-ref="93ce9c22-1a79-4c7b-a99b-95f8bd01169b">X coordinate of</span>) 1 point on an elliptic curve. The Identity or Pseudonym is not directly used in any of the interfaces, but is the RECOMMENDED representation of a Identity or Pseudonym for a relying party to use after decryption of a Encrypted Identity or Pseudonym.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Decrypted pseudoID ASN.1 notation</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">Identity ::= SEQUENCE {
+    notationIdentifier     OBJECT IDENTIFIER (id-BSNk-decrypted-identifier),
+    schemeVersion          INTEGER,
+    schemeKeySetVersion    INTEGER,
+    recipient              IA5String,
+    type                   INTEGER,
+    identityValue          IA5String
+}
+
+Pseudonym ::= SEQUENCE {
+    notationIdentifier     OBJECT IDENTIFIER (id-BSNk-decrypted-pseudonym),
+    schemeVersion          INTEGER,
+    schemeKeySetVersion    INTEGER,
+    recipient              IA5String,
+    recipientKeySetVersion INTEGER,
+    diversifier            IA5String,
+    type                   INTEGER,
+    pseudonymValue         IA5String
+}</pre>
+</div></div><p>In case of an Identity, the identity can be extracted from the X coordinate of the EllipticCurvePoint of the Identity. In schemeVersion 1, the X coordinate, after conversion from a number to a bytearray, contains an <span class="inline-comment-marker" data-ref="ca660572-adc3-449f-a978-a8cef8207cf0">encoded identity padded using OAEP</span> as defined in Section 7.1 of <a href="https://tools.ietf.org/html/rfc8017#section-7.1" class="external-link" rel="nofollow">RFC8017</a> (PKCS#1 v2.2). Here the following parameters are chosen:</p><ul><li>The place of n (RSA modulus) is taken by the order of curve q; length in bytes of q is denoted by k as in PKCS #1, i.e. equal to 40 for the Brainpool320r1 curve used in version 1 of the scheme.</li><li>Hash function is SHA384 truncated to first 10 bytes, i.e. hLen = 10.</li><li>Message length mLen = to k – 2hLen – 2 (PKCS #1 only requires ≤), i.e. equal to 18.</li><li>MGF1 as defined in PKCS #1 is used as Mask Generation Function.</li><li>Optional Label is empty string.</li></ul><p>The decoded identity (18 bytes) consists of a prefix of three bytes and the identity (e.g. BSN). The prefix consists of a version, a type and a length of the identifier. All not used bytes are zero. That is, 15 bytes is the longest size supported for an identifier in version 1.</p><p class="inline-comment-marker">In case of a Pseudonym, the identifying, persistent pseudonym of a user is <span class="inline-comment-marker" data-ref="691f6354-7b5e-4cd8-8434-bb301c7458c5">the </span>EllipticCurvePoint of the Pseudonym. The RECOMMENDED representation of a Pseudonym used in a DV registration, consists of the recipientKeySetVersion (decimal string of length 8) of the closing key with the uncompressed EllipticCurvePoint appended. If two such representations are equal the pseudonyms correspond to the same person. However, we can only deduce that two pseudonyms do not correspond to the same person if  the pseudonymValue differ while all other values are equal. We note that the recipientKeySetVersion of the closing key can be different from the recipientKeySetVersions of the EI and EP decryption key.</p><p class="inline-comment-marker">For each decrypted pseudonym the DV shall archive the additional fields decrypted from the Encrypted Pseudonym.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">id-BSNk-decrypted OBJECT IDENTIFIER ::= { id-BSNk-identifiers 3 }
+
+id-BSNk-decrypted-identifier OBJECT IDENTIFIER ::= { id-BSNk-decrypted 1 }
+
+id-BSNk-decrypted-pseudonym OBJECT IDENTIFIER ::= { id-BSNk-decrypted 2 }</pre>
+</div></div><h5 id="PolymorphicPseudonymizationNotation-Keyformats"><span class="inline-comment-marker" data-ref="cedc5e92-e3c2-4809-99c7-49e8e2335d83">Key formats</span></h5><p>Polymorphic pseudonimization uses various keys. These keys have been versioned, see the syntax above.</p><p>Keys for relying parties are provided using the notation described in <span class="confluence-link">DV-key format</span>.</p><p>Several of the scheme-wide keys are public, and can be used to use the polymorphism or verify signatures. These keys are defined in <span class="confluence-link">Metadata</span> and under the role PPSteutelSet in <span class="confluence-link">RoleDescriptors non-Participants</span>. For these public keys the brainpool P320r1 curve is used, which is a named curve defined as</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">-- Brainpool curves and the TeleTrust namespace are defined in BSI TR-03111
+ecStdCurvesAndGeneration OBJECT IDENTIFIER ::= {
+    iso(1) identified-organization(3) teletrust(36) algorithm(3)
+    signature-algorithm(3) ecSign(2) ecStdCurvesAndGeneration(8)
+}
+
+ellipticCurve OBJECT IDENTIFIER ::= { ecStdCurvesAndGeneration 1 }
+
+versionOne OBJECT IDENTIFIER ::= { ellipticCurve 1 }
+
+brainpoolP320r1 OBJECT IDENTIFIER ::= { versionOne 9 }</pre>
+</div></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

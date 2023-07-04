@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Single Log-out</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-Single-Sign-On_118882536.html">Use cases Single Sign-On</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Single Log-out
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Aug 01, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>De volgende specifieke use case (Single log-out) MOET door alle authenticatiediensten en Herkenningsmakelaars ondersteund worden, ook door authenticatiediensten die geen Single Sign-On ondersteunen. Zij MOGEN logoutberichten NIET afkeuren en MOETEN de melding tonen zoals beschreven in stap 2 hieronder.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>Nr.</p></th><th class="confluenceTh"><p>Actie</p></th><th class="confluenceTh"><p>Omschrijving</p></th></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><p>Een uitvoerende natuurlijke persoon heeft op basis van één of meer verklaringen toegang bij een dienstverlener en deze houden lokaal een sessie bij. Mogelijk is er ook bij andere dienstverleners nog een geldige sessie aanwezig.</p></td></tr><tr><td class="confluenceTd"><p>1</p></td><td class="confluenceTd"><p>gebruiker selecteert &quot;logout&quot; binnen de website van de dienstverlener.</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De uitvoerende persoon wordt lokaal uitgelogd bij de dienstverlener conform de eisen in <a href="Single-sign-on-and-user-sessions_118882572.html">Single sign-on and user sessions</a> en daarna doorgestuurd naar de Herkenningsmakelaar met een logoutbericht (zie <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a>).</p></div></td></tr><tr><td class="confluenceTd"><p>2</p></td><td class="confluenceTd"><p>HM ontvangt logoutbericht en stuurt dit naar geselecteerde authenticatiedienst</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar stuurt het logoutbericht door naar de authenticatiedienst. Op basis van het ontvangen bericht beëindigt de authenticatiedienst de eventueel nog geldige bewaarde authenticatie en toont daarna in browserwindow een bericht &quot;uitgelogd bij [naam dienstverlener] en [naam authenticatiedienst]. Als u van andere Herkenningsdiensten gebruik heeft gemaakt, moet u daar zelf nog uitloggen. U kunt ook alle browservensters sluiten&quot; (of een andere tekst met gelijke strekking).</p></div></td></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Finale staat</p></td><td class="confluenceTd"><p>De gebruiker heeft bij de authenticatiedienst geen geldige sessie meer, maar mogelijk nog wel bij de andere dienstverleners waarbij eerder is ingelogd. Indien de browser wordt afgesloten verdwijnen ook die sessies.</p></td></tr></tbody></table></div><p>Wanneer de Herkenningsmakelaar geen geldige authenticatiedienst vindt om het logoutbericht naar toe te sturen, dan toont de Herkenningsmakelaar een scherm met de tekst &quot;Uitloggen is momenteel niet mogelijk. Sluit alle [naam browser*]vensters om de beveiliging van uw informatie te waarborgen.&quot;</p><p><sub>*naam browser bepaald op basis van browserdetectie, of alleen 'browservensters' als detectie niet mogelijk is.</sub></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

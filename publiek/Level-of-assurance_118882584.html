@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Level of assurance</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribute-elements_118882784.html">Attribute elements</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Generic-attribute-elements_118882613.html">Generic attribute elements</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Level of assurance
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Jan 05, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Elektronische Toegangsdiensten distinguishes five different levels of assurance.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>LoA</p></th><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);"><a href="eIDAS-verordening_118882350.html"><span style="color: rgb(0,0,0);">eIDAS </span></a></span></th><th class="confluenceTh"><p>SAML2 AuthnContextClassRef element</p></th></tr><tr><td class="confluenceTd"><p>1</p></td><td colspan="1" class="confluenceTd">Non existent</td><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:core:assurance-class:loa1</p></div></td></tr><tr><td class="confluenceTd"><p>2</p></td><td colspan="1" class="confluenceTd">Low</td><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>core:</span><span>assurance-class:loa2</span></p></div></td></tr><tr><td class="confluenceTd"><p>2+</p></td><td colspan="1" class="confluenceTd">Low</td><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>core:</span><span>assurance-class:loa2plus</span></p></div></td></tr><tr><td class="confluenceTd"><p>3</p></td><td colspan="1" class="confluenceTd">Substantial</td><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>core:</span><span>assurance-class:loa3</span></p></div></td></tr><tr><td class="confluenceTd"><p>4</p></td><td colspan="1" class="confluenceTd">High</td><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>core:</span><span>assurance-class:loa4</span></p></div></td></tr></tbody></table></div><p>Other values MUST NOT be used.</p><p>Refer to <a class="unresolved" href="#">Betrouwbaarheidsniveaus</a> for legal context, and <a href="Normenkader-betrouwbaarheidsniveaus_118882414.html">Normenkader betrouwbaarheidsniveaus</a> for level of assurance in the context of the eIDAS regulation (EU 2015/1502).</p><p>For the Level of Assurance communicated in assertions in Elektronische Toegangsdiensten technical interfaces, the following rules apply:</p><ul><li>The AD MUST communicate the Level of Assurance <span class="inline-comment-marker" data-ref="fa1e245d-f234-4234-a139-24c967d61262">at which the authentication was realized. This realization is the minimum of the Level of Assurance of the registration process of the authenticated user </span>and the Level of Assurance of the authentication mechanism applied. An AD MUST NOT communicate a level for which it is not certified.</li><li>The MR MUST communicate the Level of Assurance of the <span class="inline-comment-marker" data-ref="adef05ec-ac3f-4c9e-8635-a19f6869b47b">registered authorization</span>. A MR MUST NOT communicate a level for which it is not certified.<ul><li>In case of a chain of authorizations, the MR MUST communicatie the minimum of the LoA of all Representation authorizations in the applicable chain (so far).</li><li>In case of a request for a portal service, a MR MUST communicate the Level of Assurance as the minimum Level of Assurance of all applicable service authorizations chosen by the user.</li></ul></li><li>The HM MUST communicate the effective Level of Assurance of the combined assertions. The effective Level of assurance is the minimum of the LoA of the Authentication assertion and (if applicable) the LoA of the Representation authorization assertion(s).<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The MR communicates two Levels of Assurance in its Assertion. A LevelOfAssurance (requested) and a LevelOfAssuranceUsed (actually obtained). The HM MUST use the LevelOfAssuranceUsed from the MR Assertion as the LoA of the Representation authorization.</p></div></div></li></ul>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

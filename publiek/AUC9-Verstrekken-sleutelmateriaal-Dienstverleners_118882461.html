@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : AUC9 Verstrekken sleutelmateriaal Dienstverleners</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : AUC9 Verstrekken sleutelmateriaal Dienstverleners
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Jun 25, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    Het BSNk beheert en verstrekt via een Herkenningsmakelaar cryptografisch sleutelmateriaal aan elke Dienstverlener (DV) die aantoonbaar beschikt over een PKIoverheid-certificaat. Indien de Dienstverlener geautoriseerd is om het BSN te verwerken verstrekt het BSNk speciaal BSN Sleutelmateriaal. De Dienstverlener ontsleutelt met dit Sleutelmateriaal het Versleutelde Identiteit of Versleutelde Pseudoniem van de Gebruiker dat de Dienstverlener verstrekt.</p><p><br/></p><p>Voor eIDAS Outbound acteert de eIDAS Berichtenservice als Dienstverlener, die dienstbemiddelaar is voor de BRP. Daarom moet in deze use case het gebruik van de term &quot;Dienstverlener&quot;, worden geïnterpreteerd als &quot;Dienstaanbieder (hier: BRP) en/of eIDAS Berichtenservice (EB)&quot;.<p>Deze use case is een variant op de BSNk use case &lt;AUC5&gt;.</p><div class="table-wrap"><table class="relative-table wrapped confluenceTable" style="width: 99.85%;"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Stap</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Actie</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Omschrijving</p></div></th></tr></thead><tbody><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><p class="content-wrapper">Een Dienstverlener heeft Sleutelmateriaal nodig om de identiteit (bijv BSN) en/of pseudoniem uit de Versleutelde Identiteit/Pseudoniem te halen en vraagt zijn Herkenningsmakelaar om hem hierbij te ondersteunen.</p></td></tr><tr><td colspan="1" class="confluenceTd">9.1</td><td colspan="1" class="confluenceTd"><p>De Herkenningsmakelaar valideert het verzoek.</p></td><td colspan="1" class="confluenceTd">De Herkenningsmakelaar valideert dat het verzoek afkomstig is van bevoegd medewerker van de Dienstverlener, of een door deze geautoriseerde derde of zijn systeem.</td></tr><tr><td colspan="1" class="confluenceTd">9.2</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">De Herkenningsmakelaar stuurt een aanvraag naar het Sleutelbeheer </div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar stuurt een aanvraag voor Sleutelmateriaal naar het BSNk Sleutelbeheer met daarin het PKIoverheid-certificaat van betreffende Dienstverlener.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">9.3</td><td colspan="1" class="confluenceTd">Sleutelbeheer valideert de aanvraag</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>BSNk Sleutelbeheer controleert of de aanvraag daadwerkelijk en ongewijzigd van een erkende Herkenningsmakelaar afkomstig is en of het meegeleverde PKIoverheid-certificaat van de Dienstverlener geldig is.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">9.4</td><td colspan="1" class="confluenceTd"><p>Sleutelbeheer controleert of Dienstverlener BSN mag ontvangen</p></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>BSNk Sleutelbeheer controleert of het OIN van de Dienstverlener zoals deze op het meegeleverde PKIoverheid-certificaat voorkomt op de Autorisatielijst BSN en ook Sleutelmateriaal mag ontvangen om een BSN te ontsleutelen.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">9.5</td><td colspan="1" class="confluenceTd"><p>Sleutelbeheer genereert Sleutelmateriaal</p></td><td colspan="1" class="confluenceTd"><p>BSNk Sleutelbeheer genereert het Sleutelmateriaal voor het OIN van de Dienstverlener inclusief het BSN-Sleutelmateriaal indien diens OIN inderdaad voorkomt op de Autorisatielijst BSN </p></td></tr><tr><td colspan="1" class="confluenceTd">9.6 </td><td colspan="1" class="confluenceTd"><p>Sleutelbeheer versleutelt Sleutelmateriaal</p></td><td colspan="1" class="confluenceTd">BSNk Sleutelbeheer versleutelt Sleutelmateriaal obv de publieke sleutel op het meegeleverde PKIoverheid-certificaat van de Dienstverlener  </td></tr><tr><td colspan="1" class="confluenceTd">9.7</td><td colspan="1" class="confluenceTd">Sleutelbeheer verstrekt Sleutelmateriaal aan de Herkenningsmakelaar en registreert de verstrekking</td><td colspan="1" class="confluenceTd">BSNk Sleutelbeheer verstrekt Sleutelmateriaal ten behoeve van de Dienstverlener aan de aanvragende Herkenningsmakelaar en registreert de verstrekking in een publiekelijk toegankelijke Sleutelverstrekkingslijst<span class="confluence-link"> </span>.</td></tr><tr><td colspan="1" class="confluenceTd">9.8</td><td colspan="1" class="confluenceTd">Herkenningsmakelaar verstrekt Sleutelmateriaal aan de Dienstverlener</td><td colspan="1" class="confluenceTd">De Herkenningsmakelaar verstrekt Sleutelmateriaal aan de betreffende Dienstverlener.</td></tr><tr><td colspan="1" class="confluenceTd">9.9</td><td colspan="1" class="confluenceTd">Dienstverlener ontsleutelt en installeert Sleutelmateriaal </td><td colspan="1" class="confluenceTd">De Dienstverlener ontsleutelt Sleutelmateriaal en installeert dit op zijn toegangssystemen. </td></tr><tr><td colspan="1" class="confluenceTd"><br/></td><td colspan="1" class="confluenceTd">Finale staat</td><td colspan="1" class="confluenceTd"><p>De Dienstverlener kan BSN en Pseudoniem uit een Versleutelde Identiteit/Pseudoniem halen. En de sleutelverstrekking is geregistreerd in het Sleutelverstrekkingslijst.</p><p>De Dienstverlener kan via zijn HM diensten aansluiten en is klaar om gebruikers voor die dienst obv Persistent Pseudoniem of BSN te ontvangen.</p></td></tr></tbody></table></div><p> NB: deze use case wordt gerealiseerd mbv <a href="Interface-specifications-MR-BSNk_118882421.html">Interface specifications MR-BSNk</a> </p><p><br/></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

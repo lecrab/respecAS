@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Reference Architecture DB-DA SOAP</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications-web_118882412.html">Interface specifications web</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications-DB-DA_118882768.html">Interface specifications DB-DA</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Reference Architecture DB-DA SOAP
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (rschaar)</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Sep 09, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/></colgroup><tbody><tr><th class="confluenceTh">DB-DA sequence diagram</th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" alt="DB-DA sequence diagram" height="250" width="464" src="attachments/118882767/118885772.png" data-image-src="attachments/118882767/118885772.png" data-unresolved-comment-count="0" data-linked-resource-id="118885772" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-2-5 11:36:21.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882767" data-linked-resource-container-version="5" title="DB-DA sequence diagram"></span></p></div></td></tr></tbody></table></div><p>This paragraph describes a reference architecture and specification of <a href="Interface-specifications-DB-DA_118882768.html">Interface specifications DB-DA</a>, for use with a machine-to-machine interface using WebServices (SOAP).<br/></p><p>This reference architecture describes the interface offered by a <a href="118882600.html">Dienstaanbieder (DA)</a>(Service supplier) for use with a <a href="118882600.html">Dienstaanbieder (DA)</a> (service intermediary), in case of a Webservice interface based on SOAP in a <a href="Dienstbemiddeling_118882604.html">Dienstbemiddeling</a> use case. By nature, the exact interface specification and its contents depend on the service(s) offered and are specific for its context.</p><p>The generic reference architecture for such SOAP WebService with <a href="Dienstbemiddeling_118882604.html">Dienstbemiddeling</a> is described as:</p><ul><li>The DA provides a service interface defined as a documented API, using a WSDL to define the service interface.</li><li class="confluence-link">The DB requires recognition of the user, using <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a> to request the applicable service with Dienstbemiddeling in the <a href="Service-catalog_118882581.html">Service catalog</a>.</li><li>The DB calls the service confirm this WSDL, adhering to <a href="Interface-specifications-DB-DA_118882768.html">Interface specifications DB-DA</a>.</li><li>The DB provides the Elektronische Toegangsdiensten declarations, by adding the Assertion obtained from the HM as a SOAP-header.</li><li>The DB signs the SOAP-body (or all requests elements thereof) and the Assertion using a WS-Security Signature valid for the DB's own signing certificate.</li><li>The DA verifies upon receipt the SOAP-headers with the signature and Assertion before processing the message. The verification MUST validate the assertion (see processing rules in <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a>) and the signature.</li></ul><p>A practical implementation for providing the Assertion and a signature can be done as described in WS-Security SAML Token profile for the holder-of-key Subject Confirmation Method. Next to the SAML token, a WS-Security Signature (can be based on the WS-Security X509 token profile) over the SAML Assertion <strong><em>and</em></strong> SOAP Body is present to associate the Elektronische Toegangsdiensten Declaration with the request body. <span class="inline-comment-marker" data-ref="86aea00b-d499-4d62-bbb5-a504eb0dc313">The example below</span> is based on these specifications.</p><p><br/></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DB-DA SOAP-request</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0"?&gt;
+&lt;soap:Envelope xmlns:soap="..." xmlns:wsse="..." xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ds="..." xmlns:wsu="..."&gt;
+ 
+  &lt;soap:Header&gt;
+ 
+    &lt;wsse:Security&gt;
+ 
+      &lt;!-- eToegang SAML Assertion applicable to SOAP-request, authenticating the user --&gt;
+      &lt;saml:Assertion ID="_a75adf55-01d7-40cc-929f-dbd8372ebdfc" IssueInstant="2016-02-05-17T10:06:02Z"&gt;
+        &lt;saml:Issuer&gt;urn:etoegang:HM:...&lt;/saml:Issuer&gt;
+        &lt;!-- Signature over assertion by HM --&gt;
+        &lt;ds:Signature&gt;
+          ...
+        &lt;/ds:Signature&gt;
+        &lt;saml:Subject&gt;
+          &lt;saml:EncryptedID NameQualifier="..." Format=""&gt;...&lt;/saml:EncryptedID&gt;
+          &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+            &lt;saml:SubjectConfirmationData InResponseTo="_52B816C631C564BACF59E758CBA91718" NotOnOrAfter="2016-02-05T10:11:48Z" Recipient="https://..."/&gt;
+          &lt;/saml:SubjectConfirmation&gt;          
+        &lt;/saml:Subject&gt;
+        &lt;saml:Conditions NotBefore="2016-02-05T10:06:03.173Z" NotOnOrAfter="2016-02-05T10:11:33.173Z"/&gt;
+        &lt;saml:AttributeStatement&gt;
+          ...
+        &lt;/saml:AttributeStatement&gt;
+      &lt;/saml:Assertion&gt;
+ 
+      &lt;!-- WS-Security Signature by DB over SOAP-Body and eToegang SAML Assertion, to associate message and assertion and proof authenticity  --&gt;
+      &lt;ds:Signature&gt;
+        &lt;ds:SignedInfo&gt;
+          &lt;ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+          &lt;ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/&gt;
+          &lt;!-- Signature covers SOAP-body: --&gt;
+          &lt;ds:Reference URI="#MsgBody"&gt;
+            &lt;ds:Transforms&gt;
+              &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+              &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;/ds:Transforms&gt;
+            &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+            &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+          &lt;/ds:Reference&gt;
+          &lt;!-- Signature covers eToegang SAML Assertion: --&gt;
+          &lt;ds:Reference URI="#_a75adf55-01d7-40cc-929f-dbd8372ebdfc"&gt;
+            &lt;ds:Transforms&gt;
+              &lt;ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+              &lt;ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+            &lt;/ds:Transforms&gt;
+            &lt;ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/&gt;
+            &lt;ds:DigestValue&gt;...&lt;/ds:DigestValue&gt;
+          &lt;/ds:Reference&gt;
+        &lt;/ds:SignedInfo&gt;
+        &lt;ds:SignatureValue&gt;...&lt;/ds:SignatureValue&gt;
+        &lt;ds:KeyInfo&gt;
+          &lt;wsse:SecurityTokenReference&gt;
+            &lt;ds:X509IssuerSerial&gt;
+              &lt;ds:X509IssuerName&gt;CN=...,...,O=...,C=NL&lt;/ds:X509IssuerName&gt;
+              &lt;ds:X509SerialNumber&gt;...834756978854956...&lt;/ds:X509SerialNumber&gt;
+            &lt;/ds:X509IssuerSerial&gt;
+          &lt;/wsse:SecurityTokenReference&gt;
+        &lt;/ds:KeyInfo&gt;
+      &lt;/ds:Signature&gt;
+ 
+    &lt;/wsse:Security&gt;
+ 
+  &lt;/soap:Header&gt;
+ 
+  &lt;soap:Body wsu:Id="MsgBody"&gt;
+ 
+    &lt;!-- Actual SOAP-request from user to DA --&gt;
+    &lt;MyRequest xmlns="..."&gt;
+      &lt;RequestDetails&gt;...&lt;/RequestDetails&gt;
+      ...
+    &lt;/MyRequest&gt;
+ 
+  &lt;/soap:Body&gt;
+ 
+&lt;/soap:Envelope&gt;
+
+</pre> 
+ </div>
+</div><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882767/118885772.png">image2016-2-5 11:36:21.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

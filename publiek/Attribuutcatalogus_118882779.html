@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Attribuutcatalogus</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribuutverstrekking_118882778.html">Attribuutverstrekking</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Attribuutcatalogus
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Apr 01, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Een aantal attributen MOET kunnen worden geleverd. Dit zijn verplicht te verstrekken attributen. De attribuutcatalogus beschrijft welke attributen een attribuutverstrekker kan leveren.</p><p>Attributen waarvan de naam met urn:etoegang:<em>x.y</em>:attribute: (met <em>x.y</em> een versie van het AS) begint, mogen enkel door Authenticatiediensten worden geleverd. Attributen waarvan de naam met urn:etoegang:<em>x.y</em>:attribute-represented: begint, mogen enkel door Machtigingdiensten worden geleverd. Aangezien de eIDAS-berichtenservice (EB) voor eIDAS-inbound zowel als AD als MR optreedt, mag de EB beide leveren.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Voor eIDAS-outbound, levert de BRP de minimale vereiste attributenset en heeft de EB de rol van Dienstbemiddelaar.</p></div></div><p>Elke deelnemer MAG alleen de attributen verstrekken die gespecificeerd zijn in de attribuutcatalogus. De attribuutcatalogus bestaat uit een ondertekend &lt;AttributeCatalogue&gt; element. Signing gebeurt met dezelfde <em style="line-height: 1.4285;">private key</em> waarmee ook de metadata ondertekend wordt. Zie <a href="Digital-signature_118882764.html">Digital signature</a>.</p><p>Een deelnemer MOET op een gemeenschappelijk overeengekomen tijdstip de attribuutcatalogus verwerken. Dit hoeft niet op basis van de XML representatie van de attribuutcatalogus te gebeuren, zolang men de kenmerken van de attributen in acht neemt.</p><h3 id="Attribuutcatalogus-XMLformaat">XML formaat</h3><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><tbody><tr><th colspan="2" class="confluenceTh">Data element</th><th class="confluenceTh">0..n</th><th class="confluenceTh">Invulling</th></tr><tr><th class="confluenceTh"><p>@Version</p></th><th colspan="1" class="confluenceTh"><br/></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: Versie van de attribuutcatalogus in het formaat: urn:etoegang:&lt;scheme version&gt;:&lt;omgeving&gt;:attribute-catalogue:&lt;sequence number&gt;.</p><p>Bijvoorbeeld: urn:etoegang:1.11:attribute-catalogue:P:1</p></div></td></tr><tr><th class="confluenceTh"><p>@IssueInstant</p></th><th colspan="1" class="confluenceTh"><br/></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: Tijd waarop de attribuutcatalogus is aangemaakt</p></div></td></tr><tr><th class="confluenceTh"><p>Signature</p></th><th colspan="1" class="confluenceTh"><br/></th><td class="confluenceTd">1</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten: MOET de elektronische handtekening van de partij die de attribuutcatalogus heeft aangemaakt, over het hele bericht bevatten</p></div></td></tr><tr><th class="confluenceTh"><p>Attribute</p></th><th colspan="1" class="confluenceTh"><br/></th><td class="confluenceTd">1..n</td><td class="confluenceTd"><div class="content-wrapper"><p>Elektronische Toegangsdiensten:  Eén of meerdere elementen die een attribuut specificeren met de kenmerken uit Attribuutcatalogus.</p></div></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>Name</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten<span>: Naam van het attribuut.</span></div></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>Type</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten<span>: Type van het attribuut. Bijvoorbeeld “</span><a href="http://www.w3.org/2001/XMLSchema#string" class="external-link" rel="nofollow">http://www.w3.org/2001/XMLSchema#string</a><span>”</span></div></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>FriendlyName</span></th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten<span>: Een korte omschrijving van het attribuut zodat de betekenis van het attribuut eenduidig geïnterpreteerd wordt, één voorkomen per taal.</span></div></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>@lang</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><span>taal van FriendlyName, om in gebruikersinterfaces te tonen.</span></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>Description</span></th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten<span>: Een gedetailleerde omschrijving van het attribuut zodat de betekenis van het attribuut eenduidig geïnterpreteerd wordt, één voorkomen per taal.</span></div></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>@lang</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><span>taal van Description, om in (toelichtingen bij) gebruikersinterfaces te tonen.</span></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><span>PermissibleSource</span></th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">Elektronische Toegangsdiensten<span>: Referentie aan bronnen welke het attribuut op mogen leveren.</span></div></td></tr></tbody></table></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">De beheerorganisatie publiceert de laatste versie van de <span class="inline-comment-marker" data-ref="a7710751-3f7b-4903-a59c-f6ae48e8ca50">attribuutcatalogus</span> op <span class="nolink"><a href="https://extranet.eherkenning.nl/1.11/attribuutcatalogus.xml" class="external-link" rel="nofollow">https://extranet.eherkenning.nl/1.11/attribuutcatalogus.xml</a></span>.</div></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Schema AttribuutCatalogus</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:eac="urn:etoegang:1.9:attribute-catalogue"
+    targetNamespace="urn:etoegang:1.9:attribute-catalogue"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"&gt;
+
+    &lt;xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+        schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" /&gt;
+
+    &lt;xs:import namespace="urn:oasis:names:tc:SAML:2.0:metadata"
+        schemaLocation="http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd" /&gt;
+
+    &lt;xs:element name="Attribute" type="eac:AttributeType" /&gt;
+    &lt;xs:complexType name="AttributeType"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="Name" type="xs:anyURI" /&gt;
+            &lt;xs:element name="Type" type="xs:anyURI" /&gt;
+            &lt;xs:element name="FriendlyName" type="md:localizedNameType" maxOccurs="unbounded" /&gt;
+            &lt;xs:element name="Description" type="md:localizedNameType" maxOccurs="unbounded" /&gt;
+            &lt;xs:element name="PermissibleSource" type="xs:anyURI" maxOccurs="unbounded" /&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+
+    &lt;xs:element name="AttributeCatalogue" type="eac:AttributeCatalogueType" /&gt;
+    &lt;xs:complexType name="AttributeCatalogueType" &gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element ref="ds:Signature" /&gt;
+            &lt;xs:element ref="eac:Attribute" maxOccurs="unbounded" /&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name="IssueInstant" type="xs:dateTime" use="required" /&gt;
+        &lt;xs:attribute name="Version" type="xs:anyURI" use="required" /&gt;
+    &lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</pre> 
+ </div>
+</div><h3 id="Attribuutcatalogus-Toegestanebronnen">Toegestane bronnen</h3><p><span style="color: rgb(0,0,0);">Bij elke wijziging moet het attribuut met dezelfde betrouwbaarheid opnieuw gevalideerd worden</span></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">URN</th><th class="confluenceTh">Omschrijving</th><th class="confluenceTh"><strong>Eisen aan het verificatieproces van het attribuut</strong></th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:<span>attribute-sourceid:</span>ID</p></div></td><td class="confluenceTd"><p>Geregistreerd door deelnemer vanaf een geldig identiteitsbewijs volgens het <a href="Normenkader-betrouwbaarheidsniveaus_118882414.html">Normenkader betrouwbaarheidsniveaus</a></p></td><td class="confluenceTd">Tijdens een registratieproces op betrouwbaarheidsniveau 3 of 4 overgenomen (of afgeleid van) het ID, of overgenomen van een kopie ID en gecontroleerd bij een tweede bron</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>1.11:</span><span>attribute-sourceid:</span>IDCopy</p></div></td><td class="confluenceTd"><p><span>Geregistreerd door deelnemer vanaf een kopie van een geldig identiteitsbewijs volgens het <a href="Normenkader-betrouwbaarheidsniveaus_118882414.html">Normenkader betrouwbaarheidsniveaus</a><br/></span></p></td><td class="confluenceTd">Tijdens een registratieproces op betrouwbaarheidsniveau 2 overgenomen (of afgeleid van) een kopie ID</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>1.9:</span><span>attribute-sourceid:</span>NLGBA</p></div></td><td class="confluenceTd"><p>Verkregen door deelnemer vanaf de Basisregistratie Persoonsgegevens</p></td><td class="confluenceTd">Opgehaald uit de Basisregistratie Persoonsgegevens (op basis van een Tijdens een registratieproces op betrouwbaarheidsniveau 3 of 4 van een WID overgenomen BSN)</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1<span>.11:attribute-sourceid:NLKvK</span></p></div></td><td class="confluenceTd">Verkregen van het Handelsregister van de Kamer van Koophandel</td><td class="confluenceTd">Conform eisen geldend voor de betrouwbaarheid van vaststellen identiteit Dienstafnemer</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute-sourceid:eIDAS<em>:<span class="inline-comment-marker" data-ref="723effca-59c0-42e9-8590-6062cb4e1e45">XX</span></em></p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>Verkregen door de eIDAS-node verkregen vanuit een andere lidstaat. Als PermissibleSource in de attributencatalogus wordt 'urn:etoegang:1.11:attribute-sourceid:eIDAS' opgenomen.</p><p>Bij levering van het attribuut wordt het land van oorsprong wordt als postfix toegevoegd (ISO-3166-1 alpha-2, tweeletterig; aangevuld met 'eIDAS'), bijvoorbeeld 'urn:etoegang:1.11:attribute-sourceid:eIDAS:<em>DE</em>' voor attributen verkregen via eIDAS vanuit Duitsland<em><br/></em></p></div></td><td class="confluenceTd">Geen. Het attribuut  is niet gecontroleerd door de deelnemer, maar verkregen van een andere EU-lidstaat.</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:<span>1.9:</span><span>attribute-sourceid:</span>SelfDeclared</p></div></td><td class="confluenceTd"><p>Zelfverklaard, zonder controle door de deelnemer</p></td><td class="confluenceTd">Geen. Het attribuut is niet gecontroleerd door de deelnemer, maar door de Gebruiker zelf opgegeven.</td></tr><tr><td class="confluenceTd"><a href="EntityID_118882757.html">EntityID</a></td><td class="confluenceTd">Het <a href="EntityID_118882757.html">EntityID</a> van de deelnemer die de controle heeft uitgevoerd</td><td class="confluenceTd">De deelnemer heeft een proces ingericht waarmee het attribuut onlosmakelijk geassocieerd is met de gebruiker. Bijvoorbeeld door de Gebruiker tijdens het proces <a href="AUC2-Verkrijgen-authenticatiemiddel_118882526.html">AUC2 Verkrijgen authenticatiemiddel</a> een e-mail- of postadres op te laten geven en daar een OTP naar toe te sturen. Als de Gebruiker zich met zijn middel kan authenticeren en deze OTP kan opgeven, is dat voldoende bewijs dat hij toegang heeft tot het opgeg<span style="color: rgb(0,0,0);">even adres. </span></td></tr><tr><td style="text-align: left;" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.13:attribute-sourceid:NLPROBAS</p></div></td><td style="text-align: left;" class="confluenceTd">Verkregen uit PROBAS</td><td style="text-align: left;" class="confluenceTd"><p>Conform eisen geldend voor de betrouwbaarheid van vaststellen identiteit Dienstafnemer</p></td></tr></tbody></table></div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882779/118886271.xml">AttributeCatalog-1.9-test.xml</a> (application/x-upload-data)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

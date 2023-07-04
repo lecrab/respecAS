@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Vaststellen bevoegdheid</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Vaststellen bevoegdheid
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified by <span class='editor'> Maarten van Bree</span> on May 31, 2019
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>In the paragraphs below is an example implementation of all the functionality which a MR must support, this is not the required implementation, other implementations are allowed as long as they deliver the same result.</p></div></div><p><br/></p><p><span>Process to find applicable authorisation</span></p><p>1: Check LOA levels</p><p style="margin-left: 30.0px;">1A: If the level of assurance is included in XACMLAuthzDecisionQuery → request → Resource → <a href="LevelOfAssurance_118882524.html">LevelOfAssurance</a></p><ul><li style="list-style-type: none;background-image: none;"><ul><li class="MsoNormal"><span>The LOA of the authentication means in the AD assertion MUST BE equal or greater than the LOA which is requested included in the </span><span>XACMLAuthzDecisionQuery → </span><span>request → Resource → </span><span><a href="LevelOfAssurance_118882524.html">LevelOfAssurance</a></span></li><li class="MsoNormal">The LOA which is included in the DC MUST BE equal or greater than the LOA which is requested included in the XACMLAuthzDecisionQuery → request → Resource → <a href="LevelOfAssurance_118882524.html">LevelOfAssurance</a>.</li><li class="MsoNormal">The LOA of the <a href="118882623.html">Machtiging (machtigen)</a> MUST be equal or greater than the LOA included in XACMLAuthzDecisionQuery → request → Resource → <a href="LevelOfAssurance_118882524.html">LevelOfAssurance</a>.</li></ul></li></ul><p style="margin-left: 30.0px;">1B: If the level of assurance is NOT included in XACMLAuthzDecisionQuery → request → Resource → <a href="Level-of-assurance_118882584.html">Level of assurance</a>.</p><ul><li style="list-style-type: none;background-image: none;"><ul><li class="MsoNormal"><span>Continue the process with the LOA which is specified in the Service Catalog.</span></li></ul></li></ul><p>2: Check ServiceUUID</p><p style="margin-left: 30.0px;">2A: If the requested service is NOT a portal service:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li><span>The </span><span>ServiceUUID </span><span>at </span><span>XACMLAuthzDecisionQuery → </span><span>request → Resource → <a href="ServiceUUID_118882788.html">ServiceUUID</a></span><span> MUST match the </span><span><span>serviceUUID (of the ServiceDefinition)</span></span><span> which is part of the </span><a href="118882623.html">Machtiging (machtigen)</a>.</li></ul></li></ul><p>3: Choose (<a href="Dienstafnemer_118882708.html">Dienstafnemer</a>)</p><p style="margin-left: 30.0px;">3A <span>Generate List of Dienstafnemers</span> for which the user has Authorizations (Machtigingen)</p><p style="margin-left: 30.0px;">3B Remove Authorizations that are for other DV</p><p style="margin-left: 60.0px;">3B1 In case of a specific service request (<a href="ServiceID_118882758.html">ServiceID</a> Index &gt; 0): Remove the Dienstafnemers where the user does not have an Authorization for the requested Service.</p><p style="margin-left: 60.0px;">3B2 In case of a <a href="GUC4.3-Portaalfunctie_118882546.html">Portaalfunctie</a> request (<a href="ServiceID_118882758.html">ServiceID</a> Index = 0): Remove the Dienstafnemers where the user does not have an Authorization for any service of the Dienstverlener</p><p style="margin-left: 30.0px;">3C Filter based on ECTA</p><p style="margin-left: 60.0px;">3C1 In case of a specific service request: Filter the Dienstafnemers where the available EntityConcernedTypes of a Dienstafnemer cannot fulfill any ECTA set of the requested <span>service</span></p><p style="margin-left: 60.0px;">3C2 In case of a Portaalfunctie request: Remove the Dienstafnemers from the list where the available EntityConcenedTypes of a Dienstafnemer cannot fulfill any ECTA set of any service of the Dienstverlener. Note: Here a Dienstverlener/Dienst combination can occur that later when filtering on Service Restriction turns out not to be <span>usable</span>.</p><p style="margin-left: 30.0px;">3D Alternative flow: No Dienstafnemers</p><p style="margin-left: 60.0px;">If the user does not have any authorizations left, the MR MUST inform the user and offer the option to cancel the login process (link to cancel flow)</p><p style="margin-left: 30.0px;">3E Let user select the Dienstafnemer he wants to represent</p><p style="margin-left: 60.0px;">Note: MR MAY skip this step is the user can represent exactly one (1) Dienstafnemer.</p><p><br/></p><p>4. In case of a Chain authorization and multiple Intermediairy organizations, let user select the Intermediary organiz<span>ation.</span></p><p><br/></p><p>5. Determine the list of services</p><p style="margin-left: 30.0px;">5A if the request is for a portal service</p><p style="margin-left: 60.0px;">5A1 create a list of all services of the DV</p><p style="margin-left: 30.0px;">5B If the Dienstafnemer selected is a Location (the authorization is limited to a Location), remove the services that do not indicate that they can respect restricted authorizations.</p><p style="margin-left: 30.0px;">Note that there is multiple negative logic here. If the service specifies ServiceRestriction=Vestigingnummer it indicates that it can handle restricted authorisations and unrestricted authorizations.</p><p><br/></p><p>6. Alternative flow : no applicable services</p><p style="margin-left: 30.0px;">If the user does not have any authorizations left (the services list is empty), the MR MUST inform the user and offer the option to cancel the login process (link to cancel flow).</p><p><br/></p><p>7. Determine the LoA</p><p style="margin-left: 30.0px;">7A If the request is for a specific service</p><p style="margin-left: 60.0px;">Select the specific authorization of the highest LoA.</p><p style="margin-left: 30.0px;">7B If the request is for a portal service, from the list of services take the lowest LoA of all authorizations.</p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

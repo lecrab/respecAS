@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : SubjectConfirmation</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : SubjectConfirmation
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (rschaar)</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Nov 17, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><p>The SubjectConfirmation exists in a Subject, and is used in two manners on Subjects:</p><ul><li>To hold a 'bearer' confirmation in a response to an AuthnRequest, to conform to the WebSSO profile.</li></ul>A <em>&lt;Subject&gt; </em>in an <em>&lt;Assertion&gt;</em> can contain two different types of <em>&lt;SubjectConfirmation&gt;</em> elements. Below is a description for each of these usages. Note that bearer confirmations MAY be applicable to a single Assertion.</p><h3 id="SubjectConfirmation-SubjectConfirmationforbearerconfirmation(WebSSO)">SubjectConfirmation for bearer confirmation (WebSSO)</h3><p>In case a relying party is requesting authentication of a user according to the SAML Web SSO profile, a 'bearer' SubjectConfirmation (see SAML 2.0 Profiles, §3.3 and §4.1.4).</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><td class="confluenceTd"><p><em>&lt;SubjectConfirmation&gt;</em></p></td><td class="confluenceTd">0..1</td><td class="confluenceTd"><p>(Only for the Declaration of Identity<span style="color: rgb(51,51,51);"> or a HM Summary Declaration to the DV</span>)</p><p>Allows for association of client with assertion to conform to the SAML Web SSO profile.</p></td></tr><tr><td colspan="1" class="confluenceTd">  @Method</td><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">MUST contain the value 'urn:oasis:names:tc:SAML:2.0:cm:bearer'.</td></tr><tr><td colspan="1" class="confluenceTd"><em>&lt;SubjectConfirmationData&gt;</em></td><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><br/></td></tr><tr><td colspan="1" class="confluenceTd">    @NotBefore</td><td colspan="1" class="confluenceTd">0</td><td colspan="1" class="confluenceTd">MUST NOT be used.</td></tr><tr><td colspan="1" class="confluenceTd">    @NotOnOrAfter</td><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Indicates maximum validity of the assertion</td></tr><tr><td colspan="1" class="confluenceTd">    @Recipient</td><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">The assertion consumer Service index of the immediate requester to which an attesting entity can present the assertion</td></tr><tr><td colspan="1" class="confluenceTd">    @InResponseTo</td><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">The ID of the request this assertion is in response to</td></tr><tr><td colspan="1" class="confluenceTd">    @Address</td><td colspan="1" class="confluenceTd">0</td><td colspan="1" class="confluenceTd">MUST NOT be used.</td></tr></tbody></table></div><p><br/></p><p><br/></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example SubjectConfirmation WebSSO</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+    &lt;saml:Subject&gt;
+        ...
+        &lt;saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+            &lt;saml:SubjectConfirmationData InResponseTo="_52B816C631C564BACF59E758CBA91717" NotOnOrAfter="2016-02-05T09:11:48Z" Recipient="https://..."/&gt;
+        &lt;/saml:SubjectConfirmation&gt;
+    &lt;/saml:Subject&gt;
+...</pre> 
+ </div>
+</div><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

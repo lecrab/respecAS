@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Specific pseudonym</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribute-elements_118882784.html">Attribute elements</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Generic-attribute-elements_118882613.html">Generic attribute elements</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Pseudonyms_118882573.html">Pseudonyms</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Specific pseudonym
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified on Apr 09, 2015
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>The specific pseudonym <span>is unique for each different combination of user, represented service consumer, intermediary and service provider.</span> </p><p>It can be created in two ways:</p><ol><li>In the event of representation by an MR</li><li>In the event of non-representation by an AD</li></ol><p>A specific pseudonym is preferably generated once and then stored, but it can also be generated for each request as long as it is always generated in the same way and the same value is generated for each request.</p><p><span class="inline-comment-marker" data-ref="534d05aa-32f9-42e5-85bd-5a9452704bd1">Differences in specific pseudonyms can be used by service providers to determine that the users are different (four-eye principle).</span> This is the reason why an MR MUST have permission to generate a new pseudonym for an existing combination of service provider, user and service consumer (or intermediary in the case of chain authorizations) from the authorization manager or legal representative of the service consumer (or the intermediary). Reasons to generate a new pseudonym can be:</p><ul><li>user has been assigned a new job in the same company and may therefore no longer obtain access with the old pseudonym to files at service providers that are linked to the old role;</li><li>The identity of the user was accidently disclosed to the service provider(s) and a new pseudonym is needed to protect/pseudonymize the identity;</li><li>Migration to a new pseudonym is needed because the service providers merged/split.</li></ul><p>The format of the specific pseudonym MUST have a hexadecimal value of 32 byte. For example, ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890</p><p>In the event of representation, this value is followed by an @ and hexadecimal value of 16 byte. For example, ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890@ABCDEF1234567890ABCDEF1234567890</p><p>The 32-byte value MUST be a random value This can be achieved, for example, by calculating an SHA256 hash over the following elements (in this sequence and separated by a separator):</p><ol><li>The service provider's OIN.</li><li>A unique (but not necessarily exclusive) identifying attribute for the user in the context of the service consumer. This attribute MAY be determined by the administrator or the creator of the pseudonym, but MAY also be the <a href="Internal-pseudonym_118882583.html">Internal pseudonym</a>.</li><li>The identifying attribute for the represented service consumer (only in the event of representation without chain authorization) or for an intermediary (in the event of chain authorization).</li></ol><p>Other methods to reach a 32-byte random value are also allowed.</p><p>The value of 16 byte MUST be an MD5 hash over the identifying attribute for the represented service consumer (or intermediary in the case of chain authorization).</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">Other formats of specific pseudonyms may be in use. Users of the specific pseudonym are advised not to use (parts of) the pseudonym for other purposes than to identify the user.</div></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

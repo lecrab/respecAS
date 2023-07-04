@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : AUC3.2 Registreren status machtigingen eenmanszaken</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="AUC3-Registreren-bevoegdheid_118882522.html">AUC3 Registreren bevoegdheid</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : AUC3.2 Registreren status machtigingen eenmanszaken
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified on Mar 12, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p> </p><p>Voor het registreren van de status van machtigingen rondom eenmanszaken gelden aanvullende eisen ten opzichte van <a href="AUC3-Registreren-bevoegdheid_118882522.html">AUC3 Registreren bevoegdheid</a>, die zijn opgelegd vanuit het BSNk.</p><ul><li><span class="conf-macro output-inline">Een MachtigingsRegister MOET <span class="inline-comment-marker" data-ref="5d9a9617-5a91-4857-abce-bf6ed7e72d79">de status</span> van elke 'verzameling van machtigingen' registeren en actueel houden bij het BSNk-InzageRegister (met een beschrijving) die zinvol is voor de eigenaar van de eenmanszaak.</span></li><li><span class="conf-macro output-inline">Een MachtigingsRegister MAG NIET de status registreren van elke individuele machtiging.</span></li><li><span class="conf-macro output-inline">Een MachtigingsRegister moet als een minimum onderscheid maken tussen machtigingen voor de (eigennaar van de) eenmanszaak als Vertegenwoordigde en Vertegenwoordiger. Op dit moment is de eenmanszaak als Vertegenwoordiger nog niet ondersteund in ETD!</span></li><li><span class="conf-macro output-inline">Een MachtigingsRegister MAG als een maximum onderscheid maken tussen meerdere 'verzameling van machtigingen' elk met een specifiek doel en bijbehorende beschrijving als dit zinvol is voor de eenmanszaak, bijv &quot;Bedrijfsmachtigingen voor de administratie afdeling&quot;</span></li><li><span class="conf-macro output-inline"><span class="conf-macro output-inline">Een MachtigingsRegister MAG in de beschrijving van de 'verzameling van machtingen' geen gegevens opnemen die gebruikt kunnen worden om de eenmanszaak of de gemachtigde te identificeren</span></span></li></ul><p> </p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Stap</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Actie</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Omschrijving</p></div></th></tr></thead><tbody><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><p class="content-wrapper">Een MachtigingsRegister<a href="Authenticatiemiddel_118882720.html">&nbsp;</a>heeft de BSN van de Zelfstandige Ondernemer eerder geactiveerd bij BSNk-Activeren. En de het MachtigingsRegiser wil een status van (een verzameling) machtigingen bij het BSNk Inzageregister registreren of een eerder geregistreerde status moet aan gepast worden..</p></td></tr><tr><td colspan="1" class="confluenceTd">2.1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">MR identificeert het Authenticatiemiddel en de Gebruiker</div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Het MachtigingsRegister identificeert de Zelfstandige Ondernemer volgens de eisen die het normenkader stelt (minimaal) op betrouwbaarheidsniveau 3 en identif (verzameling van) machtigingen waarvan een statusgegevens geregistreerd moeten worden bij het BSNk-Inzageregister</p></div></td></tr><tr><td colspan="1" class="confluenceTd"> </td><td colspan="1" class="confluenceTd"> </td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Het MachtigingsRegister doorloopt <a href="AUC10-Transformeren_118882464.html">AUC10 Transformeren</a> functie. Daar wordt het (niet naar BSN te herleiden) Versleuteld Pseudoniem van het <a class="unresolved" href="#">Inzageregister</a> vastgesteld (VP@IR).</p></div></td></tr><tr><td colspan="1" class="confluenceTd">2.2</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">De MR stuurt de nieuwe status naar het BSNk Inzageregister</div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Het MachtigingsRegister stuurt de nieuwe status naar bij het BSNk Inzageregister met het zojuist verkregen Versleuteld Pseudoniem van de Gebruiker (VP@IR) en het volgnummer van de (verzameling van) machtigingen.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">2.3</td><td colspan="1" class="confluenceTd">BSNk Inzageregister valideert de aanvraag</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Het BSNk Inzageregister controleert of het MachtigingsRegister gemachtigd is om een BSN te activeren  en of de aanvraag daadwerkelijk en ongewijzigd van het MachtigingsRegister afkomstig is en ontsleutelt de BSNk Inzageregister specifieke pseudoniem van de Gebruiker uit de Versleutelde Pseudoniem (VP@IR).</p></div></td></tr><tr><td colspan="1" class="confluenceTd">2.4</td><td colspan="1" class="confluenceTd"><p>BSNk Inzageregister versleutelt en registreert de nieuwe status</p></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Het BSNk Inzageregister registreert de nieuwe status voor de combinatie van specifieke pseudoniem van de Gebruiker, het MachtigingsRegister en het volgnummer van de (verzameling van) machtigingen. Deze registratie gaat met [interface spec <a href="118882436.html">BSNk: registerStatusEIM</a></p></div></td></tr><tr><td colspan="1" class="confluenceTd"> </td><td colspan="1" class="confluenceTd">Finale staat</td><td colspan="1" class="confluenceTd">de verzameling van machtigingen heeft een nieuwe status bij het BSNk Inzageregister </td></tr></tbody></table></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

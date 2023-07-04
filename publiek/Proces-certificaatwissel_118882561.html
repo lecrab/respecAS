@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Proces certificaatwissel</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Organisatie_118882774.html">Organisatie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Operationeel-handboek_118882731.html">Operationeel handboek</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Proces certificaatwissel
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Dec 18, 2015
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <span>In de metadata zijn één of meer actuele certificaten per deelnemer opgenomen. De deelnemers en de beheerorganisatie</span><span> hebben de mogelijkheid om uit voorzorg ook </span><span>certificaten op te geven </span><span>die gebruikt (kunnen) gaan worden bij het wisselen van een certificaat</span><span>. Dit maakt het netwerk minder kwetsbaar wanneer een certificaat gewisseld moet worden.</span></p><p>Dit proces beschrijft hoe het wisselen van certificaten verloopt.<p>Om het proces van het wisselen van een certificaat succesvol te laten verlopen, is het van belang dat deelnemers meerdere certificaten per deelnemer kunnen verwerken.</p><h3 id="Procescertificaatwissel-Verantwoordelijkheden">Verantwoordelijkheden</h3><p>De proceseigenaar is er vanuit de beheerorganisatie verantwoordelijk voor dat het proces wordt uitgevoerd conform de procesbeschrijving. De technisch beheerder van de beheerorganisatie is er verantwoordelijk voor dat de procesbeschrijving actueel blijft.</p><h3 id="Procescertificaatwissel-Overzichtprocesstappen">Overzicht processtappen</h3><p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1688472620883 {padding: 0px;}
+div.rbtoc1688472620883 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1688472620883 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1688472620883'>
+<ul class='toc-indentation'>
+<li><a href='#Procescertificaatwissel-1.Aanleverennieuwecertificaat'>1. Aanleveren nieuwe certificaat</a></li>
+<li><a href='#Procescertificaatwissel-2.Verwijderenoudecertificaat'>2. Verwijderen oude certificaat</a></li>
+</ul>
+</div></p><h3 id="Procescertificaatwissel-Toelichtingprocesstappen">Toelichting processtappen</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh"><h4 id="Procescertificaatwissel-1.Aanleverennieuwecertificaat">1. Aanleveren nieuwe certificaat</h4></th></tr><tr><td class="confluenceTd"><p>Input</p></td><td class="confluenceTd"><p>Geplande certificaatwissel bij een deelnemer</p></td></tr><tr><td class="confluenceTd"><p>Activiteit</p></td><td class="confluenceTd"><ol><li>De deelnemer informeert de beheerorganisatie <span class="inline-comment-marker" data-ref="179aaefd-e806-41ab-bb35-4b2e2aa153bb">tijdig</span> over de geplande certificaatwissel.</li><li>De deelnemer levert het nieuwe metadatabestand aan bij de beheerorganisatie, voorafgaand aan moment waarop het huidige certificaat verloopt. In deze metadata is opgenomen:</li></ol><ul><li>de huidige public key die in gebruik is</li><li>de nieuwe public key die de deelnemer wil gaan gebruiken</li></ul><ol><li>De beheerorganisatie aggregeert en publiceert de nieuwe metadata volgens het <a href="Proces-netwerkmetadata_118882410.html">Proces netwerkmetadata</a>, en attendeert alle deelnemers op de certificaatwissel.</li><li>De deelnemers MOETEN de nieuwe versie van de metadata binnen het eerstvolgende gebruikelijke <a href="Onderhoudsvenster_118882403.html">Onderhoudsvenster</a> doorvoeren.</li><li>Na het onderhoudsvenster MAG de betreffende deelnemer het nieuwe certificaat gebruiken.</li></ol></td></tr><tr><td class="confluenceTd"><p>Output</p></td><td class="confluenceTd"><p>Doorgevoerde metadata met oude en nieuwe certificaat</p></td></tr><tr><td class="confluenceTd"><p>Wie?</p></td><td class="confluenceTd"><ul><li>Beheerorganisatie, technisch beheerder</li><li>Deelnemers, technisch beheerders</li></ul></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh"><h4 id="Procescertificaatwissel-2.Verwijderenoudecertificaat">2. Verwijderen oude certificaat</h4></th></tr><tr><td class="confluenceTd"><p>Input</p></td><td class="confluenceTd"><p>Doorgevoerde metadata met oude en nieuwe certificaat</p></td></tr><tr><td class="confluenceTd"><p>Activiteit</p></td><td class="confluenceTd"><ol><li>Wanneer het nieuwe certificaat overal binnen het netwerk is geaccepteerd, kan het oude certificaat uit de metadata worden gehaald. De betreffende deelnemer levert nieuwe metadata aan met daarin alleen de public key van het nieuwe certificaat.</li><li>De beheerorganisatie aggregeert en publiceert de nieuwe metadata volgens het <a href="Proces-netwerkmetadata_118882410.html">Proces netwerkmetadata</a>, en attendeert alle deelnemers op de certificaatwissel.</li></ol></td></tr><tr><td class="confluenceTd"><p>Output</p></td><td class="confluenceTd"><p>Doorgevoerde metadata met enkel het nieuwe certificaat</p></td></tr><tr><td class="confluenceTd"><p>Wie?</p></td><td class="confluenceTd"><ul><li>Beheerorganisatie, technisch beheerder</li><li>Deelnemers, technisch beheerders</li></ul></td></tr></tbody></table></div><p>Certificaatwissel kan ook voorkomen bij certificaten die niet in de metadata zijn opgenomen. Voor de werking van Single Sign On heeft iedere Herkenningsmakelaar een eigen fysieke cookieserver op gezamenlijk domein <span>*.sso.eherkenning.nl</span>. Dit gezamenlijke domein wordt beheerd door de beheerorganisatie.</p><p>De cookieservers verzenden geen berichten maar maken wel gebruik van certificaten. Wanneer deze certificaten worden gewisseld, wordt ongeveer hetzelfde proces doorlopen als bij de certificaatwissel in metadata. Dat proces verloopt dan als volgt:</p><ul><li>De deelnemer meldt tijdig (minimaal twee weken van te voren) bij de beheerorganisatie dat het certificaat moet worden gewisseld via de issuetracker <a href="https://issues.eherkenning.nl" class="external-link" rel="nofollow">Mantis</a>. Hierbij vermeldt de deelnemer de huidige public key die in gebruik is, de nieuwe public key en de termijn waarop de wijziging moet plaatsvinden.</li><li>De beheerorganisatie vervangt de public key van de betreffende deelnemer.</li><li>De deelnemer ontvangt een bevestiging van de beheerorganisatie via <a href="https://issues.eherkenning.nl" class="external-link" rel="nofollow">Mantis</a> wanneer de vervanging is afgerond.</li><li>De deelnemer KAN nu het nieuwe certificaat gebruiken.</li></ul>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

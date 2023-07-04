@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Service catalog</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Service catalog
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Jan 26, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    This chapter describes the format and publication of the <a href="118882703.html">Dienstencatalogus (DC)</a> (service catalog).<p>The Service catalog holds the information of services offered by Dienstverleners (service providers). A DV can own one or more Service Definitions and one or more Service Instances:</p><ul><li>A Service Definition has the elements to describe the functionality of the Service.</li><li>A Service Instance has the technical details for an implementation of the Service as operated by the <a href="118882704.html">Dienstverlener (DV)</a>.</li></ul><p>In case of <a href="Dienstbemiddeling_118882604.html">Dienstbemiddeling</a> (Service Intermediation): The Service Instance of the <a href="118882605.html">Dienstbemiddelaar (DB)</a> (Service Intermediary) references the Service Instance of the <a href="118882600.html">Dienstaanbieder (DA)</a> (service supplier) by <a href="ServiceUUID_118882788.html">ServiceUUID</a>, using the IntermediatedService.</p><h3 id="Servicecatalog-Format">Format</h3><p>The service catalog MUST have the following format:</p><ul><li>IssueInstant (time at which the service catalog was created)</li><li>Version (version of the service catalog in the <span class="inline-comment-marker" data-ref="56dac73d-2f5e-4b20-9d7a-499a5f7c3c38">format</span> urn:etoegang:&lt;scheme version&gt;:service-catalogue:&lt;omgeving&gt;:&lt;sequence number&gt;.<br/>Example: urn:etoegang:<span class="inline-comment-marker" data-ref="6091f861-58a8-4db6-b21a-01ce2d7c60c6">1.11</span>:service-catalogue:T:1</li><li>Signature (signature from the <a href="118882701.html">Beheerorganisatie (BO)</a>, <a href="118882705.html">Herkenningsmakelaar (HM)</a> or <a href="118882704.html">Dienstverlener (DV)</a> for authenticity, integrity and non-repudiation).</li><li><span class="inline-comment-marker" data-ref="849f4649-6791-4d86-9b01-0dc19245c607">Per Dienstverlener</span>:<ul><li><span class="inline-comment-marker" data-ref="db11fdf8-b8a1-47a1-9abc-b88b055c9771">IsPublic (attribute that indicates whether the service provider is in public)</span></li><li><span class="inline-comment-marker" data-ref="450a3c7b-d22b-47a3-b4b6-cd14fbcee91f">ServiceProviderID (The service provider's OIN (government ID number)</span></li><li>OrganizationDisplayName (the name of the service provider as it MUST be displayed by participants, max 64 characters).</li><li><span class="inline-comment-marker" data-ref="0cf0c203-bb8b-4fb8-8a98-6a44c417ade7">Per ServiceDefinition</span>:<ul><li><span class="inline-comment-marker" data-ref="0b081b8f-f80a-45d0-8d19-3fbbdc3d4b9f">IsPublic (attribute that indicates whether the service is using eHerkenning in public</span>)</li></ul><ul><li><a href="ServiceUUID_118882788.html">ServiceUUID</a> (a universally unique identifier that is used for registering entitlements. It is possible the same UUID is shared between multiple service providers, in that case they will use the same entitlement)</li><li>ServiceName (name of the service determined by the service provider, max 64 characters).</li><li><span style="line-height: 1.4285;">ServiceDescription (short description of the service determined by the service provider, max 1024 characters. MRs MAY use this text to help administrators determine the authorizations).</span></li><li>ServiceDescriptionURL (a URL of max 512 characters where a detailed description of the service can be found, determined by the service provider. MRs MAY include this link to help administrators determine the authorizations).</li><li>AuthnContextClassRef (assurance level that is required for the service, determined by the service provider)</li><li>HerkenningsmakelaarId (the OIN of the <a href="118882705.html">Herkenningsmakelaar (HM)</a> that provides the service catalog entry for this service definition)</li><li>EntityConcernedTypesAllowed (multivalue entry with the different types of service consumers that are granted access to the service). In case multiple EntityConcernedTypes are defined, they are assigned to Identifier sets (for more information on identifier sets, see below).</li><li>ActingSubjectTypesAllowed (multivalue entry with the different types of acting subjects that are granted access to the service). In case multiple ActingSubjectTypes are defined, they are assigned to Identifier sets<br/><ul><li>Allowed ActingSubjectTypes are:<ul><li><a href="118882790.html"> urn:etoegang:1.12:EntityConcernedID:PseudoID</a></li><li><a href="118882789.html">urn:etoegang:1.12:EntityConcernedID:BSN</a></li><li><p><a href="118882509.html">urn:etoegang:1.13:EntityConcernedID:Pseudo</a> (is always included by default and MUST NOT be specified in the ActingSubjectTypesAllowed identifier set)</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If the AD cannot deliver the ASTA, the AD will throw an error, see <a href="Interface-specifications-HM-AD_118882755.html">Interface specifications HM-AD</a></p></div></div></li></ul></li></ul></li><li><p>EntityConcernedTypesAllowed and ActingSubjectTypesAllowed are split in their own lists and MUST be processed accordingly.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><ul><li>The AD MUST process the ActingSubjectTypesAllowed list AND the <a href="118882756.html">EntityConcernedID:Pseudo</a></li><li>the MR and EB (in case of inbound authentication requests) MUST process the EntityConcernedTypesAllowed list  </li></ul></div></div></li><li>Both EntityConcernedTypesAllowed and ActingSubjectTypesAllowed are grouped in separate Identifier Sets. An identifier set is a cluster of identifier Types with the same set number.<ul><li><a href="Identifier-Set_118882411.html">Identifier Set</a> MUST adhere to <span class="inline-comment-marker" data-ref="87989a35-b84a-4e92-b118-78917584a86b">the following rule:</span><ul><li><span class="inline-comment-marker" data-ref="10a1610e-0186-47e1-b9c1-da80bea40045">Identifiers MAY be used in multiple identifier sets<br/><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>An SP may request multiple EntityConcernedTypes in an identifier set. The SP may also indicate to honor restrictions. When an Attribute with a ServiceRestriction is included in the AttributeStatement, users can access the service under the restrictions as specified for that type of restriction. Currently, the only restrictions supported are <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/ServiceRestriction%3AVestigingsnr">ServiceRestriction:Vestigingsnr</a> and <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/ServiceRestriction%3ASubdossierNr">ServiceRestriction:SubdossierNr</a> (deprecated). The ServiceRestriction:Vestigingsnr CAN be indicated in the <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Service+catalog">Service catalog</a>, in such case both the ServiceRestriction:Vestigingsnr and ServiceRestriction:SubdossierNr will be returned, if applicable. </p></div></div></span></li><li><p><span class="inline-comment-marker" data-ref="10a1610e-0186-47e1-b9c1-da80bea40045">Identifier sets either only contain ASTA's or ECTA's</span></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><span style="color: rgb(23,43,77);text-decoration: none;">T</span><span style="color: rgb(23,43,77);text-decoration: none;">he ASTA's MUST NOT be requested by DV's, ONLY the EB and BRP MAY request ASTA's</span></p></div></div></li></ul></li></ul></li><li>ServiceRestrictionsAllowed (multivalue entry with the different types of service restrictions the service provider can honor).</li><li>RequestedAttribute (multivalue entry with all the attributes that may be requested for this service)<ul><li>PurposeStatement (a statement by the service provider why this attribute is requested, 1024 characters).</li><li><span style="color: rgb(18,53,83);">isRequired: For each requested attribute that is included, the service provider MAY use </span>isRequired to indicate whether the attribute is required for the DV application to work properly. If isRequired is not defined, the default value 'false' is implied.</li></ul></li></ul></li><li>Per ServiceInstance:<br/><ul><li>IsPublic (attribute that indicates whether the service provider is in public)</li><li><p><a href="ServiceID_118882758.html">ServiceID</a> (an identifier of a service instance that is unique in the context of the service provider)</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If the DV provides a <a href="GUC4.3-Portaalfunctie_118882546.html">portal function</a>, it MUST be specified in the service catalog with a reserved index number 0.</p></div></div></li><li><p>BsnkStructureVersion - Optional: This element is required when the ECTA or ASTA has a BSN or PseudoID, otherwise it MUST NOT be used. Value must be a valid BsnkStructureVersion (see BSNk confluence &quot;1&quot; or &quot;2&quot;). If no version is used, or if the BsnkStructureVersion is invalid, version 1 MUST be used.</p></li><li><p>BsnkRecipientKeySetVersion - Optional: This element is required when the ECTA set or ASTA set contains a BSN or PseudoID, otherwise it MUST NOT be used. Value must be identical to the RKSV as noted on the BSNk keys the ServiceProvider is using voor decrypting the BSN or PseudoID.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The old way of getting the recipientKeySetVersion (by retrieving this from the most recent certificate) MUST NOT be used after 1-1-2021.</p></div></div></li><li><p><a href="ServiceUUID_118882788.html">ServiceUUID</a> (a universally unique identifier to allow identifying and referencing this instance)</p></li><li>InstanceOfService (a reference to a ServiceUUID of a Service definition being implemented. An InstanceOfService MUST be present).</li><li>IntermediatedService (a reference to a ServiceUUID of a Service instance in case Dienstbemiddeling (Note: <a href="#Servicecatalog-NoteServiceIntermediation">Service Intermediation only available for eIDAS outbound</a>) applies. An intermediating service MUST NOT reference a service instance that applies Dienstbemiddeling. The intermediated Service MAY have the same InstanceOfService and therefore only require one mandate).</li><li><span class="inline-comment-marker" data-ref="e9f1fed2-8b1f-4cf8-9b55-925b9e9b7c65"><span class="inline-comment-marker" data-ref="4c8c362a-4dce-4431-a948-d4bbad7ee895">ServiceURL (optional URL of max 512 characters where the service can be found).</span></span> <span> </span></li><li>PrivacyPolicyURL (a URL of max 512 characters where the privacy policy for this service can be found). Optional for Dienstbemiddeling services.</li><li>HerkenningsmakelaarId (the OIN of the <a href="118882705.html">Herkenningsmakelaar (HM)</a> that provides the service catalog entry for this service instance)</li><li>AdditionalHerkenningsmakelaarId (multivalue entry with the OINs for the other HMs that provide this service)</li><li><span class="inline-comment-marker" data-ref="f9c3c33d-332c-4e08-a7a3-fb4291390a5f">SSOSupport (a boolean that indicates if the service supports SingleSignOn)</span></li><li>ServiceCertificate (Service provider's PKI certificate with a public key that can be used to encrypt requested attributes and IDs). This certificate MUST be a valid <a href="PKIoverheid_118882760.html">PKIoverheid</a> certificate. Note that multiple certificates may be provided for cases like changing certificates. (Additonally: Signing certificates must NOT be used here but should be placed in the <a href="DV-metadata-for-HM_118882611.html">DV metadata for HM</a>).</li><li>ServiceIntermediation (indication if intermediation of the service (Dienstbemiddeling) requires approval of the Service Provider, see <a href="AUC7-Proces-verlenen-toestemming-dienstbemiddeling_118882593.html">AUC7 Proces verlenen toestemming dienstbemiddeling</a>)<br/><ul><li>@intermediationAllowed (attribute indicating approval is required; possible values &quot;noIntermediation&quot; (default), &quot;generalAvailable&quot;, &quot;serviceProviderOnly&quot;, &quot;requiresApproval&quot;)</li><li>ServiceIntermediationAllowed <span class="inline-comment-marker" data-ref="0c85a833-1af9-4474-a89b-3dbf6ac45c00">(optional, holds one or more OINs of any Dienstbemiddelaar allowed to intermediate a service if @intermediationAllowed has the value &quot;requiresApproval&quot;).</span></li></ul></li><li><span class="inline-comment-marker" data-ref="08c8a9d1-38f3-437f-ba8a-f905052e43ec">Classifiers (optional, multivalued entry that allows for one or more classifications of a ServiceInstance</span>)<ul><li><p>Classifier (value indicating a particular classification applied for this SerivceInstance)<br/><span class="inline-comment-marker" data-ref="232734da-6010-4808-9c18-dd1a4f458718">The following classifiers are defined</span>:</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Classifier</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Usage restrictions</th></tr><tr><td class="confluenceTd">PublicDomain</td><td class="confluenceTd">The ServiceInstance is operated by the Dienstverlener (Service Provider) to implement a service under a responsibility in the public domain.</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>The Dienstverlener MUST operate under &quot;Artikel 1:1 Algemene Wet Bestuursrecht&quot;.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Although a service in the public domain will typically request an <a href="118882789.html">urn:etoegang:1.12</a> or <a href="118882771.html">EntityConcernedID:RSIN</a>, this is not mandatory. Other identifiers may be used by services classified as PublicDomain as well.</p><p>Service requesting aforementioned identifiers typically do operate as a PublicDomain service.</p></div></div><p>In case the ServiceInstance is classified as 'eIDAS-outbound' as well, the actual DV in another member state operates under an equivalent legislation and are requested as such via the eIDAS interoperability framework (eIDAS: SPType 'public').</p></div></td></tr><tr><td class="confluenceTd">eIDAS-inbound</td><td class="confluenceTd">The service is an eTD-service that is receptive to users from other eIDAS-member states.</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Services that want to accept authentication and authorization through eIDAS MUST be classified as 'eIDAS-inbound'. Currently the eIDAS-berichtenservice only accepts messages in the public domain. Therefore a service must use BOTH classifiers 'eIDAS-inbound' AND 'PublicDomain' combined to connect effectively to eIDAS.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">eIDAS-outbound</td><td colspan="1" class="confluenceTd">The service is a proxy for services in other member states under the eIDAS regulation. </td><td colspan="1" class="confluenceTd"><p>The eIDAS-berichtenservice has proxy-services listed in the Service Catalog for services in other eIDAS-member states that may be accessed through eIDAS. These proxy services MUST be classified as 'eIDAS-outbound'.</p></td></tr></tbody></table></div></li></ul></li></ul></li></ul></li></ul><p>The elements OrganizationDisplayName, ServiceName, ServiceDescription, ServiceDescriptionURL, PurposeStatement, ServiceURL and PrivacyPolicyURL MAY be included for different languages.</p><p><span class="confluence-anchor-link" id="Servicecatalog-NoteServiceIntermediation"></span></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong><span class="conf-macro output-block" style="color: rgb(255,0,0);">Note: At this moment the use of ASTA-sets and Service Intermediarion is limited to the EB for eIDAS Outgoing.</span></strong></p><p><strong>Any ServiceProvider interested in ServiceIntermediation or ASTA-sets should contact their HM for the proper procedure. </strong></p><p><strong>Any changes in ServiceIntermediation elements in the ServiceCatalog will not be propagated automatically.</strong></p></div></div><h3 id="Servicecatalog-RulesforprocessingServiceCatalog">Rules for processing Service Catalog</h3><ul><li>All ServiceUUIDs MUST be both global and temporal unique. The Beheerorganisatie MUST verify all UUIDs that are used are defined only once. <span class="inline-comment-marker" data-ref="2d38fe8b-5c0e-45fd-9769-88f8efba32df">Significant</span> changes to a Service SHOULD result in a new distinct ServiceUUID. <span class="inline-comment-marker" data-ref="c02be890-013e-4a84-a948-af4054621c7a">ServiceDefinitions with the same ServiceUUID are exempt from global uniqueness, these are shared services and MUST be identical (identical but excluding @IsPublic and HerkenningsmakelaarId).</span></li><li>Herkenningsmakelaar passes on the ServiceUUID of the ServiceInstance matching the requested combination of Dienstverlener- AttributeConsumingServiceIndex, or whatever other mechanic used in the bilateral DV-HM interface, in further authentication and attribute requests.</li><li>A receiving AD/MR/BSNk inspects the Service Catalogue to determine the exact authorization demands and relying parties for the requested ServiceInstance based upon the ServiceUUID. The following logic applies:<ul><li>The ServiceUUID of the referenced ServiceDefinition is always used to determine the mandate/authorization demands.</li><li>The requested ServiceInstance always determine the relying entity (or entities) for the authorization request.</li><li>In case of service intermediation: a service instance references a service instance (rather than a service definition) via the IntermediatedService element.</li><li>In case of service intermediation: the service instance pointed to is considered the true relying party; the requesting party is merely an acceptable attesting entity (only to be included in subjectconfirmation HoK).</li></ul></li><li>Participants MUST check the validity of the Service Certificate when using any attributes in the certficate.</li><li><p>In case of service intermediation; the approval verification MUST be based on the ServiceIntermediation element belonging to the referenced service instance. The following rules apply:</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh">@intermediationAllowed</th><th class="confluenceTh">Processing rule</th></tr><tr><td class="confluenceTd">noIntermediation</td><td class="confluenceTd">Participants MUST NOT allow service intermediation for the Service (default)</td></tr><tr><td class="confluenceTd">generalAvailable</td><td class="confluenceTd">Participants MUST allow service intermediation by any dienstverlener listed in the Service Catalog as service intermediary for the Service</td></tr><tr><td class="confluenceTd">serviceProviderOnly</td><td class="confluenceTd">Participants MUST only allow the Service Provider itself to perform service intermediation (<em>Dienstbemiddelaar </em>=<em> Dienstaanbieder</em>)</td></tr><tr><td class="confluenceTd">requiresApproval</td><td class="confluenceTd">Participants MUST allow only those Service Intermediaries that have their OIN listed under ServiceIntermediationAllowed to perform service intermediation for the Service</td></tr></tbody></table></div></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Make sure to look at the rule relating to the use of BSN and minimal level of assurance mentioned in <a href="Betrouwbaarheidsniveaus_118882630.html">Betrouwbaarheidsniveaus</a></p></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The XML schema of the Service Catalog below is currently not correct. Use it only as example.<br/>A new initiative was started to automatically validate various XML-schemas, which always uses up-to-date XML-schemas.</p></div></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">XML schema Service Catalog</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ 
+&lt;!-- Schema for AS_1.14 Release
+    $Date: 2020-09-07
+    $Author:rahulkumar.gupta@kpn.com 
+--&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:esc="urn:etoegang:1.13:service-catalog"
+    targetNamespace="urn:etoegang:1.13:service-catalog"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"&gt;
+  
+    &lt;xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/&gt;
+    &lt;xs:import namespace="urn:oasis:names:tc:SAML:2.0:assertion" schemaLocation="http://docs.oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd"/&gt;
+    &lt;xs:import namespace="urn:oasis:names:tc:SAML:2.0:metadata" schemaLocation="http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"/&gt;
+  
+    &lt;!--Elements--&gt;
+    &lt;xs:element name="ServiceDefinition" type="esc:ServiceDefinitionType" /&gt;
+    &lt;xs:complexType name="ServiceDefinitionType"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element ref="esc:ServiceUUID" /&gt;
+            &lt;xs:element ref="esc:ServiceName" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ServiceDescription" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ServiceDescriptionURL" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="saml2:AuthnContextClassRef"/&gt;
+            &lt;xs:element ref="esc:HerkenningsmakelaarId"/&gt;
+            &lt;xs:element ref="esc:EntityConcernedTypesAllowed" minOccurs="1" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ActingSubjectTypesAllowed" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ServiceRestrictionsAllowed" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:RequestedAttribute" minOccurs="0" maxOccurs="unbounded"/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute ref="esc:IsPublic" use="required"/&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:element name="ServiceInstance" type="esc:ServiceInstanceType" /&gt;
+    &lt;xs:complexType name="ServiceInstanceType"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element ref="esc:ServiceID" minOccurs="1"/&gt;
+            &lt;xs:element ref="esc:ServiceUUID" /&gt;
+            &lt;xs:element ref="esc:InstanceOfService" minOccurs="0" maxOccurs="1"/&gt;
+            &lt;xs:element ref="esc:IntermediatedService" minOccurs="0" maxOccurs="1"/&gt;
+            &lt;xs:element ref="esc:ServiceURL" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:PrivacyPolicyURL" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:HerkenningsmakelaarId"/&gt;
+            &lt;xs:element ref="esc:AdditionalHerkenningsmakelaarId" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element name="SSOSupport" type="xs:boolean" minOccurs="0" maxOccurs="1"/&gt;
+            &lt;xs:element ref="esc:EntityConcernedTypesAllowed" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ServiceCertificate" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;xs:element ref="esc:ServiceIntermediation" minOccurs="0" /&gt;
+            &lt;xs:element ref="esc:Classifiers" minOccurs="0" /&gt;
+            &lt;xs:element ref="esc:BsnkStructureVersion" minOccurs="0"/&gt;
+            &lt;xs:element ref="esc:BsnkRecipientKeySetVersion" minOccurs="0"/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute ref="esc:IsPublic" use="required"/&gt;
+    &lt;/xs:complexType&gt;
+  
+    &lt;xs:element name="ServiceCatalogue"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ds:Signature"/&gt;
+                &lt;xs:element ref="esc:ServiceProvider" maxOccurs="unbounded"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute ref="esc:IssueInstant" use="required"/&gt;
+            &lt;xs:attribute ref="esc:Version" use="required"/&gt;
+            &lt;xs:attribute name="ID" type="xs:string"/&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="EntityConcernedTypesAllowed"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:extension base="xs:anyURI"&gt;
+                    &lt;xs:attribute name="setNumber" type="xs:nonNegativeInteger" use="optional"/&gt;
+                &lt;/xs:extension&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ActingSubjectTypesAllowed"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+       &lt;xs:extension base="xs:anyURI"&gt;
+                    &lt;xs:attribute name="setNumber" type="xs:nonNegativeInteger" use="optional"/&gt;
+       &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceRestrictionsAllowed"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:extension base="xs:anyURI"/&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceDescription"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedNameType"&gt;
+                    &lt;xs:maxLength value="1024"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceDescriptionURL"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedURIType"&gt;
+                    &lt;xs:maxLength value="512"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceURL"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedURIType"&gt;
+                    &lt;xs:maxLength value="512"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="PrivacyPolicyURL"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedURIType"&gt;
+                    &lt;xs:maxLength value="512"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceID" type="xs:anyURI"/&gt;
+    &lt;xs:element name="ServiceUUID" type="xs:string"/&gt;
+  &lt;xs:element name="BsnkStructureVersion" type="xs:string"/&gt;
+  &lt;xs:element name="BsnkRecipientKeySetVersion" type="xs:string"/&gt;
+    &lt;xs:element name="ServiceName"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedNameType"&gt;
+                    &lt;xs:maxLength value="64"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceProvider"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="esc:ServiceProviderID"/&gt;
+                &lt;xs:element ref="esc:OrganizationDisplayName" maxOccurs="unbounded"/&gt;
+                &lt;xs:element ref="esc:ServiceDefinition" minOccurs="0" maxOccurs="unbounded"/&gt;
+                &lt;xs:element ref="esc:ServiceInstance" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute ref="esc:IsPublic" use="required"/&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="ServiceProviderID" type="esc:OINType"/&gt;
+    &lt;xs:element name="RequestedAttribute" type="esc:RequestedAttributeType" /&gt;
+    &lt;xs:complexType name="RequestedAttributeType"&gt;
+        &lt;xs:complexContent&gt;
+            &lt;xs:extension base="md:RequestedAttributeType"&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element ref="esc:PurposeStatement" maxOccurs="unbounded"/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:extension&gt;
+        &lt;/xs:complexContent&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:element name="PurposeStatement" type="esc:PurposeStatementType"/&gt;
+    &lt;xs:complexType name="PurposeStatementType"&gt;
+        &lt;xs:simpleContent&gt;
+            &lt;xs:restriction base="md:localizedNameType"&gt;
+                &lt;xs:maxLength value="1024" /&gt;
+            &lt;/xs:restriction&gt;
+        &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:element name="ServiceCertificate"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="md:KeyDescriptor"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="HerkenningsmakelaarId" type="esc:OINType"/&gt;
+    &lt;xs:element name="AdditionalHerkenningsmakelaarId" type="esc:OINType"/&gt;
+    &lt;xs:element name="OrganizationDisplayName"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:simpleContent&gt;
+                &lt;xs:restriction base="md:localizedNameType"&gt;
+                    &lt;xs:maxLength value="64"/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="InstanceOfService" type="xs:string"/&gt;
+    &lt;xs:element name="IntermediatedService" type="xs:string"/&gt;
+    &lt;xs:element name="ServiceIntermediation"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="esc:ServiceIntermediationAllowed" minOccurs="0" maxOccurs="unbounded"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute name="intermediationAllowed" type="esc:IntermediationAllowedType" default="noIntermediation"/&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:simpleType name="IntermediationAllowedType"&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:enumeration value="noIntermediation"/&gt;
+            &lt;xs:enumeration value="generalAvailable"/&gt;
+            &lt;xs:enumeration value="serviceProviderOnly"/&gt;
+            &lt;xs:enumeration value="requiresApproval"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+    &lt;xs:element name="ServiceIntermediationAllowed" type="esc:OINType"/&gt;
+    &lt;xs:simpleType name="OINType"&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="[0-9]{20}"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+    &lt;xs:element name="Classifiers" type="esc:ClassifiersType" /&gt;
+    &lt;xs:complexType name="ClassifiersType"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="Classifier" type="xs:string" maxOccurs="unbounded"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  
+    &lt;!--Attributes--&gt;
+    &lt;xs:attribute name="IssueInstant" type="xs:dateTime"/&gt;
+    &lt;xs:attribute name="IsPublic" type="xs:boolean"/&gt;
+    &lt;xs:attribute name="Version" type="xs:anyURI"/&gt;
+     
+&lt;/xs:schema&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service Catalog with one service</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;esc:ServiceCatalogue xmlns:esc="urn:etoegang:1.11:service-catalog" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" esc:IssueInstant="2015-12-28T10:19:57Z" esc:Version="urn:etoegang:1.11:service-catalogue:P:506" ID="_dc"&gt;
+
+  &lt;ds:Signature&gt;...&lt;/ds:Signature&gt;
+
+  &lt;esc:ServiceProvider esc:IsPublic="true"&gt;
+    &lt;esc:ServiceProviderID&gt;99999999000000000099&lt;/esc:ServiceProviderID&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld DV&lt;/esc:OrganizationDisplayName&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="en"&gt;Example SP&lt;/esc:OrganizationDisplayName&gt;
+
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;6bae98e3-5ef9-4576-98c8-5aba4b8e672d&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (attributen LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (attributes LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed&gt;urn:etoegang:1.9:EntityConcernedID:Pseudo&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:RequestedAttribute Name="urn:etoegang:1.9:attribute:FirstName" isRequired="false"&gt;
+        &lt;esc:PurposeStatement xml:lang="nl"&gt;Om voornaam te kunnen testen...&lt;/esc:PurposeStatement&gt;
+        &lt;esc:PurposeStatement xml:lang="en"&gt;For testing Firstname...&lt;/esc:PurposeStatement&gt;
+      &lt;/esc:RequestedAttribute&gt;
+      &lt;esc:RequestedAttribute Name="urn:etoegang:1.9:attribute:Initials" isRequired="false"&gt;
+        &lt;esc:PurposeStatement xml:lang="nl"&gt;Om initialen te kunnen testen...&lt;/esc:PurposeStatement&gt;
+        &lt;esc:PurposeStatement xml:lang="en"&gt;For testing initials&lt;/esc:PurposeStatement&gt;
+      &lt;/esc:RequestedAttribute&gt;
+      &lt;esc:RequestedAttribute Name="urn:etoegang:1.9:attribute:FamilyName" isRequired="true"&gt;
+        &lt;esc:PurposeStatement xml:lang="nl"&gt;Om achternaam te kunnen testen...&lt;/esc:PurposeStatement&gt;
+        &lt;esc:PurposeStatement xml:lang="en"&gt;For testing family name...&lt;/esc:PurposeStatement&gt;
+      &lt;/esc:RequestedAttribute&gt;
+      &lt;esc:RequestedAttribute Name="urn:etoegang:1.9:attribute:DateOfBirth" isRequired="true"&gt;
+        &lt;esc:PurposeStatement xml:lang="nl"&gt;Om geboortedatum te kunnen testen...&lt;/esc:PurposeStatement&gt;
+        &lt;esc:PurposeStatement xml:lang="en"&gt;For testing birthdate...&lt;/esc:PurposeStatement&gt;
+      &lt;/esc:RequestedAttribute&gt;
+    &lt;/esc:ServiceDefinition&gt;
+
+    &lt;esc:ServiceInstance esc:IsPublic="true"&gt;
+      &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000099:services:9999&lt;/esc:ServiceID&gt;
+      &lt;esc:ServiceUUID&gt;9adfede3-eda5-4385-b938-9ccb954b2ad5&lt;/esc:ServiceUUID&gt;
+      &lt;esc:InstanceOfService&gt;6bae98e3-5ef9-4576-98c8-5aba4b8e672d&lt;/esc:InstanceOfService&gt;
+      &lt;esc:ServiceURL xml:lang="nl"&gt;http://example.nl&lt;/esc:ServiceURL&gt;
+      &lt;esc:ServiceURL xml:lang="en"&gt;http://example.com&lt;/esc:ServiceURL&gt;
+     &nbsp;&lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://example.etoegang.nl/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+      &lt;esc:ServiceCertificate&gt;
+        &lt;md:KeyDescriptor use="encryption"&gt;
+          &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+            &lt;ds:X509Data&gt;
+              &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+            &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+      &lt;/esc:ServiceCertificate&gt;
+    &lt;/esc:ServiceInstance&gt;
+
+  &lt;/esc:ServiceProvider&gt;
+
+&lt;/esc:ServiceCatalogue&gt;
+
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service with service intermediation</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&nbsp;  &lt;esc:ServiceProvider esc:IsPublic="true"&gt;
+    &lt;esc:ServiceProviderID&gt;99999999000000000098&lt;/esc:ServiceProviderID&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld DV&lt;/esc:OrganizationDisplayName&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="en"&gt;Example SP&lt;/esc:OrganizationDisplayName&gt;
+
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed&gt;urn:etoegang:1.12:EntityConcernedID:BSN&lt;/esc:EntityConcernedTypesAllowed&gt;
+    &lt;/esc:ServiceDefinition&gt;
+
+    &lt;esc:ServiceInstance esc:IsPublic="true"&gt;
+      &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000098:services:9998&lt;/esc:ServiceID&gt;
+      &lt;esc:ServiceUUID&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:ServiceUUID&gt;
+      &lt;esc:InstanceOfService&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:InstanceOfService&gt;
+      &lt;esc:ServiceURL xml:lang="nl"&gt;http://example.nl&lt;/esc:ServiceURL&gt;
+      &lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://example.etoegang.nl/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+      &lt;esc:ServiceCertificate&gt;
+        &lt;md:KeyDescriptor use="encryption"&gt;
+          &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+            &lt;ds:X509Data&gt;
+              &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+            &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+      &lt;/esc:ServiceCertificate&gt;
+      &lt;esc:ServiceIntermediation intermediationAllowed="requiresApproval"&gt;
+          &lt;esc:ServiceIntermediationAllowed&gt;99999999000000000098&lt;/esc:ServiceIntermediationAllowed&gt;
+          &lt;esc:ServiceIntermediationAllowed&gt;99999999000000000097&lt;/esc:ServiceIntermediationAllowed&gt;
+      &lt;/esc:ServiceIntermediation&gt;
+    &lt;/esc:ServiceInstance&gt;
+ 
+  &lt;/esc:ServiceProvider&gt;
+
+  &lt;esc:ServiceProvider esc:IsPublic="true"&gt;
+    &lt;esc:ServiceProviderID&gt;99999999000000000097&lt;/esc:ServiceProviderID&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld Dienstbemiddelaar&lt;/esc:OrganizationDisplayName&gt;
+    &lt;esc:OrganizationDisplayName xml:lang="en"&gt;Example Service Intemediary&lt;/esc:OrganizationDisplayName&gt;
+
+    &lt;esc:ServiceInstance esc:IsPublic="true"&gt;
+      &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000097:services:9997&lt;/esc:ServiceID&gt;
+      &lt;esc:ServiceUUID&gt;71dccfdd-2d4f-44e5-b03d-01c6580fad80&lt;/esc:ServiceUUID&gt;
+      &lt;esc:IntermediatedService&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:IntermediatedService&gt;
+      &lt;esc:ServiceURL xml:lang="en"&gt;http://example.com&lt;/esc:ServiceURL&gt;
+      &lt;esc:PrivacyPolicyURL xml:lang="en"&gt;http://example.etoegang.nl/privacy_en.html&lt;/esc:PrivacyPolicyURL&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+      &lt;esc:ServiceCertificate&gt;
+        &lt;md:KeyDescriptor use="encryption"&gt;
+          &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+            &lt;ds:X509Data&gt;
+              &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+            &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+        &lt;/md:KeyDescriptor&gt;
+      &lt;/esc:ServiceCertificate&gt;
+    &lt;/esc:ServiceInstance&gt;
+  &lt;/esc:ServiceProvider&gt;
+...</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service with one EntityConcernedType</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.12:EntityConcernedID:PseudoID&lt;/esc:EntityConcernedTypesAllowed&gt;
+    &lt;/esc:ServiceDefinition&gt;
+...
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service with two EntityConcernedTypes simultaniously</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:RSIN&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+    &lt;/esc:ServiceDefinition&gt;
+...
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service with twoEntityConcernedTypes as alternatives</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:RSIN&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="2"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+    &lt;/esc:ServiceDefinition&gt;
+...
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service with multiple Identifier sets</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+    &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+      &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+      &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceName xml:lang="en"&gt;Example Service&lt;/esc:ServiceName&gt;
+      &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+      &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+      &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+      &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:RSIN&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="2"&gt;urn:etoegang:1.12:EntityConcernedID:BSN&lt;/esc:EntityConcernedTypesAllowed&gt;
+      &lt;esc:EntityConcernedTypesAllowed setNumber="2"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+    &lt;/esc:ServiceDefinition&gt;
+...
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Service Accessible for EU-citizens via eIDAS</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence">...
+    &lt;esc:ServiceProvider esc:IsPublic="true"&gt;
+        &lt;esc:ServiceProviderID&gt;99999999000000000099&lt;/esc:ServiceProviderID&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;Voorbeeld DV&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="en"&gt;Example SP&lt;/esc:OrganizationDisplayName&gt;
+ 
+        &lt;esc:ServiceDefinition esc:IsPublic="true"&gt;
+            &lt;esc:ServiceUUID&gt;c230649d-647d-4289-80c7-b0297e3e6a29&lt;/esc:ServiceUUID&gt;
+            &lt;esc:ServiceName xml:lang="nl"&gt;Voorbeelddienst EU-ready&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceName xml:lang="en"&gt;Example Service EU-ready&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceDescription xml:lang="nl"&gt;Voorbeelddienst (BSN LoA3) die open staat voor EU-burgers via eIDAS&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescription xml:lang="en"&gt;Example Service (BSN LoA3) available for EU-citizens eIDAS&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl&lt;/esc:ServiceDescriptionURL&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:EntityConcernedTypesAllowed&gt;urn:etoegang:1.12:EntityConcernedID:BSN&lt;/esc:EntityConcernedTypesAllowed&gt;
+        &lt;/esc:ServiceDefinition&gt;
+ 
+        &lt;esc:ServiceInstance esc:IsPublic="true"&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000099:services:9994&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;fabce53f-7ba6-44d7-aa75-789ec56431ad&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;c230649d-647d-4289-80c7-b0297e3e6a29&lt;/esc:InstanceOfService&gt;
+            &lt;esc:ServiceURL xml:lang="nl"&gt;http://example.nl&lt;/esc:ServiceURL&gt;
+            &lt;esc:ServiceURL xml:lang="en"&gt;http://example.com&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://example.etoegang.nl/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+            &lt;esc:Classifiers&gt;
+                &lt;esc:Classifier&gt;PublicDomain&lt;/esc:Classifier&gt;
+                &lt;esc:Classifier&gt;eIDAS-inbound&lt;/esc:Classifier&gt;
+            &lt;/esc:Classifiers&gt;
+            &lt;esc:BsnkStructureVersion&gt;2&lt;/esc:BsnkStructureVersion&gt;
+            &lt;esc:BsnkRecipientKeySetVersion&gt;20201231&lt;/esc:BsnkRecipientKeySetVersion&gt;            
+        &lt;/esc:ServiceInstance&gt;
+ 
+        &lt;esc:ServiceInstance esc:IsPublic="true"&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000099:services:9993&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;128d0878-2bc7-4400-9068-8427c5abeb47&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;c230649d-647d-4289-80c7-b0297e3e6a29&lt;/esc:InstanceOfService&gt;
+            &lt;esc:ServiceURL xml:lang="nl"&gt;http://app.example.nl&lt;/esc:ServiceURL&gt;
+            &lt;esc:ServiceURL xml:lang="en"&gt;http://app.example.com&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://example.etoegang.nl/app/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+            &lt;esc:Classifiers&gt;
+                &lt;esc:Classifier&gt;PublicDomain&lt;/esc:Classifier&gt;
+                &lt;esc:Classifier&gt;eIDAS-inbound&lt;/esc:Classifier&gt;
+            &lt;/esc:Classifiers&gt;
+	    &lt;esc:BsnkStructureVersion&gt;2&lt;/esc:BsnkStructureVersion&gt;
+            &lt;esc:BsnkRecipientKeySetVersion&gt;20201231&lt;/esc:BsnkRecipientKeySetVersion&gt;            
+        &lt;/esc:ServiceInstance&gt;
+    &lt;/esc:ServiceProvider&gt;
+...</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example: Service Intermediation for eIDAS-UIT - EB intermediates BRP </b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence">...
+    &lt;esc:ServiceProvider&gt;
+        &lt;esc:ServiceProviderID&gt;99999999000000000098&lt;/esc:ServiceProviderID&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;BRP&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="en"&gt;BRP&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:ServiceDefinition&gt;
+            &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+            &lt;esc:ServiceName xml:lang="nl"&gt;Verstrekken BRP-attributen&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceName xml:lang="en"&gt;Verstrekken BRP-attributen&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceDescription xml:lang="nl"&gt;Verstrekken BRP-attributen tbv EU inlog &lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescription xml:lang="en"&gt;Verstrekken BRP-attributen tbv EU inlog &lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://eb-toelichting.rvo.nl&lt;/esc:ServiceDescriptionURL&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+            &lt;esc:ActingSubjectTypesAllowed setNumber="1"&gt;urn:etoegang:1.12:EntityConcernedID:BSN&lt;/esc:ActingSubjectTypesAllowed&gt;
+        &lt;/esc:ServiceDefinition&gt;
+         
+        &lt;esc:ServiceInstance&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000098:services:9998&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:InstanceOfService&gt;
+            &lt;esc:ServiceURL xml:lang="nl"&gt;http://attrdienst.brp.nl&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://statement.brp.nl/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+            &lt;esc:ServiceIntermediation intermediationAllowed="requiresApproval"&gt;
+                &lt;esc:ServiceIntermediationAllowed&gt;99999999000000000097&lt;/esc:ServiceIntermediationAllowed&gt;
+            &lt;/esc:ServiceIntermediation&gt;
+            &lt;esc:Classifiers&gt;
+                &lt;esc:Classifier&gt;eIDAS-outbound&lt;/esc:Classifier&gt;
+            &lt;/esc:Classifiers&gt;
+            &lt;esc:BsnkStructureVersion&gt;2&lt;/esc:BsnkStructureVersion&gt;
+            &lt;esc:BsnkRecipientKeySetVersion&gt;20201231&lt;/esc:BsnkRecipientKeySetVersion&gt;            
+        &lt;/esc:ServiceInstance&gt;
+    &lt;/esc:ServiceProvider&gt;
+ 
+    &lt;esc:ServiceProvider&gt;
+        &lt;esc:ServiceProviderID&gt;99999999000000000097&lt;/esc:ServiceProviderID&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;NL EU-knooppunt&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="en"&gt;NL EU-knooppunt&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:ServiceDefinition&gt;
+            &lt;esc:ServiceUUID&gt;hj67b0d3-eb48-4836-a9a4-fde50e32ac89&lt;/esc:ServiceUUID&gt;
+            &lt;esc:ServiceName xml:lang="nl"&gt;Duitsland-overheid&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceName xml:lang="en"&gt;Germany Public service&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceDescription xml:lang="nl"&gt;Duitsland-overheid (BSN LoA3)&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescription xml:lang="en"&gt;Germany Public service(BSN LoA3)&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://eb-toelichting.rvo.nl&lt;/esc:ServiceDescriptionURL&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:KvK&lt;/esc:EntityConcernedTypesAllowed&gt;
+            &lt;esc:ActingSubjectTypesAllowed setNumber="1"&gt;urn:etoegang:1.12:EntityConcernedID:PseudoID&lt;/esc:ActingSubjectTypesAllowed&gt;
+        &lt;/esc:ServiceDefinition&gt;
+         
+        &lt;esc:ServiceInstance&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000097:services:9997&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;71dccfdd-2d4f-44e5-b03d-01c6580fad80&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;hj67b0d3-eb48-4836-a9a4-fde50e32ac89&lt;/esc:InstanceOfService&gt;
+            &lt;esc:IntermediatedService&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:IntermediatedService&gt;
+            &lt;esc:ServiceURL xml:lang="en"&gt;http://example.com&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="en"&gt;http://example.etoegang.nl/privacy_en.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+            &lt;esc:Classifiers&gt;
+                &lt;esc:Classifier&gt;eIDAS-outbound&lt;/esc:Classifier&gt;
+            &lt;/esc:Classifiers&gt;
+            &lt;esc:BsnkStructureVersion&gt;2&lt;/esc:BsnkStructureVersion&gt;
+            &lt;esc:BsnkRecipientKeySetVersion&gt;20201231&lt;/esc:BsnkRecipientKeySetVersion&gt;            
+        &lt;/esc:ServiceInstance&gt;
+    &lt;/esc:ServiceProvider&gt;
+...</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example: Service Intermediation: Intermediate Service and Intermediairy Service have the same InstanceOfService (and therefore only require one mandate)</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence">...
+    &lt;esc:ServiceProvider&gt;
+        &lt;esc:ServiceProviderID&gt;99999999000000000098&lt;/esc:ServiceProviderID&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;Naam DienstAanbieder&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="en"&gt;Name Intermediated ServiceProvider&lt;/esc:OrganizationDisplayName&gt;
+ 
+        &lt;esc:ServiceDefinition&gt;
+            &lt;esc:ServiceUUID&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:ServiceUUID&gt;
+            &lt;esc:ServiceName xml:lang="nl"&gt;Naam Bemiddelde Dienst&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceName xml:lang="en"&gt;Name Intermediated Service&lt;/esc:ServiceName&gt;
+            &lt;esc:ServiceDescription xml:lang="nl"&gt;Beschrijving Bemiddelde Dienst&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescription xml:lang="en"&gt;Description Intermedated Service&lt;/esc:ServiceDescription&gt;
+            &lt;esc:ServiceDescriptionURL xml:lang="nl"&gt;http://example.etoegang.nl/&lt;/esc:ServiceDescriptionURL&gt;
+            &lt;saml:AuthnContextClassRef&gt;urn:etoegang:core:assurance-class:loa3&lt;/saml:AuthnContextClassRef&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:EntityConcernedTypesAllowed setNumber="1"&gt;urn:etoegang:1.9:EntityConcernedID:KvKnr&lt;/esc:EntityConcernedTypesAllowed&gt;
+        &lt;/esc:ServiceDefinition&gt;
+ 
+        &lt;esc:ServiceInstance&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000098:services:9998&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:InstanceOfService&gt;
+            &lt;esc:ServiceURL xml:lang="nl"&gt;http://example.nl/&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="nl"&gt;http://example.etoegang.nl/privacy.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+            &lt;esc:ServiceIntermediation intermediationAllowed="requiresApproval"&gt;
+                &lt;esc:ServiceIntermediationAllowed&gt;99999999000000000097&lt;/esc:ServiceIntermediationAllowed&gt;
+            &lt;/esc:ServiceIntermediation&gt;
+        &lt;/esc:ServiceInstance&gt;
+    &lt;/esc:ServiceProvider&gt;
+ 
+    &lt;esc:ServiceProvider&gt;
+        &lt;esc:ServiceProviderID&gt;99999999000000000097&lt;/esc:ServiceProviderID&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="nl"&gt;DV Naam&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:OrganizationDisplayName xml:lang="en"&gt;SP Name&lt;/esc:OrganizationDisplayName&gt;
+        &lt;esc:ServiceInstance&gt;
+            &lt;esc:ServiceID&gt;urn:etoegang:DV:99999999000000000097:services:9997&lt;/esc:ServiceID&gt;
+            &lt;esc:ServiceUUID&gt;71dccfdd-2d4f-44e5-b03d-01c6580fad80&lt;/esc:ServiceUUID&gt;
+            &lt;esc:InstanceOfService&gt;cf48b0d3-ea45-4436-a6c4-fde50e19ef70&lt;/esc:InstanceOfService&gt;
+            &lt;esc:IntermediatedService&gt;94148585-90e3-467e-be43-5f5270326215&lt;/esc:IntermediatedService&gt;
+            &lt;esc:ServiceURL xml:lang="en"&gt;http://example.com&lt;/esc:ServiceURL&gt;
+            &lt;esc:PrivacyPolicyURL xml:lang="en"&gt;http://example.etoegang.nl/privacy_en.html&lt;/esc:PrivacyPolicyURL&gt;
+            &lt;esc:HerkenningsmakelaarId&gt;99999999000000000010&lt;/esc:HerkenningsmakelaarId&gt;
+            &lt;esc:SSOSupport&gt;false&lt;/esc:SSOSupport&gt;
+            &lt;esc:ServiceCertificate&gt;
+                &lt;md:KeyDescriptor use="encryption"&gt;
+                    &lt;ds:KeyInfo&gt;
+                        &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+                        &lt;ds:X509Data&gt;
+                            &lt;ds:X509Certificate&gt;...&lt;/ds:X509Certificate&gt;
+                        &lt;/ds:X509Data&gt;
+                    &lt;/ds:KeyInfo&gt;
+                &lt;/md:KeyDescriptor&gt;
+            &lt;/esc:ServiceCertificate&gt;
+        &lt;/esc:ServiceInstance&gt;
+    &lt;/esc:ServiceProvider&gt;
+...</pre> 
+ </div>
+</div><p>The use of BsnkRecipientKeySetVersion for BSNk-tranformation service is added tot AUC10.2 (see <a href="AUC10.2-MachtigingsRegister-of-Authenticatiedienst-gebruikt-BSNk-transformatie-functie_118882462.html">AUC10.2 MachtigingsRegister of Authenticatiedienst gebruikt BSNk transformatie functie</a>)</p><p>The use of BsnkStructureVersion to select the appropriate BSNk-tranformation service is added tot AUC10.2 (see <a href="AUC10.2-MachtigingsRegister-of-Authenticatiedienst-gebruikt-BSNk-transformatie-functie_118882462.html">AUC10.2 MachtigingsRegister of Authenticatiedienst gebruikt BSNk transformatie functie</a>)</p><h3 id="Servicecatalog-Publication">Publication</h3><p>The Beheerorganisatie publishes the service catalog at a predetermined location. Before it is published, the service catalog is sorted by HerkenningsmakelaarId and then by the ServiceID. </p><p>A participant MUST process the service catalog according to <a href="Proces-doorvoeren-nieuwe-dienstencatalogus_118882567.html">Proces doorvoeren nieuwe dienstencatalogus</a>.</p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

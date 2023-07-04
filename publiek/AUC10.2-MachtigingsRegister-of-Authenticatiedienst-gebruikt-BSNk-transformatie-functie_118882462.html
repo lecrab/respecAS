@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : AUC10.2 MachtigingsRegister of Authenticatiedienst gebruikt BSNk transformatie functie</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="AUC10-Transformeren_118882464.html">AUC10 Transformeren</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : AUC10.2 MachtigingsRegister of Authenticatiedienst gebruikt BSNk transformatie functie
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Apr 15, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Uitwerking van stap 2.2 van <a href="AUC10-Transformeren_118882464.html">AUC10 Transformeren</a></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Stap</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Actie</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Omschrijving</p></div></th></tr></thead><tbody><tr><td class="confluenceTd"><br/></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><div class="content-wrapper"><p>het MachtigingsRegister of AuthenticatieDienst heeft de benodigde  Polymorfe Identiteit/Pseudoniem (PP@MU of PI@MU) van de betreffende Gebruiker en weet ten behoeve van welke Ontvangende Partij transformatie nodig is.</p></div></td></tr><tr><td colspan="1" class="confluenceTd">2.2.1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper">MachtigingsRegister of AuthenticatieDienst randomiseert PI@MU of PP@MU</div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>het MachtigingsRegister of AuthenticatieDienst randomiseert de Middelenuitgever specifieke Polymorfe identiteit/pseudoniem (PP@MU of PI@MU) zodat het <span class="conf-macro output-inline">BSNk</span><span> </span>deze niet meer kan herkennen.</p></div></td></tr><tr><td class="confluenceTd">2.2.2</td><td class="confluenceTd"><div class="content-wrapper"><p>MachtigingsRegister of AuthenticatieDienst vraagt het <span class="conf-macro output-inline">BSNk</span> om de PI@MU of PP@MU te transformeren</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>het MachtigingsRegister of AuthenticatieDienst stuurt de gerandomiseerde Middelenuitgever specifieke Polymorfe identiteit/pseudoniem (<a href="mailto:PP@MU" class="external-link" rel="nofollow">PP@MU</a> of <a href="mailto:PI@MU" class="external-link" rel="nofollow">PI@MU</a>) samen met de identiteit (OIN), en BSNk-sleutelversie (BSNk-recipientKeySetVersion in de Dienstcatalogus) van de beoogde Ontvangende Partij(-en) naar het BSNk volgens <a href="118882432.html">BSNk: transform</a>. De BSNk-structuur versie (BSNk-structureVersion in de Dienstcatalogus) bepaalt welke BSNk-Transformatieservice gebruikt moet worden. </p><p style="text-align: left;">In het geval van DienstBemiddeling waarbij beide ontvangers een polymorf pseudoniem of polymorfe identiteit vereisen:</p><ul style="text-align: left;"><li>MOET de BSNk-structuurversie &quot;2&quot; zijn voor beide partijen</li><li>MOET in het transform request bij de RelyingParty van de dienstbemiddelaar het LinkVerification element worden toegevoegd </li></ul><p><span style="color: rgb(0,0,0);">Indien de BSNk-structuurversie &quot;1&quot; is, of niet is ingevuld MOET de BSNk-transformatieservice V1 aangeroepen worden.  </span></p><p><span style="color: rgb(0,0,0);">Indien de BSNk-str<span class="inline-comment-marker" data-ref="e794384a-24ef-466d-aecb-391d7c06cb79">uctuurversie &quot;2&quot;</span> is MOET de BSNk-transformatieservice V2 aangeroepen worden.</span></p></div></td></tr><tr><td class="confluenceTd">2.2.3</td><td class="confluenceTd"><div class="content-wrapper"><span class="conf-macro output-inline">BSNk</span><span> </span>valideert de aanvraag</div></td><td class="confluenceTd"><div class="content-wrapper"><p>Het <span class="conf-macro output-inline">BSNk</span><span> </span>controleert dat de aanvragende partij geautoriseerd is als MachtigingsRegister of AuthenticatieDienst en of de aanvraag daadwerkelijk en ongewijzigd van die partij afkomstig is.</p></div></td></tr><tr><td class="confluenceTd">2.2.4</td><td class="confluenceTd"><div class="content-wrapper"><p><span class="conf-macro output-inline">BSNk</span><span> </span>transformeert de PI@MU → VI@OP of PP@MU→ VP@OP</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>Het <span class="conf-macro output-inline">BSNk</span><span> </span>transformeert met zijn HSM de Middelenuitgever specifieke Polymorfe Identiteit/Pseudoniem met behulp van de identiteit (<a class="unresolved" href="#">OIN</a>) en sleutelversie van de Ontvangende Partij naar een specifieke Versleutelde Identiteit/Pseudoniem (PP@MU → VP@OP of PI@MU → VI@OP).</p></div></td></tr><tr><td class="confluenceTd">2.2.5</td><td class="confluenceTd"><div class="content-wrapper"><p><span class="conf-macro output-inline">BSNk</span> verstrekt de VI@OP of VP@OP aan het MachtigingsRegister of de Authenticatiedienst</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>Het <span class="conf-macro output-inline">BSNk</span><span> </span>verstrekt <span class="inline-comment-marker" data-ref="2a11ea2f-2a2d-488a-982b-081011730acd">de voor de</span> Ontvangende Partij specifieke Versleutelde Identiteit/Pseudoniem (VP@OP of VI@OP) aan het MachtigingsRegister of AuthenticatieDienst en logt de aanvraag ten behoeve van audit-doeleinden.</p></div></td></tr><tr><td class="confluenceTd"><br/></td><td class="confluenceTd">Finale staat</td><td class="confluenceTd"><div class="content-wrapper"><p>Het MachtigingsRegister of AuthenticatieDienst kan de Gebruiker identificeren <span class="inline-comment-marker" data-ref="017e4934-c125-4a97-9c4c-5b831ff6d70a">voor</span> de betreffende Ontvangende Partij.</p></div></td></tr></tbody></table></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

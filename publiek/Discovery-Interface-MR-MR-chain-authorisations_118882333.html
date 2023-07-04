@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Discovery Interface MR-MR chain authorisations</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Discovery Interface MR-MR chain authorisations
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (joyceeering)</span>, last modified by <span class='editor'> Sander Boer</span> on Sep 07, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><p><span style="color: rgb(23,43,77);">This page describes the messages for the interface specification between a<span> <a href="118882626.html">Machtigingenregister (MR)</a> </span></span><span style="color: rgb(23,43,77);">(authorization information provider) and a<span> <a href="118882626.html">Machtigingenregister (MR)</a></span></span><span style="color: rgb(23,43,77);"><span> </span>(authorization information provider) in order to provide the chain authorisation functionality. In order to maintain the same level of security as is usual in other SOAP services like the one the BSNk provides, the security demands including SOAP-signing and encryption of the message. </span></p><p><span style="color: rgb(23,43,77);">During SOAP signing the body of both request and response MUST be signed with a WS-Security header containing an XMLSignature based on the PKIo certificate. The WS-Security signature MUST include the KeyInfo in the signature, as a BinarySecurityToken, as per <a href="https://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0.pdf" class="external-link" rel="nofollow">WS-Security X.509 Certificate Token Profile 1.0</a>, §3.3.2. The certificate referenced MUST be listed in the Metadata for participants in a KeyDescriptor of the Participant marked for the use &quot;signing&quot; (or without use, the default includes signing).</span></p><p><span style="color: rgb(23,43,77);">The content requirements for signing and encryption are added in the supplementary page <a href="MR-MR-webservice-Security_118882334.html">MR-MR webservice Security</a>.</span></p><p><br/></p><p>Elektronische Toegangsdiensten only supports chains with one intermediary:</p><ul><li>User G (user) &gt; Intermediary A &gt; Service consumer B.</li></ul><p><br/></p><p><span style="color: rgb(23,43,77);">The authorization that the user may act on behalf of Intermediary A is registered as authorization with the first MR. The information that there is an authorization from Service consumer B for Intermediary, and in which MR it is stored, MUST also be known by the first MR (or <span class="inline-comment-marker" data-ref="6702b7f4-bbc7-49f7-bc50-73ba22966172">retrieved at the time of authentication</span>).</span></p><p><br/></p><p><span style="color: rgb(23,43,77);"><span class="inline-comment-marker" data-ref="30851144-805b-4e98-82d5-bbcbbf253c76">ChainInformationQuery</span></span></p><p>This is a SOAP service to be implemented by the MR. Schematically it looks like this:</p><div class="table-wrap"><table class="wrapped confluenceTable" style="width: 971.0px;"><colgroup><col style="width: 0.0px;"/><col style="width: 0.0px;"/><col style="width: 0.0px;"/><col style="width: 274.0px;"/><col style="width: 112.0px;"/><col style="width: 583.0px;"/></colgroup><tbody><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh">Name</th><td style="width: 29.0px;" class="confluenceTd">Required</td><td style="text-align: left;width: 620.0px;" class="confluenceTd">Description</td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><p>ID</p></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd"><p>Unique message attribute, like the SAML ID field</p></td></tr><tr><th colspan="4" class="confluenceTh">RequestingEntityId</th><td class="confluenceTd">YES</td><td class="confluenceTd">The entityID of the MR requesting this information. The EntityID MUST match the entityID of the MR in the <a href="Network-metadata_118882616.html">Network metadata</a></td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><strong style="text-align: left;">IntermediarySubjectID_Type</strong></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd"><p>ECTA type to use to identify the intermediary company. MUST be set to  <span style="color: rgb(23,43,77);">urn:etoegang:</span><span style="color: rgb(23,43,77);">1.9:</span><span style="color: rgb(23,43,77);">EntityConcernedID:KvKnr.</span></p><p>Only one LegalSubjectID_Type<span style="color: rgb(23,43,77);"> element MUST be included</span></p></td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><strong style="text-align: left;">IntermediarySubjectID</strong><span style="color: rgb(23,43,77);">  </span></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd">Contains the value of the ECTA of the intermediary </td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID_Type</strong><span style="color: rgb(23,43,77);"><span> </span></span></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd"><p>ECTA type to use to identify the Service consumer company. </p><p><br/></p></td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd"><p>Contains the value of the ECTA of the Service consumer which is to be represented</p><p>Only one LegalSubjectID<span style="color: rgb(23,43,77);"> element MUST be included</span></p></td></tr><tr><th colspan="4" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span><span class="inline-comment-marker" data-ref="863ba59c-d2f0-4526-8460-bd40077ba995"><span class="inline-comment-marker" data-ref="07cfe4de-711a-446f-af4f-7cd597db4023">_</span></span>Type</th><td class="confluenceTd">NO</td><td class="confluenceTd">MUST be set to <span class="inline-comment-marker" data-ref="f5c59213-38c6-47c7-bd5a-1f16513b06ff">vestigingsnummer</span> if this function is used. No other restructions are currently used</td></tr><tr><th colspan="4" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span></th><td class="confluenceTd">CONDITIONAL</td><td class="confluenceTd">If the tag <strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction </span>is used, this tag is required. It contains the value of the <strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span>_Type</td></tr><tr><th style="text-align: left;width: 165.333px;" colspan="4" class="confluenceTh"><span class="inline-comment-marker" data-ref="bd958f7f-5555-4a9b-8b29-0cd1f8e111d6">Service_Type</span></th><td style="width: 29.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 620.0px;" class="confluenceTd">Can be set to either <strong>OIN</strong> or <strong>ServiceUUID</strong>. If OIN is used all services belonging to the OIN are requested. The ServiceUUID option can be used to request a specific service. </td></tr><tr><th colspan="4" class="confluenceTh">Service</th><td class="confluenceTd">YES</td><td class="confluenceTd"><p>In case Service_Type is <strong>OIN</strong>:</p><ul style="list-style-type: square;"><li>An OIN must be selected from the <a href="Service-catalog_118882581.html">Service catalog</a>.</li><li>All services which are registed under this OIN will be part of the discovery request</li></ul><p>In case Service_Type is <strong>ServiceUUID</strong></p><ul style="list-style-type: square;"><li>A serviceUUID MUST be selected from a service definition in the <a href="Service-catalog_118882581.html">Service catalog</a>.</li><li>Only the selected service is part of the discovery request</li></ul></td></tr><tr><th colspan="4" class="confluenceTh">Signature</th><td class="confluenceTd">YES</td><td class="confluenceTd"><p>A Signature that scopes all the elements in the Response message, see <a href="Digital-signature_118882764.html">Digital signature</a></p></td></tr><tr><th colspan="4" class="confluenceTh">LOAmin</th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="800d5785-b837-421e-9bbe-58cfa4e038bf">NO</span></td><td class="confluenceTd">Specifies the minimum LOA level to be considered by the responding MR</td></tr></tbody></table></div><p><br/></p><p><span class="inline-comment-marker" data-ref="3bcac4df-d515-4a77-844e-653095b9566e">Processing</span> rules for creating the request:</p><ul style="list-style-type: square;"><li>The sender MUST sign and encrypt the request with the keys of the MR in the <a href="Network-metadata_118882616.html">Network metadata</a> </li><li>The MR MAY only inquire if a chain authorisation exists if one of the organisations is its customer</li></ul><p><br/></p><p>Processing rules for validating the request:</p><ul><li>The recipient MUST verify the request with the keys of the MR in the <a href="Network-metadata_118882616.html">Network metadata</a>. The keys must be retrieved from the MR stated in the RequestingEntityId.</li></ul><p>Response</p><div class="table-wrap"><table class="wrapped confluenceTable" style="width: 1181.67px;"><colgroup><col/><col/><col/><col/><col/></colgroup><tbody><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh">Name</th><td style="width: 111.0px;" class="confluenceTd">Required</td><td style="text-align: left;width: 796.0px;" class="confluenceTd">Description</td></tr><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh"><p><span class="inline-comment-marker" data-ref="a808825f-34e4-4a59-9a40-247e0f20dc33">ID</span></p></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd"><p>Unique message attribute, like the SAML ID field</p></td></tr><tr><th colspan="3" class="confluenceTh">InResponseTo</th><td colspan="1" class="confluenceTd">YES</td><td colspan="1" class="confluenceTd">This is the same value as send in the ID in the <span style="color: rgb(23,43,77);">ChainInformationQuery</span></td></tr><tr><th style="width: 274.667px;" colspan="3" class="confluenceTh">Signature</th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="width: 796.0px;" class="confluenceTd">Signature scopes the Response message</td></tr><tr><th style="width: 274.667px;" colspan="3" class="confluenceTh">DateTime</th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="width: 796.0px;" class="confluenceTd">Issue datetime of the response</td></tr><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">IntermediarySubjectID_Type</strong></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd">ECTA type to use to identify the intermediary company. MUST be set to <span style="color: rgb(23,43,77);">urn:etoegang:</span><span style="color: rgb(23,43,77);">1.9:</span><span style="color: rgb(23,43,77);">EntityConcernedID:KvKnr.</span></td></tr><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">IntermediarySubjectID</strong><span style="color: rgb(23,43,77);">  </span></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd">Contains the value of the ECTA of the intermediary </td></tr><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID_Type</strong><span style="color: rgb(23,43,77);"><span> </span></span></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd"><p>ECTA type to use to identify the Service consumer company.</p><p><span style="color: rgb(23,43,77);">MUST return the same LegalSubjectId_Type as included in the request.</span></p></td></tr><tr><th style="text-align: left;width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd"><p>Contains the value of the ECTA of the Service consumer which is to be represented</p><p><span style="color: rgb(23,43,77);">MUST return the same LegalSubjectId as included in the request.</span></p></td></tr><tr><th style="width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span>_Type</th><td style="width: 111.0px;" class="confluenceTd">NO</td><td style="width: 796.0px;" class="confluenceTd">MUST be set to vestigingsnummer if this function is used. No other restructions are currently used</td></tr><tr><th style="width: 274.667px;" colspan="3" class="confluenceTh"><strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span></th><td style="width: 111.0px;" class="confluenceTd">CONDITIONAL</td><td style="width: 796.0px;" class="confluenceTd">If the tag <strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction </span>is used, this tag is required. It contains the value of the <strong style="text-align: left;">LegalSubjectID</strong>Service<span style="color: rgb(23,43,77);">Restriction</span>_Type</td></tr><tr><th style="text-align: left;width: 274.667px;" class="confluenceTh">ServiceList</th><th style="text-align: left;width: 274.667px;" class="confluenceTh"><br/></th><th style="text-align: left;width: 274.667px;" class="confluenceTh"><br/></th><td style="width: 111.0px;" class="confluenceTd">YES</td><td style="text-align: left;width: 796.0px;" class="confluenceTd"><p>A list of services for which the Intermediary is authorized (see processing rules). </p></td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh">Service</th><th colspan="1" class="confluenceTh"><br/></th><td colspan="1" class="confluenceTd">OPTIONAL, one or more</td><td colspan="1" class="confluenceTd">Specifies the services for which the chainauthz is applicable. If no services are applicable, this element is not used</td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh">ServiceDefinitionUUID</th><td colspan="1" class="confluenceTd">YES</td><td colspan="1" class="confluenceTd">The serviceUUID of the service as specified in the ServiceDefinition of the <a href="Service-catalog_118882581.html">service catalog</a>.</td></tr><tr><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh"><br/></th><th colspan="1" class="confluenceTh">LOA</th><td colspan="1" class="confluenceTd">YES</td><td colspan="1" class="confluenceTd">The LOA which is registed at the authorisation which allows usage of this service</td></tr></tbody></table></div><p><strong>Processing rules for creating response</strong></p><p>In case Service_Type in the request is <strong>OIN</strong>:</p><ul><li>All services which are registed under this <a href="OIN-format_118882574.html">OIN</a> will be part of the discovery request</li><li>The ServiceList MUST return serviceUUID's which are registerd to the requested OIN, if the Intermediary is authorized for these services. If there are no applicable services to return, the ServiceList will remain empty.</li></ul><p>In case Service_Type is in the request <strong>ServiceUUID</strong></p><ul><li>Only the selected service is part of the discovery request</li><li>The ServiceList MUST return the same serviceUUID, if the Intermediary is authorized for these services. Otherwise the ServiceList will remain empty</li></ul><p><br/></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">WSDL example</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; first-line: 1; theme: Confluence; collapse: true" data-theme="Confluence">&lt;wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:etoegang="urn:etoegang:webservices"
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+ xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+ name="ChainInformationQuery"
+ targetNamespace="urn:etoegang:webservices"&gt;
+    &lt;wsdl:types&gt;
+        &lt;xsd:schema targetNamespace="urn:etoegang:webservices"
+ attributeFormDefault="unqualified"
+ elementFormDefault="qualified"&gt;
+            &lt;xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/&gt;
+            &lt;xsd:element name="ChainInformationQueryRequest" type="etoegang:ChainInformationQueryRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Sends an information request
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+              
+            &lt;xsd:complexType name="ChainInformationQueryRequestType"&gt;
+				&lt;xsd:sequence&gt;								  
+					&lt;xsd:element name="RequestingEntityId" type="etoegang:EntityIDType" minOccurs="1" /&gt;
+					&lt;xsd:element name="IntermediarySubjectID_Type" type="etoegang:ECTA" minOccurs="1" /&gt;
+					&lt;xsd:element name="IntermediarySubjectID" type="etoegang:ECTAValueType" minOccurs="1" /&gt;
+					&lt;xsd:element name="LegalSubjectID_Type" type="etoegang:ECTA" minOccurs="1" /&gt;
+					&lt;xsd:element name="LegalSubjectID" type="etoegang:ECTAValueType" minOccurs="1" /&gt;
+					&lt;xsd:element name="LegalSubjectIDServiceRestriction_Type" type="etoegang:ServiceRestrictionTypeType" minOccurs="0" /&gt;
+					&lt;xsd:element name="LegalSubjectIDServiceRestriction" type="etoegang:ServiceRestrictionType" minOccurs="0" /&gt;
+					&lt;xsd:element name="Service_Type" type="etoegang:ServiceTypeType" minOccurs="1" /&gt;
+					&lt;xsd:element name="Service" type="etoegang:ServiceType" minOccurs="1" /&gt;
+					&lt;xsd:element name="LOAmin" type="etoegang:LOA" minOccurs="1" /&gt;				
+				&lt;/xsd:sequence&gt;
+				&lt;xsd:attribute name="ID" type="xsd:ID" use="required"/&gt;			
+            &lt;/xsd:complexType&gt;             
+             &lt;xsd:simpleType name="EntityIDType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;EntityID type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="100" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            
+            &lt;xsd:simpleType name="ECTA"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ECTA type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="100" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+              
+            &lt;xsd:simpleType name="ECTAValueType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ECTAValueType.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="200" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+             
+            &lt;xsd:simpleType name="ServiceRestrictionTypeType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ServiceRestrictionTypeType.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                  &lt;xsd:enumeration value="vestigingsnummer"/&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+              
+            &lt;xsd:simpleType name="ServiceRestrictionType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ServiceRestrictionType.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="50" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+          
+            &lt;xsd:simpleType name="ServiceTypeType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ServiceTypeType.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                  &lt;xsd:enumeration value="OIN"/&gt;
+                  &lt;xsd:enumeration value="ServiceUUID"/&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+              
+            &lt;xsd:simpleType name="ServiceType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;ServiceType.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="50" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+              
+            &lt;xsd:simpleType name="LOA"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;LOA.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="42" /&gt;
+														
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+              
+              
+            &lt;xsd:element name="ChainInformationQueryResponse" type="etoegang:ChainInformationQueryResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+ Response to a ChainInformationQueryRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ChainInformationQueryResponseType"&gt;
+                &lt;xsd:sequence&gt;
+					&lt;xsd:element ref="ds:Signature" minOccurs="1" /&gt;
+                    &lt;xsd:element name="InResponseTo" type="xsd:ID" minOccurs="1" maxOccurs="1" /&gt;                    
+                    &lt;xsd:element name="DateTime" type="xsd:dateTime" minOccurs="1" maxOccurs="1" /&gt;
+                    &lt;xsd:element name="IntermediarySubjectID_Type" type="etoegang:ECTA" minOccurs="1" /&gt;
+                    &lt;xsd:element name="IntermediarySubjectID" type="etoegang:ECTAValueType" minOccurs="1" /&gt;
+                    &lt;xsd:element name="LegalSubjectID_Type" type="etoegang:ECTA" minOccurs="1" /&gt;
+                    &lt;xsd:element name="LegalSubjectID" type="etoegang:ECTAValueType" minOccurs="1" /&gt;
+                    &lt;xsd:element name="LegalSubjectIDServiceRestriction_Type" type="etoegang:ServiceRestrictionTypeType" minOccurs="0" /&gt;
+                    &lt;xsd:element name="LegalSubjectIDServiceRestriction" type="etoegang:ServiceRestrictionType" minOccurs="0" /&gt;
+                    &lt;xsd:element name="ServiceList" type="etoegang:ServiceListType" minOccurs="1" maxOccurs="1"/&gt;
+                &lt;/xsd:sequence&gt;
+		        &lt;xsd:attribute name="ID" type="xsd:ID" use="required"/&gt;			
+
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="EtoegangProvideResponseBasetype" abstract="true"&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="ServiceListType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Service" type="etoegang:ComplexServiceType" maxOccurs="unbounded" minOccurs="0" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+              
+            &lt;xsd:complexType name="ComplexServiceType"&gt;
+                 &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="ServiceUUID" type="etoegang:ServiceType" maxOccurs="1" minOccurs="1" /&gt;
+                    &lt;xsd:element name="LOA" type="etoegang:LOA" maxOccurs="1" minOccurs="1" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+              
+            &lt;xsd:element name="ChainInformationQueryFault" type="etoegang:ChainInformationQueryFaultType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+ Fault response to a ChainInformationQuery.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ChainInformationQueryFaultType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="FaultReason" type="etoegang:ChainInformationQueryFaultReasonType" /&gt;
+                    &lt;xsd:element name="FaultDescription" type="etoegang:FaultDescriptionType" maxOccurs="unbounded" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="ChainInformationQueryFaultReasonType"&gt;
+                &lt;xsd:union memberTypes="etoegang:FaultReasons etoegang:ChainInformationQueryFaultReasons" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="FaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="AuthorizationError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Authentication invalid or access denied.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="SyntaxError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request invalid.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="ChainInformationQueryFaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="AuthorizationError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Service is only accessable by other MR's
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="SyntaxError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Invalid syntax used
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="FaultDescriptionType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:string"&gt;
+                        &lt;xsd:attribute name="lang" type="xsd:language" /&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+              
+        &lt;/xsd:schema&gt;
+    &lt;/wsdl:types&gt;
+    &lt;wsdl:message name="ETOEGANG_ChainInformationQueryRequest"&gt;
+        &lt;wsdl:part name="in" element="etoegang:ChainInformationQueryRequest" /&gt;
+    &lt;/wsdl:message&gt;
+    &lt;wsdl:message name="ETOEGANG_ChainInformationQueryResponse"&gt;
+        &lt;wsdl:part name="out" element="etoegang:ChainInformationQueryResponse" /&gt;
+    &lt;/wsdl:message&gt;
+        &lt;wsdl:message name="ETOEGANG_ChainInformationQueryFault"&gt;
+        &lt;wsdl:part name="ETOEGANG_ChainInformationQueryFault" element="etoegang:ChainInformationQueryFault"  /&gt;
+    &lt;/wsdl:message&gt;
+    &lt;wsdl:portType name="ETOEGANG_ChainInformationQuery_Port"&gt;
+     &lt;wsdl:operation name="ETOEGANG_ChainInformationQuery"&gt;
+        &lt;wsdl:input message="etoegang:ETOEGANG_ChainInformationQueryRequest" wsam:Action="urn:etoegang:webservices:ChainInformationQueryRequest" /&gt;
+         &lt;wsdl:output message="etoegang:ETOEGANG_ChainInformationQueryResponse" wsam:Action="urn:etoegang:webservices:ChainInformationQueryResponse" /&gt;
+	 &lt;wsdl:fault message="etoegang:ETOEGANG_ChainInformationQueryFault" name="ETOEGANG_ChainInformationQueryFault"/&gt;			
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:portType&gt;
+    &lt;wsdl:binding name="ETOEGANG_ChainInformationQuery_SOAP" type="etoegang:ETOEGANG_ChainInformationQuery_Port"&gt;
+        &lt;soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" /&gt;
+        &lt;wsdl:operation name="ETOEGANG_ChainInformationQuery"&gt;
+            &lt;soap:operation soapAction="urn:etoegang:webservices:ChainInformationQueryRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="ETOEGANG_ChainInformationQueryFault"&gt;
+                &lt;soap:fault name="ETOEGANG_ChainInformationQueryFault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:binding&gt;
+    &lt;wsdl:service name="ETOEGANG_ChainInformationQuery_Service"&gt;
+        &lt;wsdl:port binding="etoegang:ETOEGANG_ChainInformationQuery_SOAP" name="ETOEGANG_ChainInformationQuery"&gt;
+            &lt;soap:address location="https://.../TODO/ChainInformationQuery" /&gt;
+        &lt;/wsdl:port&gt;
+    &lt;/wsdl:service&gt;
+&lt;/wsdl:definitions&gt; &nbsp;</pre> 
+ </div>
+</div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : AUC3.1 Registreren bevoegdheid eenmanszaken</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="AUC3-Registreren-bevoegdheid_118882522.html">AUC3 Registreren bevoegdheid</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : AUC3.1 Registreren bevoegdheid eenmanszaken
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified on Mar 12, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p> </p><p>Voor het initieel registreren van bevoegdheden rondom eenmanszaken gelden aanvullende eisen ten opzichte van <a href="AUC3-Registreren-bevoegdheid_118882522.html">AUC3 Registreren bevoegdheid</a>. Dit is in verband met de wijze waarop de eenmanszaak geregistreerd is <span class="inline-comment-marker" data-ref="1507b5c0-77e2-4fc9-9d9a-059e7b5dee3e">bij de kamer van koophandel in het handelsregister</span>. De kamer van koophandel gebruikt in het geval van een eenmanszaak niet het RSIN om de juridische identiteit te bepalen, maar de BSN gegevens van de eigenaar van de eenmanszaak. Om de <span class="inline-comment-marker" data-ref="0a8d67d3-5cae-411e-9282-7471e74f47fc">veiligheid van BSN</span> gegevens te garanderen moet voldaan worden aan de volgende aanvullende eisen:</p><ul style="list-style-type: square;"><li>Het machtigingenregister MOET controleren of de gebruiker eigenaar is van de eenmanszaak. </li><li>Het machtigingenregister MAG NIET de BSN gegevens opslaan van de eigenaar van de eenmanszaak.</li><li>Het machtigingenregister MOET het BSN van de eigenaar van de eenmanszaak polymorf encrypted opslaan.</li><li>BSN gegevens moeten op dezelfde manier worden verwerkt als BSN gegevens die zijn verstrekt om een natuurlijk persoon te identificeren.</li></ul><p> </p><p>Een <span class="inline-comment-marker" data-ref="e74e39af-03b7-4e2b-87d5-27462495a87b">voorbeeld use case</span> om deze gegevens te registreren is als volgt:</p><p>1: Een gebruiker meldt zich aan bij het machtigingsregister.</p><p>2: De gebruiker levert een kopie aan van het uittreksel van de KVK waar het KVK nummer op staat van de eenmanszaak.</p><p>3: De gebruiker levert <span class="inline-comment-marker" data-ref="3cb84230-0a1b-44fe-8ab4-c4549bae0b99">een WID</span> document waar het BSN nummer op staat van de gebruiker.</p><p>4: Het machtigingenregister controleert de geldigheid van beide documenten.</p><p>5: Het machtigingenregister controleert of de NAW gegevens op de beide documenten overeenkomen.</p><p>6: Indien deze gegevens correct zijn en overeenkomen wordt de gebruiker aangewezen als de beheerder van de machtigingen voor de eenmanszaak. </p><p class="confluence-link">7: Het machtigingenregister registreert de BSN gegevens bij het BSNk en slaat zelf de polymorfe identiteit op van de eigenaar van de eenmanszaak mbv <a href="AUC6-Activeren-BSN_118882798.html">AUC6 Activeren BSN</a> </p><p>8. Het MachtigingsRegister registeert de machtiging(en) van de eenmanszaak voor specifieke Gebruikers </p><p>9:  Het machtigingenregister registreert de status van de machtigingen bij het BSNk mbv <a href="AUC3.2-Registreren-status-machtigingen-eenmanszaken_118882459.html">AUC3.2 Registreren status machtigingen eenmanszaken</a></p><p> </p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

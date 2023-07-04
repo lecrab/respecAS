@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : GUC3 Aantonen identiteit</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : GUC3 Aantonen identiteit
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Apr 18, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In deze use case kiest de <a href="Gebruiker_118882651.html">Gebruiker</a> een authenticatiedienst en identificeert zich bij die <a href="118882719.html">Authenticatiedienst (AD)</a> door het gebruik van een authenticatiemiddel, dat hij eerder heeft verkregen (zie <a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a>). De authenticatiedienst <span style="color: rgb(128,0,0);"><span style="color: rgb(0,0,0);">stelt het beoogde machtigingsregister vast en authenticeert de gebruiker voor de dienstverlener en het beoogde machtigingenregister en</span><strong> </strong><span class="conf-macro output-inline" style="color: rgb(23,43,77);">geeft hierover een verklaring af aan de herkenningsmakelaar. </span><span style="color: rgb(23,43,77);">Deze use case wordt hieronder in een activity diagram weergegeven.</span></span>Deze use case wordt hieronder in een activity diagram weergegeven.</p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" draggable="false" src="attachments/118882553/118886492.png" data-image-src="attachments/118882553/118886492.png" data-unresolved-comment-count="0" data-linked-resource-id="118886492" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2015-12-23 16:30:21.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882553" data-linked-resource-container-version="32"></span></p><p>De verschillende acties worden hier in meer detail beschreven.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>Nr.</p></th><th class="confluenceTh"><p>Actie</p></th><th class="confluenceTh"><p>Omschrijving</p></th></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De dienstverlener heeft een vraag gesteld aan de Herkenningsmakelaar.</p></div></td></tr><tr><td class="confluenceTd"><p>3.1</p></td><td class="confluenceTd"><p>De gebruiker kiest authenticatiedienst</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Op de website van de Herkenningsmakelaar kiest de gebruiker een authenticatiedienst uit de lijst van authenticatiediensten. De gebruiker kan ervoor kiezen deze keuze te bewaren.</p><p>Zie <a href="Dialoogbeschrijving-Herkenningsmakelaars_118882520.html">Dialoogbeschrijving Herkenningsmakelaars</a>.</p><p><strong>Alternatieve scenario's:</strong></p><ul><li>Als bij stap 1.1 de gebruiker reeds een keuze voor een Authenticatiedienst heeft gemaakt bij de Dienstverlener, MOET stap 3.1 worden overgeslagen. <span class="inline-comment-marker" data-ref="afd0e799-9614-49c5-a8ee-950beabfee67">De Herkenningsmakelaar dient de verkozen Authenticatiedienst over te nemen die in de herkenningsvraag is meegegeve</span>n.</li><li>Wanneer een <a href="Gebruiker_118882651.html">Gebruiker</a> in het keuzescherm bij de Herkenningsmakelaar kiest voor een eIDAS-authenticatiedienst en zich dus wenst te authentiseren bij een <a href="118882719.html">Authenticatiedienst (AD)</a> uit een andere eIDAS-lidstaat, wordt de Gebruiker een keuzescherm gepresenteerd door de <a href="118882363.html">eIDAS-berichtenservice (EB)</a> waarin de Gebruiker een landenkeuze moet maken (als deze keuze niet eerder bij de <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/Herkenningsmakelaar">Herkenningsmakelaar</a> of <a href="118882704.html">Dienstverlener (DV)</a> is geregistreerd). In het geval de DV als reeds gekozen Authenticatiedienst de <a href="118882363.html">eIDAS-berichtenservice (EB)</a> heeft meegegeven, geldt soortgelijk als bij de vorige bullet. De HM dient de EB als Authenticatiedienst over te nemen.<br/>De keuze voor de gewenste EU-lidstaat waar de gebruiker zich wenst te authenticeren, wordt verder gefaciliteerd door de EB. Na het maken van een landenkeuze, wordt de Gebruiker doorgestuurd naar de eIDAS-oplossing van de betreffende eIDAS-lidstaat. Wanneer de gebruiker is geauthenticeerd, stuurt de eIDAS-berichtenservice in zijn rol als Authenticatiedienst een antwoord naar de Herkenningsmakelaar, waarmee het proces vervolgt vanaf stap 3.5. De functionaliteit van de eIDAS-berichtenservice, anders dan het koppelvlak met een Herkenningsmakelaar, wordt niet in het Afsprakenstelsel gespecificeerd en hier uitsluitend vermeld voor volledigheid.</li></ul></div></td></tr><tr><td class="confluenceTd"><p>3.2</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Herkenningsmakelaar stelt vraag aan authenticatiedienst</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar stuurt de gebruiker door naar de door de gebruiker geselecteerde authenticatiedienst en stelt daarbij een vraag. Deze vraag bevat het identificerend kenmerk van zowel de betreffende dienstverlener als de betreffende dienst.</p></div></td></tr><tr><td class="confluenceTd"><p>3.3</p></td><td class="confluenceTd"><p>Authenticatiedienst authenticeert gebruiker</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De gebruiker identificeert zich bij de authenticatiedienst door het gebruik van zijn authenticatiemiddel, waarop de authenticatiedienst de gebruiker authenticeert.</p><p><span class="inline-comment-marker" data-ref="de0b0fcb-d7e7-4c11-9921-62d4748ca555">Zie <a href="Verantwoordelijkheden-Authenticatiedienst_118882383.html">Verantwoordelijkheden Authenticatiedienst</a>.</span></p><p><span class="inline-comment-marker" data-ref="de0b0fcb-d7e7-4c11-9921-62d4748ca555">De gebruiker kan bevraagd worden over de te leveren attributen, bijvoorbeeld voor het geven van toestemming of het verstrekken van een attribuut dat nog niet eerder was vastgelegd. Dit heeft gevolgen voor de gebruikerservaring en de doorlooptijd van het authenticatieverzoek. Partijen dienen hier rekening mee te houden.<br/></span></p><p><strong>Alternatief scenario:</strong> <a href="GUC3.3-Authenticatie-gebruiker-mislukt_118882554.html">GUC3.3 Authenticatie gebruiker mislukt</a></p></div></td></tr><tr><td class="confluenceTd"><p>3.4</p></td><td class="confluenceTd"><p>Authenticatiedienst stelt rol gebruiker vast</p></td><td class="confluenceTd"><p>De authenticatiedienst stelt vast in welke rol de gebruiker acteert. Mogelijke rollen zijn:</p><ul><li>Burger/consument</li><li>Vertegenwoordiger</li></ul><p>De authenticatiedienst bepaalt dit op basis van de <a href="118882703.html">Dienstencatalogus (DC)</a>, de eigen (contract-) administratie, of door de gebruiker te vragen een keuze te maken. Hierbij borgt de authenticatiedienst dat de gebruiker uitsluitend kan acteren als burger/consument als dit door de dienstverlener voor deze dienst is toegestaan en zodanig in de dienstencatalogus is vastgelegd.</p><p><br/></p><p><strong style="text-align: left;">Alternatief scenario:</strong><span style="color: rgb(23,43,77);"><span> </span></span><a href="GUC3.3-Authenticatie-gebruiker-mislukt_118882554.html">GUC3.3 Authenticatie gebruiker mislukt</a><span style="color: rgb(23,43,77);"> authenticatie</span></p><p>Voor het vervolg van deze use case wordt ervan uitgegaan dat de gebruiker mag acteren en acteert als burger/consument. De andere rollen worden in alternatieve scenario's uitgewerkt.</p></td></tr><tr><td class="confluenceTd"><br/></td><td style="text-align: left;" class="confluenceTd"><span style="color: rgb(0,0,0);">Authenticatiedienst stelt het machtigingsregister van de gebruiker vast </span></td><td style="text-align: left;" class="confluenceTd"><p><span style="color: rgb(0,0,0);">Indien de de gebruiker de rol van Vertegenwoordiger heeft stelt de authenticatiedienst vast wat het beoogde 'standaard' machtigingsregister is. Dit 'standaard' machtigingsregister is vastgelegd bij de aanschaf van het authenticatiemiddel (door de werkgever).</span></p><p><span style="color: rgb(0,0,0);">Indien er geen 'standaard' machtigingsregister is geselecteerd start Alternatief scenario: <a href="GUC3.4-Selecteren-beoogd-machtigingenregister_118882809.html">GUC3.4 Selecteren beoogd machtigingenregister</a>.</span></p></td></tr><tr><td class="confluenceTd"> 3.5</td><td class="confluenceTd">Authenticatiedienst vraagt gebruiker om goedkeuring voor het gebruik van BSN gegevens</td><td class="confluenceTd">Indien een dienstverlener een uitvraag doet om BSN gegevens (middels de ASTA <a href="118882789.html">urn:etoegang:1.12:EntityConcernedID:BSN</a>) MOET de AD vragen of de gebruiker zijn BSN wil delen met de dienstverlener. Indien de gebruiker geen akkoord geeft, MOET de AD de ASTA <a href="118882789.html">urn:etoegang:1.12:EntityConcernedID:BSN&nbsp;</a>beschouwen als niet leverbaar en MOET hij proberen door te gaan met eventueel gedefinieerde ASTA (sets) met een lagere prioriteit. Als er niet voldaan kan worden aan de bij de dienst gedefinieerde ASTA-set, dan stopt de flow en reageert de AD met een Responder Error. Zie <a href="Error-handling_118882578.html">Error handling</a>.</td></tr><tr><td class="confluenceTd"><p>3.6</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Authenticatiedienst beantwoordt vraag van Herkenningsmakelaar met verklaring</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De authenticatiedienst beantwoordt de vraag van de Herkenningsmakelaar. Dit antwoord bevat een verklaring over de authenticatie met daarin het betrouwbaarheidsniveau van de verklaring en de gevraagde identificerende kenmerken van de gebruiker (versleuteld voor de beoogde ontvanger(s)).</p><p>Indien de gebruiker in stap 3.1 heeft aangegeven zijn keuze voor de authenticatiedienst te willen bewaren dan slaat de Herkenningsmakelaar deze nu op, zodanig dat deze instelling ook voor andere Herkenningsmakelaars toegankelijk is.</p></div></td></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Finale staat</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De gebruiker is geauthenticeerd en de Herkenningsmakelaar heeft daar de benodigde informatie over ontvangen.</p></div></td></tr></tbody></table></div><p>ad actie 3.2: De vraag is als AuthnRequest in detail beschreven in <a href="Interface-specifications-HM-AD_118882755.html">Interface specifications HM-AD</a><br/>ad actie 3.5: Het antwoord is als Response in detail beschreven in <a href="Interface-specifications-HM-AD_118882755.html">Interface specifications HM-AD</a></p><p><ul class='childpages-macro'><li><a href="GUC3.3-Authenticatie-gebruiker-mislukt_118882554.html">GUC3.3 Authenticatie gebruiker mislukt</a></li><li><a href="GUC3.4-Selecteren-beoogd-machtigingenregister_118882809.html">GUC3.4 Selecteren beoogd machtigingenregister</a></li></ul></p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882553/118886492.png">image2015-12-23 16:30:21.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

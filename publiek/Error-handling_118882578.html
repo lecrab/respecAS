@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Error handling</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Error handling
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Nov 21, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    This chapter describes how errors MUST be handled in the network, in order to inform and serve both users and participants sufficiently.<h3 id="Errorhandling-Statuscodes">Status codes</h3><p>For error handling, conformity regarding the interpretation of the status codes as used in the <code>&lt;Response&gt;</code> element is critical. Only the following top-level status codes MAY be used:</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh">urn:oasis:names:tc:SAML:2.0:status:Requester</th><td class="confluenceTd">This status code is used for errors caused by the initiator of the SAML request. For example, because an assurance level is requested which is not supported by the recipient, or because the request message has expired.</td></tr><tr><th class="confluenceTh">urn:oasis:names:tc:SAML:2.0:status:Responder</th><td class="confluenceTd">This status code is used for errors caused by the recipient of the SAML request. For example, because of technical failure or because the recipient does not support requested (optional) functionality.</td></tr></tbody></table></div><p>Only the following second-level status codes MAY be used:</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh">urn:oasis:names:tc:SAML:2.0:status:AuthnFailed</th><td class="confluenceTd">This status code is used when an user cannot be authenticated for example because invalid credentials have been provided or the cancel button has been used.</td></tr><tr><th class="confluenceTh">urn:oasis:names:tc:SAML:2.0:status:RequestUnsupported</th><td class="confluenceTd">This status code is used when a message is correctly formatted by the requester, and understood by the recipient, but that functionality is requested which is not supported by the recipient.</td></tr><tr><th colspan="1" class="confluenceTh">urn:oasis:names:tc:SAML:2.0:status:UnknownPrincipal</th><td colspan="1" class="confluenceTd">This status code is only used by the BSNk in case a pseudoID is queried but not associated.</td></tr></tbody></table></div><h3 id="Errorhandling-Cancelling">Cancelling</h3><p>During the process of authenticating and authorizing, a user may cancel the process by clicking on the cancel button. Examples:</p><ul><li>A user arrives at a <a href="118882705.html">Herkenningsmakelaar (HM)</a>, but does not yet have an account</li><li>A user has selected the wrong <a href="118882719.html">Authenticatiedienst (AD)</a> and wishes to retry the selection</li><li>A user does not want to authenticate now, and be returned to the Service provider</li></ul><p>If a user cancels, the participant MUST direct the user automatically to the latest sender of a SAML request, accompanying a valid SAML response message including valid SAML status codes (<strong>urn:oasis:names:tc:SAML:2.0:status:Responder </strong>with<strong> urn:oasis:names:tc:SAML:2.0:status:AuthnFailed</strong>). A <code>&lt;StatusMessage&gt;</code> element MAY be included, containing for example the value &quot;Authentication cancelled&quot;.</p><p>If a Herkenningsmakelaar receives a cancellation message (from an Authenticatiedienst or <a href="118882626.html">Machtigingenregister (MR)</a>), it MUST ask the user to re-select an Authenticatiedienst or cancel.</p><p>If a <a href="118882704.html">Dienstverlener (DV)</a> receives a cancellation message (from a Herkenningsmakelaar), it MUST indicate to the user that he is not logged in, and MAY offer the user the option to re-authenticate.</p><h3 id="Errorhandling-Attributesnotsupported">Attributes not supported</h3><p>A participant can receive a message that matches the <a href="Interface-specifications_118882754.html">Interface specifications</a>, but cannot be processed by the recipient. Examples:</p><ul><li>The request contains an attribute that cannot be provided by the participant</li></ul><p>A participant receiving such a message</p><ul><li>MUST show the user a message indicating what went wrong.</li><li>MUST show the user information on how to proceed, see <a href="https://wiki.eherkenning.nl/display/BEHEERAS/Dialoogbeschrijving" class="external-link" rel="nofollow">Dialoogbeschrijving</a>.</li><li>MAY offer the user the option to cancel, in that case the flow continues as stated in Cancelling</li></ul><h3 id="Errorhandling-Incorrectmessage(recoverable)">Incorrect message (recoverable)</h3><p>A participant can receive a message that matches the Interface specifications, but cannot be processed by the recipient. Examples:</p><ul><li>The request contains an <a href="Level-of-assurance_118882584.html">Level of assurance</a> that cannot be provided by the participant</li><li>The request contains an EntityConcernedType that cannot be provided by the participant</li></ul><p>The recipient MUST direct the user to initiator of the SAML request, accompanying a valid SAML response message including valid SAML status codes (<strong>urn:oasis:names:tc:SAML:2.0:status:Responder </strong>with<strong> urn:oasis:names:tc:SAML:2.0:status:RequestUnsupported</strong>). A <code>&lt;StatusMessage&gt;</code> element MUST be included, containing a description of the problem (for example &quot;Level of assurance not supported&quot;).</p><p>A participant receiving such a response</p><ul><li>MUST show the user a message indicating authentication has failed, including the contents of &lt;StatusMessage&gt;. </li><li>MUST show the user information on how to proceed, see <a href="https://wiki.eherkenning.nl/display/BEHEERAS/Dialoogbeschrijving" style="" class="external-link" rel="nofollow">Dialoogbeschrijving</a>.</li><li>If the participant is a Herkenningsmakelaar, it MUST ask the user to re-select an Authenticatiedienst or cancel.</li></ul><h3 id="Errorhandling-Incorrectmessage(non-recoverable)">Incorrect message (non-recoverable)</h3><p>A participant can receive an invalid formatted message. Examples:</p><ul><li>Not a valid SAML message</li><li>XML does not match XSD</li></ul><p>Alternatively, the message can be valid according to SAML specifications, but it does not match the <a href="Interface-specifications_118882754.html">Interface specifications</a>. Examples:</p><ul><li>Unknown issuer</li><li>Invalid NotValidOnOrAfter</li><li>Invalid signature</li><li>The request contains invalid <a href="ServiceID_118882758.html">ServiceID</a>, attributes or EntityConcernedTypes</li><li>The response contains <a href="ServiceID_118882758.html">ServiceID</a>, attributes, EntityConcernedTypes or a <a href="Level-of-assurance_118882584.html">Level of assurance</a> that does not match the request</li></ul><p>Such messages are the result of either a wrong implementation of a participant, or an attempt to hack the system. The user cannot always be sent back to the requester, because the source of the message is unknown and/or cannot be trusted. If the message is a response, it would not make sense to send the user back to the responder.</p><p>A participant that receives a message in this category</p><ul><li>MUST investigate the nature of the error.</li><li>MUST show the user a message indicating a non-recoverable error has occured.</li><li>MUST show the user information on how to proceed, see <a href="https://wiki.eherkenning.nl/display/BEHEERAS/Dialoogbeschrijving" class="external-link" rel="nofollow">Dialoogbeschrijving</a>.</li><li>MUST return a SAML response message with status codes (<strong>urn:oasis:names:tc:SAML:2.0:status:Requester</strong> and <strong>urn:oasis:names:tc:SAML:2.0:status:RequestUnsupported</strong>) or an HTTP error in case a binding is used where a synchronuous response is expected and can be returned, like SOAP.</li><li>If the participant is a Herkenningsmakelaar, it MUST ask the user to re-select an Authenticatiedienst or cancel.</li></ul>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

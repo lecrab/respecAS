@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : HM metadata for DV</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SAML-metadata_118882580.html">SAML metadata</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : HM metadata for DV
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Jun 25, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>A <a href="118882705.html">Herkenningsmakelaar (HM)</a> MUST supply metadata to the service provider as a valid SAML file according to urn:oasis:names:tc:SAML:2.0:metadata with one signed EntityDescriptor element.Signing metadata MUST meet the requirements for signing SAML messages described <a href="Information-security-requirements_118882582.html">Information security requirements</a>.</p><p>Each EntityDescriptor element MUST contain the entityID and an additional version attribute and MUST NOT contain other SAML attributes. The version attribute contains the version of the interface specifications on which the entity communicates.</p><p>An IDPSSODescriptor element MUST contain the WantAuthnRequestsSigned XML attribute with value &quot;true&quot; and MUST NOT contain any other optional attributes.</p><p>For eIDAS-outbound the EB and BRP act as a Dienstverlener, so the HM must also provide the same information to them.</p><h2 id="HMmetadataforDV-Metadata:">Metadata:</h2><p>This section describes the layout of the metadata. Elements not listed in this table MUST NOT be included in the metadata.</p><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup></table></div><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th colspan="1" class="confluenceTh"><strong>Element/@Attribute</strong></th><th colspan="1" class="confluenceTh"><strong>0..n</strong></th><th colspan="1" class="confluenceTh"><strong>Description</strong></th></tr><tr><th class="confluenceTh"><p>IDPSSODescriptor</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>Elektronische Toegangsdiensten: A Herkenningsmakelaar MUST include only one IDPSSODescriptor and MUST NOT include any other elements. An IDPSSODescriptor element MUST contain the WantAuthnRequestsSigned XML attribute with value &quot;true&quot; and MUST NOT contain any other optional attributes.</p></td></tr><tr><th colspan="1" class="confluenceTh">KeyDescriptor </th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd">SAML: An IDPSSODescriptor element MUST contain one or more KeyDescriptor elements with the use XML attribute with value &quot;signing&quot; and one or more KeyDescriptor elements with the use XML attribute with the value &quot;encryption&quot;. Every KeyDescriptor element marked for &quot;signing&quot; MUST contain a KeyName element and a valid <a href="PKIoverheid_118882760.html">PKIoverheid</a> certificate with which the service provider its SAML messages and/or direct TLS connections can be authenticated. KeyDescriptors marked for &quot;signing&quot; are also the keys that will be used to specify the attesting Entity through Holder-of-Key-Subjectconfirmation in case of DienstBemiddeling. KeyDescriptors marked for &quot;signing&quot; MAY contain certificates other than PKIoverheid for authenticating direct TLS connections, as long as such certificates are valid and comply with the requirements in <a href="Secure-connection_118882762.html">Secure connection</a>.<p>Every KeyDescriptor element marked for &quot;encryption&quot; MUST contain a KeyName element and a valid PKIoverheid certificate to be used to encrypt IDs and attributes for the DV. Note: HMs must process all of the described KeyDescriptor elements. KeyName in the signatures and protocol messages indicates which certificate in the metadata is used for the signature.</p></td></tr><tr><th colspan="1" class="confluenceTh">ArtifactResolutionService</th><td colspan="1" class="confluenceTd">1..n </td><td colspan="1" class="confluenceTd">Elektronische toegangsdiensten: The ArtifactResolutionService MUST be implemented at least once per service.</td></tr><tr><th colspan="1" class="confluenceTh">  @Binding</th><td colspan="1" class="confluenceTd">1 </td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p class="confluence-link">SAML:  The binding parameter denotes the type of binding used. In theArtifactResolutionService this is the SAML-SOAP binding only. The value of this attribute is an urn relating to: <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf" rel="nofollow" class="external-link">http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf</a></p></div></td></tr><tr><th colspan="1" class="confluenceTh">  @Location</th><td colspan="1" class="confluenceTd">1 </td><td colspan="1" class="confluenceTd">SAML:  The URL of the SAML endpoint</td></tr><tr><th colspan="1" class="confluenceTh">  @Index</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">SAML:  The index of the binding, MUST be unique for all ArtifactResolutionService elements</td></tr><tr><th colspan="1" class="confluenceTh">SingleLogoutService</th><td colspan="1" class="confluenceTd">0..n</td><td colspan="1" class="confluenceTd">Elektronische Toegangsdiensten: MAY be implemented more than once. Describes the endpoint used to log the user out of its current session.</td></tr><tr><th colspan="1" class="confluenceTh">  @Binding</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>SAML:  The binding parameter denotes the type of binding used. This is an urn relating to: <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf" rel="nofollow" class="external-link">http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf</a></p></div></td></tr><tr><th colspan="1" class="confluenceTh">  @Location</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">SAML:  The URL of the SAML endpoint</td></tr><tr><th colspan="1" class="confluenceTh">SingleSignOnService</th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd"><p>Elektronische Toegangsdiensten: MUST contain at least one SingleSignOnService element for which the Binding attribute has the value urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact</p><p>If the HM offers support for native apps through the OAuth2 protocol, the IDPSSODescriptor from the HM MUST contain one SingleSignonService element with a Binding attribute which has the value 'urn:etoegang:1.11:bindings:native-app', representing the endpoint supporting native apps using the OAuth2 protocol.</p></td></tr><tr><th colspan="1" class="confluenceTh">  @Binding</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>SAML:  The binding parameter denotes the type of binding used. This is an urn relating to:<a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf" rel="nofollow" class="external-link">http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf</a></p></div></td></tr><tr><th colspan="1" class="confluenceTh">  @Location</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">SAML:  The URL of the SAML endpoint</td></tr></tbody></table></div><p><br/></p><h2 id="HMmetadataforDV-ProcessingrulesfortheDV">Processing rules for the DV</h2><ul><li>The HM metadata MUST be validated by the DV</li><li>The DV MUST check if the endpoints in the location parameters are available.</li><li>The DV MAY skip validation of SingleSignOnService elements if they are not used</li><li>The DV MUST use the HM metadata if validation succeeds.</li></ul><p><br/></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Herkenningsmakelaar</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAuthnRequestsSigned="true"&gt;
+...
+    &lt;md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://..." index="0" /&gt;
+    &lt;md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://...."/&gt;
+   &nbsp;&lt;md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://...."/&gt;
+    &lt;md:SingleSignOnService Binding="urn:etoegang:1.11:binding:native-app" Location="https://...." /&gt;
+&nbsp;&lt;/md:IDPSSODescriptor&gt;
+...</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:KeyDescriptor use="signing"&gt;
+        &lt;ds:KeyInfo&gt;
+              &lt;ds:KeyName&gt;
+2fd4e1c6 7a2d28fc ed849ee1 bb76e739 1b93eb12
+              &lt;/ds:KeyName&gt;
+              &lt;ds:X509Data&gt;
+                  &lt;ds:X509Certificate&gt;
+...
+                   &lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+&lt;/md:KeyDescriptor&gt;
+...</pre> 
+ </div>
+</div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

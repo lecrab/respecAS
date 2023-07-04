@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Secure connection</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Information-security-requirements_118882582.html">Information security requirements</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Secure connection
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Apr 22, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>The network wants to promote the use of strong cipher suites with minimum discomfort for end-users. Those roles that are in direct contact with their customers (e.g. a HM with it's DV's and an AD/MR with its users) are allowed to tighten security based on their risk analysis.</p><p><br/></p><p>All communication between peers in these specifications is based on HTTP. All communication MUST be secured using Transport Layer Security, TLS. As a result, all communication MUST be transported over HTTPS (<a rel="nofollow" class="external-link" href="https://tools.ietf.org/html/rfc2818">https://tools.ietf.org/html/rfc2818</a>).</p><p>For HTTPS and TLS, any implementation MUST take the recommendations in BCP195 (<a rel="nofollow" class="external-link" href="https://tools.ietf.org/html/rfc7525">https://tools.ietf.org/html/rfc7525</a>) and the latest version of the NCSC-security guidelines for TLS-usage (currently <span> </span><a href="https://www.ncsc.nl/binaries/ncsc/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1/ICT-beveiligingsrichtlijnen+voor+Transport+Layer+Security+v2.1.pdf" rel="nofollow" class="external-link" style="text-decoration: none;">https://www.ncsc.nl/binaries/ncsc/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1/ICT-beveiligingsrichtlijnen+voor+Transport+Layer+Security+v2.1.pdf</a>). The following requirements are applicable for this specification in relation to the NCSC guidelines:</p><ul><li>For back-channel communication, the guidelines categorized as &quot;good&quot; MUST be applied.</li><li>For front-channel communication, the guidelines for &quot;good&quot; MUST be applied and the guidelines for &quot;sufficient&quot; MAY be applied, depending on target audience and support requirements.</li><li>Guidelines categorized as &quot;insufficient&quot; MUST NOT be applied and those categorized as &quot;phase out&quot; SHOULD NOT be used.</li></ul><p>As HTTP itself is stateless, implementations are free to choose a method of maintaining state or sessions with a User-agent when applicable. The following applies for any HTTP state/session mechanism:</p><ul><li>HTTP servers MUST ensure session and state information is secured and User-agents are properly instructed with relevant security settings (e.g. proper cookie lifetime, Secure setting for cookies, CORS headers and similar).</li><li>Any HTTP session or state tracking mechanisms MUST be implemented using current best practices to avoid session hijacking and other attacks. For more information, see for instance <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md" rel="nofollow" class="external-link">https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md</a>.</li></ul><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

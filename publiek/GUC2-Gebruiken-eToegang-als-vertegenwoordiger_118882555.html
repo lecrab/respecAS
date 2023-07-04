@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : GUC2 Gebruiken eToegang als vertegenwoordiger</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : GUC2 Gebruiken eToegang als vertegenwoordiger
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Jun 25, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In deze use case, die een uitbreiding is op <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a>, wordt de identiteit van de vertegenwoordigde dienstafnemer, de pseudo-identiteit van de gebruiker en de vertegenwoordigingsbevoegdheid van de gebruiker namens deze vertegenwoordigde dienstafnemer vastgesteld. De Herkenningsmakelaar geeft een nieuwe verklaring af aan de dienstverlener. Deze verklaring is samengesteld uit de verklaringen van de authenticatiedienst en het machtigingenregister. De gebruiker voert hiertoe de use cases <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> en <a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a> uit.<br/></p><p>Deze use case is een uitbreiding op <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> en wordt hieronder in een activity diagram weergegeven. </p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="250" src="attachments/118882555/118884234.png" data-image-src="attachments/118882555/118884234.png" data-unresolved-comment-count="0" data-linked-resource-id="118884234" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2015-9-28 10:42:46.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882555" data-linked-resource-container-version="26"></span></p><p>De verschillende acties voor use case GUC2 worden hier in meer detail beschreven.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>Nr.</p></th><th class="confluenceTh"><p>Actie</p></th><th class="confluenceTh"><p>Omschrijving</p></th></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><p>De dienstafnemer laat zich voor het afnemen van een dienst vertegenwoordigen bij een dienstverlener die authenticatie van de dienstafnemer vereist. De gebruiker handelt als vertegenwoordiger.</p></td></tr><tr><td class="confluenceTd"><p>2.1</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Dienstverlener stelt vraag aan Herkenningsmakelaar</p></div></td><td class="confluenceTd"><p>Zie stap 1.1 <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a></p></td></tr><tr><td class="confluenceTd"><p>2.2</p></td><td class="confluenceTd"><p>Uitvoeren <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a></p></td><td class="confluenceTd"><div class="content-wrapper"><p>Het resultaat is dat de Herkenningsmakelaar een verklaring over de authenticatie van de gebruiker ontvangt met een de gevraagde identificerende kenmerken van de gebruiker.</p></div></td></tr><tr><td class="confluenceTd"><p>2.3</p></td><td class="confluenceTd"><p>Uitvoeren <a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a></p></td><td class="confluenceTd"><div class="content-wrapper"><p>Het resultaat is dat de Herkenningsmakelaar een verklaring over de bevoegdheid van de gebruiker ontvangt. Indien het een ketenmachtiging betreft verifieert de Herkenningsmakelaar de hele keten alvorens deze te gebruiken in de volgende stap.</p><p><strong>Alternatief scenario:</strong></p><p>In het geval dat een gebruiker zich heeft geauthenticeerd met een eIDAS-authenticatiemiddel uit een andere eIDAS-lidstaat, ontvangt de Herkenningsmakelaar in het antwoord van de <a href="118882363.html">eIDAS-berichtenservice (EB)</a> mogelijk ook een autorisatieverklaring en kan stap 2.3 worden overgeslagen.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Let op: dit scenario is uitsluitend van toepassing op eIDAS Inkomend, NIET op eIDAS Uitgaand.</p></div></div></div></td></tr><tr><td class="confluenceTd"><p>2.4</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Herkenningsmakelaar beantwoordt vraag van dienstverlener met verklaring</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar beantwoordt de vraag van de dienstverlener. Dit antwoord bevat een verklaring die de Herkenningsmakelaar opstelt (op basis van én met inbegrip van de authenticatiedienst en van het machtigingenregister/de machtigingenregisters ontvangen verklaringen over de authenticatie en de bevoegdheid van de gebruiker) met daarin het betrouwbaarheidsniveau van de verklaring, de identificerende kenmerken van de vertegenwoordigde dienstafnemer, de identificerende kenmerken van de gebruiker en (indien relevant) informatie over de ketenmachtiging.</p><p>Het betrouwbaarheidsniveau is gelijk aan het laagste betrouwbaarheidsniveau van de betrouwbaarheidsniveaus van de verklaringen van de authenticatiedienst en het machtigingenregister/de machtigingenregisters.</p></div></td></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Finale staat</p></td><td class="confluenceTd"><p>De dienstafnemer is geauthenticeerd en de dienstverlener heeft daar de benodigde informatie over ontvangen. De dienstafname kan worden vervolgd ten behoeve van de vertegenwoordigde dienstafnemer. Informatie over de gebruiker en zijn bevoegdheid kan benut worden voor personalisatie, logging e.d.</p></td></tr></tbody></table></div><p>ad actie 2.4: Het antwoord is als Response in detail beschreven in <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a>.<span style="color: rgb(0,0,0);"> </span></p><h3 id="GUC2GebruikeneToegangalsvertegenwoordiger-Alternatievescenario&#39;s"><span style="color: rgb(0,0,0);">Alternatieve scenario's</span></h3><p>Voor deze use case bestaan geen zelfstandige alternatieve scenario's.</p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882555/118884234.png">image2015-9-28 10:42:46.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

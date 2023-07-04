@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Interface specifications DB-DA</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications-web_118882412.html">Interface specifications web</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Interface specifications DB-DA
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (rschaar)</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Sep 09, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="250" src="attachments/118882768/118885778.png" data-image-src="attachments/118882768/118885778.png" data-unresolved-comment-count="0" data-linked-resource-id="118885778" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-2-5 11:32:50.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882768" data-linked-resource-container-version="9"></span></p><p><br/>This paragraph describes the (guidelines for) interface(s) between the <a href="118882605.html">Dienstbemiddelaar (DB)</a> (Service Intermediary) and the <a href="118882600.html">Dienstaanbieder (DA)</a> (Service Supplier). The interface between a DB and a DA is considered a machine to machine interface. The implementation details of this interface will always be specified by the Dienstaanbieder. In order to facilitate adoption, Elektronische Toegangsdiensten aims to deliver an Authorization Solution compatible not only with green field implementation, but also with existing services as already consumed in the field today. Thus to be interoperable with the wide variety of implementations that exist. Therefore the <span>machine to machine </span>interface will not specify a technical or protocol specific implementation but rather a set of principles, concepts and requirements. Currently, a reference for the interface DB-DA based on SOAP WebsServices is provided. In a future version these design principles will be further illustrated by including several other reference architectures of common service implementations, and how they map with these specifications and principles.<br/></p><h4 id="InterfacespecificationsDBDA-ConcerningassociationoftheAuthorizationTokenwiththeService-Request.">Concerning association of the Authorization Token with the Service-Request.</h4><p>Elektronische Toegangsdiensten-Declarations can be used to ‘add’ security (more precise authorization) to a message by applying them as Authorization/Security Tokens. To be considered valid Authorization tokens, these declarations have to conform to certain conditions. These conditions concern the concepts of ‘meaningful consent’ and the proof of this consent (to establish ‘non-repudiation’).<br/><strong><em>With meaningful consent </em></strong>we mean that the user has to reach a well informed conscience decision concerning whether or not to consume the service. For transactions with high juridical or legal consequences the process to establish this ‘well informedness’ will have to meet higher standards than for user actions with a lower impact. For example, accessing relative harmless information like ‘last time visited’, might require a very implicit informedness like ‘You are logging on to ..’. However, transactions for services with significant implications will require a more formal 'informedness' and might even require independent Signature Services.<br/><br/>When the user has reached an informed decision,<strong> non-repudiation</strong> about this decision has to be achieved. The preferred way to achieve this is to associate;</p><ol><li><strong>the Elektronische Toegangsdiensten-Declarations, </strong>with<strong> </strong></li><li><strong>the specific Request message used to consume the service, </strong>and<strong> </strong></li><li><strong>the means on how this request message has been established/constructed<br/></strong>In a reliable, provable and accountable way.</li></ol><p><strong>The Elektronische Toegangsdiensten-Declaration</strong>s give insight in who is consuming the service, on whose behalf, including information which the Dienstaanbieder can use to conduct its authorization decision.<br/><strong>The specific Request message used to consume the service </strong>conforms to the input for the (web) service as specified by the Dienstaanbieder, and therefore does not have to be in a human readable form. This technical message however, should be no more than a perfect transformation of a users intended action into a format as understood by the Dienstaanbieder.</p><p>This ‘service’/intended users action could be anything i.e. ‘logging on’, ‘retrieving last time visited’, ‘declare taxes’, ‘request permit’, ‘retrieve information from a portal’ etc. The transformed technical message could be anything from a specific SOAP or REST message, to PDF or ByteArray etc. </p><p><strong>The means on how this request message has been established/constructed </strong> should be present to provide a provable and accountable link between the first 2 pieces of information; the user and its intended user action, and the resulting technical translation used to consume the service.</p><p>The above results in the following requirements:</p><ul><li>A DA MUST provide clear, non-ambiguous documentation for the technical interface for a Service to a DB, to allow proper implementation by the DB.</li><li>A DB MUST make an exact transformation of the user's input and intend into the technical messages sent to the DA. A DB MUST make an exact transformation of the DA's response to the user as well.</li><li>A DB MUST get the user's explicit consent and approval before sending the messages to the DA.</li><li>A DB will receive the identifying attribute of the user; the DB MAY use this identity to verify that the user for approving/sending the request to the DA is the same as the user that prepared the request, in case such a business case or security requirement exists for the service.</li><li>A DB MUST send the Elektronische Toegangsdiensten declarations along with the request to the DA. <span class="inline-comment-marker" data-ref="b8e99e49-47c9-4c74-9dc8-9f53ecd78d0d">This</span> MUST be verbatim copies, so that digital signatures are not affected.</li><li>A DA MUST verify the Elektronische Toegangsdiensten declarations before processing a message and using the identity in its authorization decision.</li></ul><p>The DA and DB MUST ensure that security of the interface DB-DA is appropriate for the security needs and risk profile of the service. The security of the interface DB-DA SHOULD ensure confidentiality, integrity and mutual authentication of the communication. It is therefore recommended that:</p><ul><li>Communication between DB and DA SHOULD use a <a href="Secure-connection_118882762.html">Secure connection</a> or a communication method with at least equivalent security properties.</li><li>A DB SHOULD send the technical messages with all applicable Elektronische Toegangsdiensten declarations, bound together through a digital signature to safeguard integrity and authenticity – both at transmission and for audit purposes afterwards – and as declaration of following the requirements for this interface for the request. The digital signature SHOULD have the same cryptographic strength as specified in <a href="Digital-signature_118882764.html">Digital signature</a> or a method with at least equivalent security properties.</li><li>A DA SHOULD verify the digital signature of the DB.</li><li>An interface between DA and DB MAY follow one of the reference architectures, these have been verified to fulfil the technical requirements above.</li></ul><p><br/></p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882768/118885778.png">image2016-2-5 11:32:50.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

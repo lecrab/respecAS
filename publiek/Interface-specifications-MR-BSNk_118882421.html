@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Interface specifications MR-BSNk</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Interface specifications MR-BSNk
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified by <span class='editor'> Maarten van Bree</span> on Sep 25, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The most recent version of the technical BSNk specifications are available on <a rel="nofollow" class="external-link" href="https://wiki.bsn-koppelregister.nl/">https://wiki.bsn-koppelregister.nl/</a> or on request (beheerorganisatie BSNk through <a href="mailto:servicecentrum@logius.nl" rel="nofollow" class="external-link">servicecentrum@logius.nl)</a>. The information below is for information only.</p></div></div></p><p><span class="inline-comment-marker" data-ref="9eab1cc9-f969-42ad-92ea-0f0d1457bf6a">In order to realize s</span>tep 7 in the <a href="AUC3.1-Registreren-bevoegdheid-eenmanszaken_118882458.html">AUC3.1 Registreren bevoegdheid eenmanszaken</a> an interface is necessary beween the MR and BSNk. This interface wil implement <a href="AUC6-Activeren-BSN_118882798.html">AUC6 Activeren BSN</a> for the MR. In order to facilitate the <span class="inline-comment-marker" data-ref="17913472-ff6e-4f8d-8ecc-82006b30225a">transformation of the PI or PP </span>this interface will also implement <a href="AUC10-Transformeren_118882464.html">AUC10 Transformeren</a>. This will allow the MR to <span class="inline-comment-marker" data-ref="dc271ddf-66b7-4850-acf2-3fbeaac83d94">transform the PI  into the EI or the PP into an EP </span>of the owner of the sole trader for the DV who requested this information.</p><p>The correct recipientKeySetVersion used in this transformation MUST be  read from the <a href="Service-catalog_118882581.html">Service catalog</a> by reading the field BSNk-recipientKeySetVersion. If no BSNk-recipientKeySetVersion has been set, the RKSV MUST be derived from the <span class="inline-comment-marker" data-ref="b6adc2ef-54d1-49b4-a331-e10c27a46a04">validity</span>.notBefore (YYYYMMDD notation) date of the most recent issued (using validity.notBefore) certificate of the service instance in the <a href="Service-catalog_118882581.html">Service catalog</a>.</p><p>On a technical level this interface <span class="inline-comment-marker" data-ref="6ee7bbcf-529d-4e0d-8447-b94dcbf87762">is identical (a specified SOAPaction will be used between MR and BSNk) </span>to the <a href="Interface-Specifications-aux-MR---BSNk_118882431.html">Interface Specifications aux MR - BSNk</a>. The MR MUST implement <span class="inline-comment-marker" data-ref="1bedaa11-4699-49bb-a0ad-bc628a1c30f3">this interface as if it were an AD</span> communicating to the BSNk.</p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

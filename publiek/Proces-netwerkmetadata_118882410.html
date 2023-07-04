@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Proces netwerkmetadata</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Organisatie_118882774.html">Organisatie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Operationeel-handboek_118882731.html">Operationeel handboek</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Proces netwerkmetadata
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Jan 16, 2019
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="wiki-content">In het Netwerk wordt <a href="SAML-metadata_118882580.html">SAML metadata</a> gebruikt voor het beschrijven van de URL's en certificaten die worden gebruikt op de verschillende koppelvlakken. Actuele metadata is van belang om twee redenen:<ol><li>De metadata geeft weer voor welke rol en op welk betrouwbaarheidsniveau een deelnemer is toegetreden. Met andere woorden, op basis van de metadata wordt bepaald wie wat mag in het netwerk.</li><li>De metadata geeft weer hoe systemen van deelnemers kunnen worden benaderd en met welke certificaten deze systemen zijn te authenticeren. Hierdoor speelt de metadata een belangrijke rol in het bewaken van de integriteit en authenticiteit van de verklaringen en gegevens die door het netwerk worden geleverd.</li></ol><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">Netwerkmetadata wordt gebruikt voor zowel het productie- als het testnetwerk. De processen voor productie en test zijn grotendeels gelijk. Dit document beschrijft beide.</div></div><h3 class="wiki-content" id="Procesnetwerkmetadata-Doelstelling">Doelstelling</h3><p>De doelstelling van het metadata proces is tweeledig:</p><ol><li>Waarborgen dat de netwerkmetadata op correcte wijze tot stand komt;</li><li>Waarborgen dat alle deelnemers de actuele netwerkmetadata in hun systemen gebruiken.</li></ol><h3 id="Procesnetwerkmetadata-Verantwoordelijkheden">Verantwoordelijkheden</h3><ul><li>Beheerorganisatie:<ul><li>De technisch beheerder is er vanuit de beheerorganisatie verantwoordelijk voor dat het proces wordt uitgevoerd conform de procesbeschrijving. De technisch beheerder zorgt tevens dat de procesbeschrijving actueel blijft en coördineert de verschillende stappen in het proces;</li><li>De juridisch coördinator bewaakt dat de metadata een correcte weergave is van de contractadministratie en toetredingsbesluiten.</li></ul></li><li>De deelnemers zijn verantwoordelijk voor het controleren en aanleveren van metadata.</li></ul><h3 class="wiki-content" id="Procesnetwerkmetadata-Overzichtprocesstappen">Overzicht processtappen</h3><div class="wiki-content"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" draggable="false" src="attachments/118882410/118886554.png" data-image-src="attachments/118882410/118886554.png" data-unresolved-comment-count="0" data-linked-resource-id="118886554" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Doorvoeren metadata nav rfc2198.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882410" data-linked-resource-container-version="21"></span></div><h3 class="wiki-content" id="Procesnetwerkmetadata-Toelichtingprocesstappen">Toelichting processtappen</h3><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th colspan="3" class="confluenceTh">1. Controleren en aanleveren metadata</th></tr><tr><td class="confluenceTd"><p>Input</p></td><td class="confluenceTd"><div class="content-wrapper"><ol><li>Een deelnemer genereert nieuwe metadata conform de technische specificaties en ondertekent deze met zijn valide digitale handtekening.</li></ol><p>Uiterlijk 7 dagen voor daadwerkelijk doorvoeren van de geplande wijzigingen in zijn infrastructuur, stelt de deelnemer de gecontroleerde nieuwe metadata beschikbaar voor de beheerorganisatie op zijn productionele metadata (HTTPS) URL. Deelnemers publiceren hun productionele metadata op een aparte URL per rol binnen het Netwerk. Nieuwe entities worden hierin toegevoegd met een ValidFrom datum in het beoogde onderhoudswindow waarin de wijziging moet worden doorgevoerd. Overtollige entities worden verwijderd door het toevoegen van een ValidUntil datum in het beoogde onderhoudswindow waarin de wijziging moet worden doorgevoerd. Van gewijzigde entities wordt de oude entry op genomen met een validUntil datum en de nieuwe entry met een validFrom datum. Ook hierbij liggen beide data in het beoogde onderhoudsvenster waarin de wijziging moet worden doorgevoerd. Daarna informeert de deelnemer de andere deelnemers en de beheerorganisatie d.m.v. een <a href="https://issues.eherkenning.nl" class="external-link" rel="nofollow">Mantis</a> issue. Dit issue bevat minimaal: </p><ul><li>Het verwachte tijdstip van doorvoeren</li><li>Een beschrijving van de wijzigingen</li><li>De URL van de nieuwe metadata</li></ul></div></td></tr><tr><td class="confluenceTd"><p>Activiteit</p></td><td class="confluenceTd"><p>2. Een automatisch controle proces voert de technische controles op de, door de deelnemer gepubliceerde nieuwe, metadata uit. Deze controles bestaan uit: </p><ol><li style="list-style-type: none;background-image: none;"><ol><li>Validatie van de het metadata bestand tegen de technische specificities</li><li>Validatie van de elektronische handtekening van de deelnemer</li><li>Controle van de consistentie van het metadata bestand</li><li>Controle op juridische inhoud (de rollen en betrouwbaarheidsniveaus die de deelnemer o.b.v. deze metadata claimt te mogen uitvoeren), zoals vooraf gedefinieerd door de juridisch coördinator van de beheerorganisatie. N.B. Deze controlestap wordt voor metadata van het testnetwerk overgeslagen. Hier moeten (aankomende) deelnemers juist kunnen testen als onderdeel van het toetredingsproces.</li></ol></li></ol><p>3. Wanneer één van de genoemde controles geen positief resultaat heeft, wordt geen nieuwe metadata gepubliceerd op de URL van de beheerorganisatie.</p><ul><li>De deelnemers worden per e-mail van het resultaat van de controle op de hoogte gebracht, alleen als metadata van de deelnemer gewijzigd is om &quot;spamming&quot; te voorkomen. Bij fouten in de metadata die in stap 1 worden geconstateerd, worden deze via e-mail door het automatisch proces zowel naar de deelnemer als naar de beheerorganisatie verstuurd.</li></ul></td></tr><tr><td class="confluenceTd"><p>Output</p></td><td class="confluenceTd"><ul><li>In behandeling genomen goedgekeurde metadata.</li><li>Terugmelding besluit.</li></ul></td></tr><tr><td class="confluenceTd"><p>Wie?</p></td><td class="confluenceTd"><ul><li>De beheerorganisatie beoordeelt de metadata;</li><li>De juridisch coördinator beoordeelt de rollen en betrouwbaarheidsniveaus.</li></ul></td></tr></tbody></table></div><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th colspan="3" class="confluenceTh">2. Genereren en publiceren netwerkmetadata</th></tr><tr><td class="confluenceTd"><p>Input</p></td><td class="confluenceTd"><p>Goedgekeurde metadata</p></td></tr><tr><td class="confluenceTd"><p>Activiteit</p></td><td class="confluenceTd"><div class="content-wrapper"><p>4. Het automatisch proces genereert, na stap 1 in de voorgaande activiteit als wijziging in metadata gedetecteerd is, een nieuwe versie van het huidige geaggregeerde metadatabestand met een cacheduration van &quot;PT1H&quot; (één uur). <span class="inline-comment-marker" data-ref="dc5ecbe2-ed83-4895-aa57-c6a91172dfa2">Entries met een ValidUntil datum meer dan 1 maand in het verleden worden hierbij uit het metadata bestand verwijderd.</span></p><p>5. Deze nieuwe netwerkmetadata wordt door het automatisch proces gepubliceerd op <a href="https://aggregator.etoegang.nl/test/1.13/networkmetadata.xml" class="external-link" rel="nofollow">https://aggregator.etoegang.nl/test/1.13/networkmetadata.xml</a> (testnetwerk) of <a href="https://aggregator.etoegang.nl/1.13/networkmetadata.xml" class="external-link" rel="nofollow">https://aggregator.etoegang.nl/1.13/networkmetadata.xml</a> (productie). Deze metadata en het moment waarop deze door het automatisch proces in productie gezet is, wordt tevens door het automatisch proces per email naar de deelnemers gestuurd. Tevens wordt de metadata gearchiveerd conform de werkbeschrijving in <a href="https://wiki.eherkenning.nl" class="external-link" rel="nofollow">Confluence</a>.</p></div></td></tr><tr><td class="confluenceTd"><p>Output</p></td><td class="confluenceTd"><p>Gepubliceerde metadata</p></td></tr><tr><td class="confluenceTd"><p>Wie?</p></td><td class="confluenceTd"><p>De technisch beheerder van de beheerorganisatie voert deze stap uit</p></td></tr></tbody></table></div><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th colspan="3" class="confluenceTh">3. Doorvoeren netwerkmetadata</th></tr><tr><td class="confluenceTd"><p>Input</p></td><td class="confluenceTd"><p>Gepubliceerde metadata</p></td></tr><tr><td class="confluenceTd"><p>Activiteit</p></td><td class="confluenceTd"><div class="content-wrapper"><p>6. De automatische processen van de deelnemers pakken de nieuwe metadata op en voeren deze door, <span class="inline-comment-marker" data-ref="f245ef43-5c58-4340-b4f6-cc29e3dbf0d5">waarbij de daadwerkelijke wijzigingen door de gebruikte ValidIUntil/ValidFrom datums direct na het onderhoudswindow daadwerkelijk actief worden.</span></p><p>7. De deelnemer die nieuwe metadata doorvoert controleert, tijdens zijn onderhoudswindow, de werking van de nieuwe metadata. Als de wijzigingen niet goed werken, dan kan de deelnemer tijdens het onderhoudswindow een nieuwe versie van de nieuwe metadata uploaden of de oude versie uploaden. Deze wordt door het automatisch proces gecontroleerd, geaggregeerd en gepubliceerd op de bovengenoemde URLs, waarna deze binnen een uur automatisch door de deelnemers wordt opgepakt en doorgevoerd.</p><p>a. Zonodig kan de technisch beheerder, bij ernstige verstoringen in het onderhoudswindow, handmatig een rollback naar de originele productionele metadata van voor de wijziging doorvoeren.</p><p>8. De deelnemers melden in <a href="https://issues.eherkenning.nl" class="external-link" rel="nofollow">Mantis</a> het resultaat van de doorvoering indien relevant.</p></div></td></tr><tr><td class="confluenceTd"><p>Output</p></td><td class="confluenceTd"><p>Geïmplementeerde nieuwe metadata</p></td></tr><tr><td class="confluenceTd"><p>Wie?</p></td><td class="confluenceTd"><ul><li><p class="_mce_tagged_br">De deelnemers implementeren de nieuwe metadata;</p></li><li><p class="_mce_tagged_br">De technisch beheerder monitort en rapporteert aan de deelnemers.</p></li></ul></td></tr></tbody></table></div></div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882410/118884523.jpeg">OH10 Metadata.jpeg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882410/118884525.png">OH10 Metadata.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882410/118886554.png">Doorvoeren metadata nav rfc2198.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

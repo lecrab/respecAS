@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Network metadata</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SAML-metadata_118882580.html">SAML metadata</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Network metadata
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Aug 06, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>The Beheerorganisatie checks the participants' metadata for conformity, deletes the signatures and aggregates the metadata into one file.The aggregated metadata consists of a signed EntitiesDecriptor element with an cacheDuration XML attribute with value &quot;P7D&quot; and an Name XML attribute with a value formatted as <strong>urn:etoegang:<em>VERSIEAS</em>:metadata:<em>OMGEVING</em>:<em>VOLGNUMMER</em></strong>, whereby <em>VERSIEAS</em> indicates the version of the framework, <em>OMGEVING</em> the respective environment (P or A), and <em>VOLGNUMMER</em> is a sequence number that distinguishes the different versions of metadata. The signature MUST meet the requirements described in <a href="Information-security-requirements_118882582.html">Information security requirements</a>.</p><p>The EntitiesDescriptor element contains <span>5 EntitiesDescriptor</span> elements with the names Authenticatiediensten, Machtigingenregisters, Koppelregisters, <span>Interstelseldiensten</span> and Herkenningsmakelaars (prefixed with 'urn:etoegang:role:') that contain the metadata from the participants in the different roles. Under the role &quot;Interstelseldiensten&quot; the eIDAS-berichtenservice is listed, HMs MUST treat this as if it were both an AD and MR. That is, in message validation it can regard it as an AD/MR depending on context. However for services classified as 'eIDAS-inbound' it MUST NOT list it as an AD for AD-selection by the user (instead, the DV must list this as a separate authentication option, not the HM). Furthermore, it MUST send requests as per <a href="Interface-specifications-HM-EB_118882388.html">Interface specifications HM-EB</a>.</p><p>The EntitiesDescriptor element can also contain an additional Dienstverleners (service providers) element that contains fictitious service providers. Each Herkenningsmakelaar MUST process the named service providers. These service providers are named in the service catalogue and can be used by the Beheerorganisatie and for testing.</p><p>The EntitiesDescriptor element also contains an Extensions element that contains a PublicationInfo element with the URL and creation date of the metadata file, which MUST be filled by the Beheerorganisatie.</p><p>The Beheerorganisatie publishes the metadata in a fixed location. In order to maintain the privacy of the contacts' details in the metadata, the location is a non-indexed URL with server-side SSL that can only be shared with the participants. </p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;md:EntitiesDescriptor 
+    ID="[reference for dsig]"
+    Name="urn:etoegang:1.13:metadata:P:36"
+    cacheDuration="P7D"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+
+    &lt;ds:Signature&gt;...&lt;/ds:Signature&gt;
+
+    &lt;md:Extensions&gt;
+    	&lt;mdrpi:PublicationInfo publisher="https://.../productie_metadata.xml" creationInstant="2019-05-07T10:39:03Z"/&gt;
+	&lt;/md:Extensions&gt;
+
+    &lt;md:EntitiesDescriptor Name="urn:etoegang:role:Authenticatiediensten"&gt;
+        ...
+    &lt;/md:EntitiesDescriptor&gt;
+    &lt;md:EntitiesDescriptor Name="urn:etoegang:role:Machtigingenregisters"&gt;
+        ...
+    &lt;/md:EntitiesDescriptor&gt;
+    &lt;md:EntitiesDescriptor Name="urn:etoegang:role:Koppelregisters"&gt;
+        ...
+    &lt;/md:EntitiesDescriptor&gt;
+   &nbsp;&lt;md:EntitiesDescriptor Name="urn:etoegang:role:Herkenningsmakelaars"&gt;
+        ...
+    &lt;/md:EntitiesDescriptor&gt;
+    &lt;md:EntitiesDescriptor Name="urn:etoegang:role:Interstelseldiensten"&gt; 
+       ...
+    &lt;/md:EntitiesDescriptor&gt;
+&lt;/md:EntitiesDescriptor&gt;</pre> 
+ </div>
+</div><p>A participant MUST process the metadata periodically at a time that is predefined by the Beheerorganisatie. Data about the URL and the periodicity are described in <a href="Proces-netwerkmetadata_118882410.html">Proces netwerkmetadata</a>. </p><p>A participant MUST use an automated process to process the metadata that finishes in 15 minutes. A participant MUST be able to start this automated process (e.g., manually) between the predefined periods in agreement with the Beheerorganisatie to accommodate a rollback or other changes.</p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

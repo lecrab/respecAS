@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : MR-MR webservice Security</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Discovery-Interface-MR-MR-chain-authorisations_118882333.html">Discovery Interface MR-MR chain authorisations</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : MR-MR webservice Security
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (joyceeering)</span>, last modified on Feb 23, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><span class="inline-comment-marker" data-ref="e9dd3bfd-2eb4-46a5-81f0-59cd3da13d6f">Signing requirements (from <a href="Digital-signature_118882764.html">Digital signature</a>)</span></p><p><br/></p><p>To guarantee authenticity, integrity and non-repudiation, each message described MUST be provided with a digital signature from the message sender. The message recipient MUST validate all of the digital signatures in the message before processing it.<ul><li>The recipient MUST check that the message is signed with a valid digital signature that envelopes the whole message with Enveloped Signature Transform.</li><li>The recipient MUST NOT process the message if it contains parts that are not signed with a valid digital signature.</li></ul><p>The following requirements apply to generating digital signatures:</p><ul><li>The digital signature is embedded in the message content with Enveloped Signature Transform <a class="external-link" href="http://www.w3.org/2000/09/xmldsig#enveloped-signature" rel="nofollow">http://www.w3.org/2000/09/xmldsig#enveloped-signature</a>.</li><li>Canonicalization MUST be carried out according to the exclusive c14n method without comments, as identified by '<a class="external-link" href="http://www.w3.org/2001/10/xml-exc-c14n" rel="nofollow">http://www.w3.org/2001/10/xml-exc-c14n#</a>' (see <a class="external-link" href="http://www.w3.org/TR/xml-exc-c14n/" rel="nofollow">http://www.w3.org/TR/xml-exc-c14n/</a>)</li><li>Digests MUST be calculated with the SHA256 algorithm.</li><li>The SignatureValue MUST be calculated with the RSA-SHA256 algorithm.</li><li>The sender MUST sign messages with a PKIoverheid certificate (see for requirements <a href="https://afsprakenstelsel.etoegang.nl/display/BEHEERAS/PKIoverheid">PKIoverheid</a>) with a key length <span class="inline-comment-marker" data-ref="7a0ada55-19fd-450c-8803-3d1bbe7c8ad2">of at least 2048 bits</span>. The (extended) key usage of the used certificate MUST allow use for signing.</li><li>In case of signing metadata, the &lt;Signature&gt; element MUST contain only an &lt;X509Data&gt; element with an &lt;X509Certificate&gt; element.<br/>In all other cases, The signature MAY contain a &lt;KeyInfo&gt; element that contains a &lt;KeyName&gt;. The &lt;KeyName&gt; MUST match the &lt;KeyName&gt; stated in the metadata of the sender for the respective role. The signature MUST NOT contain other elements (such as &lt;X509Data&gt;). If a &lt;KeyInfo&gt; element is not included in the message, the metadata MUST contain at least one (1) valid certificate against which the message can be validated. If the metadata contains more than one certificate, the participant MUST validate the message against each valid certificate. The participant MAY agree with its service consumers to limit the period in which the metadata contains more than one certificate. This enables the high utilization of the system to be controlled.</li><li>The Reference MUST refer to the signed element via an ID attribute in the local document, as per the signature profile of SAML2.0 core (§5.4) and SAML 2.0 Metadata (§3.1).</li></ul></p><p><br/></p><p><br/></p><p>Encryption Requirements (from <a href="Secure-connection_118882762.html">Secure connection</a>)</p><p><br/></p><p>The network wants to promote the use of strong cipher suites with minimum discomfort for end-users. Those roles that are in direct contact with their customers (e.g. a HM with it's DV's and an AD/MR with its users) are allowed to tighten security based on their risk analysis.<p><br/></p><p>All communication between peers in these specifications is based on HTTP. All communication MUST be secured using Transport Layer Security, TLS. As a result, all communication MUST be transported over HTTPS (<a rel="nofollow" class="external-link" href="https://tools.ietf.org/html/rfc2818">https://tools.ietf.org/html/rfc2818</a>).</p><p>For HTTPS and TLS, any implementation MUST take the recommendations in BCP195 (<a rel="nofollow" class="external-link" href="https://tools.ietf.org/html/rfc7525">https://tools.ietf.org/html/rfc7525</a>) and the latest version of the NCSC-security guidelines for TLS-usage (currently <span> </span><a href="https://www.ncsc.nl/binaries/ncsc/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1/ICT-beveiligingsrichtlijnen+voor+Transport+Layer+Security+v2.1.pdf" rel="nofollow" class="external-link" style="text-decoration: none;">https://www.ncsc.nl/binaries/ncsc/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1/ICT-beveiligingsrichtlijnen+voor+Transport+Layer+Security+v2.1.pdf</a>). The following requirements are applicable for this specification in relation to the NCSC guidelines:</p><ul><li>For back-channel communication, the guidelines categorized as &quot;good&quot; MUST be applied.</li><li>For front-channel communication, the guidelines for &quot;good&quot; MUST be applied and the guidelines for &quot;sufficient&quot; MAY be applied, depending on target audience and support requirements.</li><li>Guidelines categorized as &quot;insufficient&quot; MUST NOT be applied and those categorized as &quot;phase out&quot; SHOULD NOT be used.</li></ul><p>As HTTP itself is stateless, implementations are free to choose a method of maintaining state or sessions with a User-agent when applicable. The following applies for any HTTP state/session mechanism:</p><ul><li>HTTP servers MUST ensure session and state information is secured and User-agents are properly instructed with relevant security settings (e.g. proper cookie lifetime, Secure setting for cookies, CORS headers and similar).</li><li>Any HTTP session or state tracking mechanisms MUST be implemented using current best practices to avoid session hijacking and other attacks. For more information, see for instance <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md" rel="nofollow" class="external-link">https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md</a>.</li></ul><p><br/></p><p><br/></p><p><br/></p></p><p><br/></p><p><strong>Multiple certificates</strong></p><p>SAML and XML-encryption allow for multiple ‘recipients’ of the same encrypted element. The (SAML) construct for this is specified in more detail in errata E43 of<span> </span><a href="http://docs.oasis-open.org/security/saml/v2.0/errata05/os/saml-v2.0-errata05-os.html" class="external-link" style="text-decoration: none;" rel="nofollow">SAML 2.0 errata 05</a>.<br/>This feature MAY be used to help facilitate a certificate change at the Service Provider, by (temporarily) allowing both the old and/or the new certificate to be used. The following additional requirements than apply.</p><ul><li>each EncryptedKey MUST have a CarriedKeyName equal to the KeyName used in the KeyInfo of the EncryptedData.</li><li>each EncryptedKey SHOULD have a ReferenceList, referring back to the data encrypted with the symmetric key contained.</li></ul>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

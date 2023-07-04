@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : GUC1 Gebruiken eToegang als dienstafnemer</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : GUC1 Gebruiken eToegang als dienstafnemer
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Apr 10, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In deze use case wordt de identiteit van de dienstafnemer vastgesteld. De Herkenningsmakelaar geeft hierover een verklaring af aan de dienstverlener. De gebruiker voert hiertoe de <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> uit.De use case wordt hieronder in een activity diagram weergegeven.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="250" src="attachments/118882557/118884232.png" data-image-src="attachments/118882557/118884232.png" data-unresolved-comment-count="0" data-linked-resource-id="118884232" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2015-9-28 10:42:11.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882557" data-linked-resource-container-version="31"></span></p><p>De verschillende acties voor use case GUC1 worden hier in meer detail beschreven. Voor de acties in use case GUC3 wordt verwezen naar <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a>.</p><p><br/></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>Nr.</p></th><th class="confluenceTh"><p>Actie</p></th><th class="confluenceTh"><p>Omschrijving</p></th></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><p>De dienstafnemer gebruikt voor zichzelf een dienst bij een dienstverlener die authenticatie van de dienstafnemer vereist. De dienstafnemer is daarmee tevens gebruiker.</p></td></tr><tr><td class="confluenceTd"><p>1.1</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Dienstverlener stelt vraag aan Herkenningsmakelaar</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De dienstverlener stuurt de gebruiker door naar de Herkenningsmakelaar en stelt daarbij een vraag. Deze vraag bevat het identificerend kenmerk van zowel de betreffende dienstverlener als de betreffende dienst.</p><p><strong>Alternatieve scenario's:</strong></p><ul><li><p>Vóór stap 1.1 MAG de Dienstverlener de gebruiker een keuzescherm bieden voor het kiezen van een eHerkenning Authenticatiedienst. Deze lijst met relevante Authenticatiediensten wordt opgehaald bij de Herkenningsmakelaar en bevat eIDAS NIET als optie. Met de vraag wordt dan ook het identificerende kenmerk van de door de gebruiker gekozen Authenticatiedienst meegegeven in stap 1.1. De gebruiker kan ervoor kiezen deze keuze te bewaren bij de Dienstverlener in geval van succesvolle authenticatie.</p></li><li>In het geval dat de dienst ook toegankelijk is na authenticatie met eIDAS-erkende buitenlandse authenticatie middelen, MOET de Dienstverlener de gebruiker een keuzescherm bieden voor het kiezen van authenticatie via eIDAS of eHerkenning (vóór stap 1.1). Op dit scherm kiest de dienstafnemer tussen authenticeren via eIDAS of via eHerkenning.<br/>In het geval dat authenticatie via eIDAS wordt gekozen, wordt het identificerend kenmerk van de eIDAS Berichtenservice (EB) meegegeven in stap 1.1. De gebruiker kan er NIET voor kiezen om deze keuze te bewaren bij de Dienstverlener.</li></ul></div></td></tr><tr><td class="confluenceTd"><p>1.2</p></td><td class="confluenceTd"><p>Uitvoeren <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a></p></td><td class="confluenceTd"><div class="content-wrapper"><p>Het resultaat is dat de Herkenningsmakelaar een verklaring over de authenticatie van de gebruiker ontvangt met een <a href="Pseudoniem_118882671.html">Pseudoniem</a>.</p><p><strong>Alternatieve scenario's:</strong></p><p>Wanneer in deze stap geconstateerd wordt dat er sprake is van vertegenwoordiging, wordt de use case vervolgd met <span>stap 2.3</span> in <a href="GUC2-Gebruiken-eToegang-als-vertegenwoordiger_118882555.html">GUC2 Gebruiken eToegang als vertegenwoordiger</a>.</p></div></td></tr><tr><td class="confluenceTd"><p>1.3</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Herkenningsmakelaar beantwoordt vraag van dienstverlener met verklaring</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar beantwoordt de vraag van de dienstverlener. Dit antwoord bevat een verklaring die de Herkenningsmakelaar opstelt op basis van de van de authenticatiedienst ontvangen verklaring over de authenticatie van de gebruiker met daarin het betrouwbaarheidsniveau van de verklaring en <a href="Identificerende-kenmerken_118882780.html">Identificerende kenmerken</a>.</p></div></td></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Finale staat</p></td><td class="confluenceTd"><p>De dienstafnemer is geauthenticeerd en de dienstverlener heeft daar de benodigde informatie over ontvangen. De dienstafname kan worden vervolgd. Informatie over de gebruiker kan benut worden voor personalisatie, logging e.d.</p></td></tr></tbody></table></div><p>ad actie 1.1: De vraag is als AuthnRequest in detail beschreven in <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a>.</p><p>ad actie 1.3: Het antwoord is als Response in detail beschreven in <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a><strong><span style="color: rgb(0,102,204);">.</span></strong></p><p>In het communication diagram hieronder is aangegeven welke varianten van AD-keuzen een Dienstverlener kan aanbieden en hoe de verwerkings-flow dan wordt:</p><ul><li>eH Inlog link: Dit is de link die de 'normale' flow waarbij de DV geen AD keuze aanbiedt start.</li><li>ADList: Dit is het keuzescherm met eHerkennings authenticatie diensten dat een DV mag aanbieden. Deze lijst MAG de eIDAS-berichtenservice NIET bevatten.</li><li><p>eIDAS Inlog link: Dit is de link die waarmee de gebruiker aangeeft met een buitenlands middel te willen inloggen. De flow wordt naar de eIDAS-berichtenservice doorgezet. Zie  <a href="Richtlijnen-communicatie-eIDAS_118882322.html">Richtlijnen communicatie eIDAS</a></p></li></ul><blockquote><p>Note: de genoemde &quot;inlog links&quot; in het lijstje hierboven, vind je o.a. op pagina 6 van het bijgevoegde document (&quot;Klantreis eIDAS–adviesrapport 27082019.pdf&quot;).</p></blockquote><h3 id="GUC1GebruikeneToegangalsdienstafnemer-"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" draggable="false" src="attachments/118882557/118884954.png" data-image-src="attachments/118882557/118884954.png" data-unresolved-comment-count="0" data-linked-resource-id="118884954" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="UX J.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882557" data-linked-resource-container-version="31"></span></span></h3><p>In de figuur is aangegeven volgens welke gebruikersinteractie bepaald wordt welke AD of EB gebruikt gaat worden</p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882557/118884232.png">image2015-9-28 10:42:11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882557/118884954.png">UX J.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

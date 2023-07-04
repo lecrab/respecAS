@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Alternatief scenario attribuutverstrekking</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="118882540.html">Use case overschrijdende alternatieve scenario&#39;s</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Alternatief scenario attribuutverstrekking
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Jul 23, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In stap 1.1 van <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> en stap 2.1 van <a href="GUC2-Gebruiken-eToegang-als-vertegenwoordiger_118882555.html">GUC2 Gebruiken eToegang als vertegenwoordiger</a> kan de dienstverlener wanneer de Herkenningsmakelaar dit ondersteunt optioneel om aanvullende attributen vragen. Dit kan impliciet door met de Herkenningsmakelaar af te spreken dat voor een bepaalde dienst altijd een bepaalde set attributen wordt uitgevraagd. De gevraagde attributen worden opgenomen in de DV-HM <a href="SAML-metadata_118882580.html">SAML metadata</a> en de <a href="Service-catalog_118882581.html">Service catalog</a> (Dienstencatalogus). Een dienstverlener kan verschillende metadata profielen hanteren voor verschillende sets met uit te vragen attributen.</p><p>In stap 3.2 van <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> neemt de Herkenningsmakelaar, wanneer de dienstverlener om aanvullende attributen vraagt, de attributen die de authenticatiedienst zou kunnen leveren in de vraag op.</p><p>Na stap 3.4 van <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> toont de authenticatiedienst, wanneer aanvullende attributen van de authenticatiedienst worden gevraagd, de authenticatiedienst dit ondersteunt en de attributen in de Dienstencatalogus voor de gevraagde dienst vermeld staan, de beschikbare attributen en de waarden van de attributen en vraagt de gebruiker goedkeuring om deze attributen te verstrekken ( <a href="User-consent_118882652.html">User consent</a>). In het geval van Dienstbemiddeling levert de authenticatiedienst de attributen versleuteld aan alleen de dienstaanbieder op. De authenticatiedienst MOET de display name van de attributen uit de <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a> op eenvoudige wijze tonen. De authenticatiedienst MOET de doelbinding uit de Dienstencatalogus op eenvoudige wijze tonen. Indien de gebruiker al eerder doorlopende user consent heeft gegeven dan kan deze stap achterwege worden gelaten.</p><p>In stap 3.5 van <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> worden, wanneer aanvullende attributen worden gevraagd en de authenticatiedienst dit ondersteunt, in het antwoord ook de beschikbare en waarvoor de gebruiker user consent heeft verleend, opgenomen in versleutelde vorm.</p><p>Na stap 4.3 van <a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a> toont het machtigingenregister, wanneer aanvullende attributen van het machtigingenregister worden gevraagd, het machtigingenregister dit ondersteunt en de attributen in de Dienstencatalogus voor de gevraagde dienst vermeld staan, de beschikbare attributen en de waarden van de attributen en vraagt de gebruiker goedkeuring om deze attributen te verstrekken (<a href="User-consent_118882652.html">User consent</a>). In het geval van Dienstbemiddeling levert het machtigingenregister de attributen versleuteld aan alleen de dienstaanbieder op. Het Machtigingenregister MOET de display name van de attributen uit de <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a> op eenvoudige wijze tonen. Het Machtigingenregister MOET de doelbinding uit de Dienstencatalogus op eenvoudige wijze tonen. Indien de machtigingenbeheerder van de vertegenwoordigde dienstafnemer/intermediaire partij al eerder (bijvoorbeeld bij registratie van de machtiging) doorlopende user consent heeft gegeven dan kan deze stap achterwege worden gelaten.</p><p>In stap 4.4 van <a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a> worden, wanneer aanvullende attributen worden gevraagd en het machtigingenregister dit ondersteunt, in het antwoord ook de beschikbare en waarvoor de gebruiker user consent heeft verleend, opgenomen in versleutelde vorm. Vestigingsspecifieke attributen worden alleen verstrekt indien ze als zodanig gevraagd worden.</p><p>In stap 1.3 van <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> en stap 2.4 van <a href="GUC2-Gebruiken-eToegang-als-vertegenwoordiger_118882555.html">GUC2 Gebruiken eToegang als vertegenwoordiger</a> worden, wanneer aanvullende attributen door de dienstverlener zijn gevraagd en deze attributen door authenticatiedienst en/of machtigingenregister zijn geleverd, deze in versleutelde vorm aan het antwoord toegevoegd.</p><p><br/></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Bij Dienstbemiddeling worden attributen alleen geleverd aan de Dienstaanbieder, de Dienstbemiddelaar ontvangt dus geen attributen. Een Dienstbemiddelaar kan deze attributen wel verkrijgen door voorafgaand aan de Dienstbemiddeling de attributen zelf uit te vragen voor een eigen dienst (en treedt dan direct als dienstverlener op).</p></div></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

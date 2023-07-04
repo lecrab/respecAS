@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : SAML encryption</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Information-security-requirements_118882582.html">Information security requirements</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Encryption_118882641.html">Encryption</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : SAML encryption
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Unknown User (rschaar)</span>, last modified by <span class='editor'> Maurice Pasman</span> on Nov 13, 2017
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Encryption in combination with SAML is achieved via XML-encryption. This paragraph provides an explanation of encrypted elements as well as elements encrypted to multiple recipients.</p><h4 id="SAMLencryption-Encryptedelements">Encrypted elements</h4><p>Any element that will be encrypted has to conform to the following:</p><ul><li>The element MUST be encrypted using applicable encryption algorithms, as defined in <a href="Encryption_118882641.html">Encryption</a>.</li><li>A new, cryptographically sound randomly generated symmetric key MUST be used per encrypted element.</li><li>The @Recipient of the resulting &lt;EncryptedKey&gt; MUST be set to the EntityID of the recipient.</li><li>XML contents in the encrypted element MUST have all namespace definitions.</li></ul><h4 id="SAMLencryption-Multiplerecipients">Multiple recipients</h4><p>SAML and XML-encryption allow for multiple recipients of the same encrypted element. The construct for this is specified in more detail in errata E43 of <a href="http://docs.oasis-open.org/security/saml/v2.0/errata05/os/saml-v2.0-errata05-os.html" class="external-link" rel="nofollow">SAML 2.0 errata 05</a>. In case of multiple recipients:</p><ul><li>each EncryptedKey MUST have a CarriedKeyName equal to the KeyName used in the KeyInfo of the EncryptedData.</li><li>each EncryptedKey SHOULD have a ReferenceList, refering back to the data encrypted with the symmetric key contained.</li><li>Upon decryption, elements without an EncryptedKey intended for the decrypting recipient MAY be ignored and EncryptedKeys for other recipients of encrypted elements SHOULD be ignored.</li></ul><h4 id="SAMLencryption-EncryptedID">EncryptedID</h4><p>An &lt;EncryptedID&gt; MUST contain a SAML &lt;NameID&gt; after decryption, with the following properties:</p><ul><li>The Format attribute MUST be set to 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'.</li><li>The NameQualifier attribute MUST be populated with the full name of the type of identifying attribute (e.g. 'urn:etoegang:EntityConcernedID:KvKnr').<ul><li>For <a href="Intern-pseudoniem_118882634.html">Intern pseudoniem</a> identifiers, the NameQualifier MUST contain the <a href="OIN-format_118882574.html">OIN format</a> of the EntityID (KvK number) of the &quot;Authenticatiedienst&quot;.</li><li>For other <a href="Identificerende-kenmerken_118882780.html">Identificerende kenmerken</a>, the NameQualifier MUST contain the identifing attribute's name, in URI format. For instance for a BSN the value is 'urn:etoegang:1.9:EntityConcernedID:BSN' and for a Specific pseudonym the value is 'urn:etoegang:1.9:EntityConcernedID:Pseudo'.</li></ul></li><li>The attributes SPNameQualifier and SPProvidedID MUST NOT be used.</li><li>In case more than one certificate is listed for encryption for the recipient, the pseudonym MUST be encrypted for each certificate. This will result in multiple EncryptedKeys, see above.<span><br/></span></li></ul><h4 id="SAMLencryption-EncryptedAttribute">EncryptedAttribute</h4><p>An &lt;EncryptedAttribute&gt; MUST contain a SAML &lt;Attribute&gt; after decryption, with the following properties:</p><ul><li>The @Name attribute MUST be present.</li><li>One &lt;AttributeValue&gt; per value of the attribute MUST be used.</li></ul><h4 id="SAMLencryption-Examples">Examples</h4><p>Below two examples are given, with encryption and after decryption. the EncryptedID example is for a single recipient, the EncryptedAttribute example is for multiple recipients. The same construct for single / multiple recipient can be used in the other encrypted element types.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example EncryptedID</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&nbsp;&lt;saml2:EncryptedID xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+     xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+    &lt;xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+        Id="_cd52e15a16e2a0aa751725ce76a6b866" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+        &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:RetrievalMethod Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey"
+                URI="#_15531f77a9f1e0b5e0cce442aa31bbd4" /&gt;
+        &lt;/ds:KeyInfo&gt;
+        &lt;xenc:CipherData&gt;
+            &lt;xenc:CipherValue&gt;AZkW3hbBaQkxs...&lt;/xenc:CipherValue&gt;
+        &lt;/xenc:CipherData&gt;
+    &lt;/xenc:EncryptedData&gt;
+    &lt;xenc:EncryptedKey Id="_15531f77a9f1e0b5e0cce442aa31bbd4"
+        Recipient="urn:etoegang:..."&gt;
+        &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+            &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+        &lt;/xenc:EncryptionMethod&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+        &lt;xenc:CipherData&gt;
+            &lt;xenc:CipherValue&gt;yRy923JJlgAi2MTgx1qohLiDBgi...&lt;/xenc:CipherValue&gt;
+        &lt;/xenc:CipherData&gt;
+        &lt;xenc:ReferenceList&gt;
+            &lt;xenc:DataReference URI="#_cd52e15a16e2a0aa751725ce76a6b866" /&gt;
+        &lt;/xenc:ReferenceList&gt;
+    &lt;/xenc:EncryptedKey&gt;
+&lt;/saml2:EncryptedID&gt;
+
+</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example NameID after decryption</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml2:NameID xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" NameQualifier="urn:etoegang:1.9:EntityConcernedID:BSN"&gt;999999047&lt;/saml2:NameID&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example EncryptedAttribute - multiple recipients</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&nbsp;&lt;saml2:EncryptedAttribute xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+    &lt;xenc:EncryptedData Id="_3c63798db8a16b54ade207ea0df28ad4" Type="http://www.w3.org/2001/04/xmlenc#Element"&gt;
+        &lt;xenc:EncryptionMethod xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+            Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" /&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;_dd0d7a0215f94ea81b170a2e65834ce8&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+        &lt;xenc:CipherData&gt;
+            &lt;xenc:CipherValue&gt;5efOYLEoY1PD2145...&lt;/xenc:CipherValue&gt;
+        &lt;/xenc:CipherData&gt;
+    &lt;/xenc:EncryptedData&gt;
+    &lt;xenc:EncryptedKey Id="_fd73ad54daf1ca14a4aac30ea850340a" Recipient="urn:etoegang:..."&gt;
+        &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+            &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+        &lt;/xenc:EncryptionMethod&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+        &lt;xenc:CipherData&gt;
+            &lt;xenc:CipherValue&gt;H5nzimm7fAZuzdnZ...&lt;/xenc:CipherValue&gt;
+        &lt;/xenc:CipherData&gt;
+        &lt;xenc:ReferenceList&gt;
+            &lt;xenc:DataReference URI="#_3c63798db8a16b54ade207ea0df28ad4" /&gt;
+        &lt;/xenc:ReferenceList&gt;
+        &lt;xenc:CarriedKeyName&gt;_dd0d7a0215f94ea81b170a2e65834ce8&lt;/xenc:CarriedKeyName&gt;
+    &lt;/xenc:EncryptedKey&gt;
+    &lt;xenc:EncryptedKey Id="_e152fcf0772b8921f09ec0c1a45f1fa4" Recipient="urn:etoegang:..."&gt;
+        &lt;xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"&gt;
+            &lt;ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /&gt;
+        &lt;/xenc:EncryptionMethod&gt;
+        &lt;ds:KeyInfo&gt;
+            &lt;ds:KeyName&gt;...&lt;/ds:KeyName&gt;
+        &lt;/ds:KeyInfo&gt;
+        &lt;xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"&gt;
+            &lt;xenc:CipherValue&gt;xyH8nQscJYAaYwJopGaLPk...&lt;/xenc:CipherValue&gt;
+        &lt;/xenc:CipherData&gt;
+        &lt;xenc:ReferenceList&gt;
+            &lt;xenc:DataReference URI="#_3c63798db8a16b54ade207ea0df28ad4" /&gt;
+        &lt;/xenc:ReferenceList&gt;
+        &lt;xenc:CarriedKeyName&gt;_dd0d7a0215f94ea81b170a2e65834ce8&lt;/xenc:CarriedKeyName&gt;
+    &lt;/xenc:EncryptedKey&gt;
+&lt;/saml2:EncryptedAttribute&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example Attribute after decryption</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;saml2:Attribute xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:attrext="urn:oasis:names:tc:SAML:attributes:ext" Name="urn:etoegang:attribute:18OrOlder" attrext:OriginalIssuer="urn:etoegang:1.9:attribute-sourceid:NLWID" attrext:LastModified="2015-03-31T12:00:00Z"&gt;
+    &lt;saml2:AttributeValue&gt;false&lt;/saml2:AttributeValue&gt;
+&lt;/saml2:Attribute&gt;</pre> 
+ </div>
+</div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

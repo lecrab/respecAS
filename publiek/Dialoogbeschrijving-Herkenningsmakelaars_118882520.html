@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Dialoogbeschrijving Herkenningsmakelaars</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Gebruikersinterface_118882523.html">Gebruikersinterface</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Dialoogbeschrijving_118882519.html">Dialoogbeschrijving</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Dialoogbeschrijving Herkenningsmakelaars
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Mar 02, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>De Herkenningsmakelaar MOET in het kader van gebruik aan de volgende aanvullende eisen voldoen:</p><ul><li>Indien het een &quot;eIDAS Inkomend&quot; verzoek betreft:<ul><li>Laat geen scherm zien, maar stuur het verzoek direct door naar de eIDAS Berichtenservice (EB)</li></ul></li><li>De opsomming van deelnemers in de keuzelijst van de Herkenningsmakelaar MOET in alfabetische volgorde worden getoond volgens de naam die is opgenomen in het veld &quot;displayname&quot; dat is opgenomen in de metadata, ongeacht hoofd- of kleine letters. Zie <a href="Interface-specifications_118882754.html">Interface specifications</a>.</li><li>Deze opsomming MOET alleen de deelnemers tonen die het door de dienstverlener gevraagde <a href="Identificerende-kenmerken_118882780.html">Identificerende kenmerk</a> kan leveren. Zie <a href="Metadata-for-participants_118882614.html">Metadata for participants</a>.</li><li>De Herkenningsmakelaar MOET voor stap 3.1 uit <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> en stap 4.1 uit <a href="GUC4-Aantonen-bevoegdheid_118882550.html">GUC4 Aantonen bevoegdheid</a> twee aparte gestandaardiseerde schermen implementeren. De beheerorganisatie stelt hiervoor templates ter beschikking ( <a href="attachments/118882520/118885561.zip" data-linked-resource-id="118885561" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="20210709 schermen eherkenning versie 16.zip" data-nice-type="Zip Archive" data-linked-resource-content-type="application/zip" data-linked-resource-container-id="118882520" data-linked-resource-container-version="50">20210709 schermen eherkenning versie 16.zip</a>). De template MOET als volgt worden gevuld:</li><ul><li>Tenzij dienst 0 (GUC4.3 Portaalfunctie) wordt <em>naam_dienst </em>gevuld met <em>&quot;voor ServiceName</em>&quot;</li><li>In geval veld @ProviderName in het SAML-bericht wordt <em>naam_dienst</em> aangevuld met &quot;<em>(@ProviderName)</em>&quot;</li><li>In  het geval van dienstbemiddeling wordt <em>naam_dienst </em>aangevuld met &quot;en bij <em>naam_dienstaanbieder voor naam_dienstaanbieder_dienst&quot;</em></li><li>De namen van de dienst en dienstverlener (dan wel dienstbemiddelaar) en dienstaanbieder zijn afkomstig uit de dienstencatalogus.</li><li>De namen van de authenticatiediensten en machtigingenregisters zijn afkomstig uit de metadata.</li><li>@ProviderName is afkomstig uit de DV-Request</li></ul><li>Op het scherm van de Herkenningsmakelaar wordt vermeld wat het door de dienstverlener minimaal vereiste betrouwbaarheidsniveau is.</li><li>Het vakje &quot;Onthoud deze keuze&quot; is default aangevinkt, ook indien na annuleren er hernieuwde selectie plaatsvindt. Als gebruiker dit vakje uitvinkt, moet deze selectie onthouden worden door het plaatsen van een cookie. Zie <a href="Single-sign-on-and-user-sessions_118882572.html">Single sign-on and user sessions</a>.</li><li>Deelnemers die ETD voorzieningen gerealiseerd hebben m.b.v. een subsidie uit Europa moeten dit vanwege de subsidie regeling vermelden. Omdat standaardisatie van de HM look &amp; feel gewenst is MOETEN die deelnemers dit vermelden onderaan de template met de voorgeschreven logo, zie <a class="unresolved" href="#">template cef voor HM.zip</a>.</li></ul><p><span style="color: rgb(255,0,0);">Note: At this moment the use of ASTA-sets and Service Intermediation is limited to the EB for eIDAS Outgoing.</span></p><h3 id="DialoogbeschrijvingHerkenningsmakelaars-Voorbeelden">Voorbeelden</h3><p>Een voorbeeld voor eIDAS-outbound (dienstbemiddeling):</p><p>U wilt inloggen bij <strong>Authenticatie buitenlandse dienstverlener</strong><span> </span>voor<span> </span><strong>Publieke dienst in Duitsland</strong><span> </span>(Finanzamt) en bij <strong>Rijksdienst voor Identiteitsgegevens</strong><span> </span>voor<span> </span><strong>Ophalen persoonsgegevens voor EU inlog</strong>. U heeft hiervoor een inlogmiddel nodig van minimaal <strong style=""><span> </span>betrouwbaarheidsniveau EH3.</strong></p><p>eHerkenning template:</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="400" src="attachments/118882520/118884253.png" data-image-src="attachments/118882520/118884253.png" data-unresolved-comment-count="0" data-linked-resource-id="118884253" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="screencap_eh.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882520" data-linked-resource-container-version="50"></span></p>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882520/118884253.png">screencap_eh.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882520/118884254.png">screencap_idensys.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882520/118882818.pdf">20170131 Visuele weergave buttons HM-scherm KTO.pdf</a> (application/x-download)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882520/118882913.jpg">Screenshot template inlogscherm eHerkenning.JPG</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882520/118885561.zip">20210709 schermen eherkenning versie 16.zip</a> (application/zip)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

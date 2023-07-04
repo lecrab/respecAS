@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Interface specifications DV-HM RequestADlist</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Interface specifications DV-HM RequestADlist
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Mar 19, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>For preselection of an AD by the user at the DV, the DV retrieves a list of relevant AD's for that service from the HM (that the HM compiles from network metadata), to complete <a href="AUC8-Verkrijgen-lijst-Authenticatiediensten_118882327.html">AUC8 Verkrijgen lijst Authenticatiediensten</a>.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/></colgroup><tbody><tr><th class="confluenceTh">DV-HM sequence diagram</th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="150" src="attachments/118882326/118883946.png" data-image-src="attachments/118882326/118883946.png" data-unresolved-comment-count="0" data-linked-resource-id="118883946" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-12-12 11:29:46.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882326" data-linked-resource-container-version="9"></span></p></div></td></tr></tbody></table></div><h3 id="InterfacespecificationsDVHMRequestADlist-RequestADlist(1)"><strong>RequestADlist (1)</strong></h3><p>A DV may request a list of all accredited ADs, by making a HTTP GET request at an endpoint provided by its HM.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">0..n</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">ServiceUUID</td><td class="confluenceTd">1</td><td class="confluenceTd"><span class="inline-comment-marker" data-ref="e26976c3-7f58-4b76-9291-8fdf7923a1dd">ServiceUUID</span> is an identifier of a ServiceInstance as listed in the <a href="Service-catalog_118882581.html">Service catalog</a>. Provided here to refer to the service for which the list is requested.</td></tr><tr><td class="confluenceTd">RequestedAuthnContext</td><td class="confluenceTd">0..1</td><td class="confluenceTd">Optionally, an additional parameter 'RequestedAuthnContext' MAY be included with a LoA equal to or lower than listed in the Service Catalog.</td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example RequestADlist</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence">GET /listAD.xml?ServiceUUID=a392d917-d965-4cb8-bff4-238694fc3336 HTTP/1.1
+Host: hm.example.nl</pre> 
+ </div>
+</div><h4 id="InterfacespecificationsDVHMRequestADlist-ProcessingrulesforRequestADList">Processing rules for RequestADList</h4><p>A requesting DV:</p><ul><li>MUST supply the ServiceUUID registered in the Service Catalog for the ServiceInstance for which authentication will be requested as the 'ServiceUUID' parameter.</li><li>MAY optionally request the list of ADs for a LoA equal to or lower than listed in the Service Catalog.</li></ul><p>A receiving HM:</p><ul><li>MUST validate a request.</li></ul><h3 id="InterfacespecificationsDVHMRequestADlist-ProvideADlist(2)"><strong>ProvideADlist (2)</strong></h3><p>A HM MUST respond with a signed list of valid, applicable and accredited ADs for the requested service. This list MUST be a subset of the <a href="Network-metadata_118882616.html">Network metadata</a>.</p><p>The list is a signed SAML EntitiesDescriptor, containing one EntityDescriptor per AD or two in case validity dates are used as in <a href="Metadata-for-participants_118882614.html">Metadata for participants</a>.</p><p>Each EntityDescriptor contains one IDPSSODscriptor with one or more SingleSignOnService elements and one Organization element. The Orgnization element contains a OrganizationName, OrganizationDisplayName and OrganizationURL, as per SAML metadata specification. Other element and attributes as described in <a href="Metadata-for-participants_118882614.html">Metadata for participants</a> MAY be present.</p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example ProvideADlist (SAML metadata)</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;md:EntitiesDescriptor
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:eme="urn:etoegang:1.11:metadata-extension"&gt;
+
+    &lt;ds:Signature&gt;...&lt;/ds:Signature&gt;
+
+    &lt;md:EntityDescriptor entityID="urn:etoegang:AD:..."&gt;
+        &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+            &lt;md:SingleSignOnService Location="https://..." Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" eme:name="app" /&gt;
+            &lt;md:SingleSignOnService Location="https://..." Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" eme:name="web" /&gt;
+        &lt;/md:IDPSSODescriptor&gt;
+        &lt;md:Organization&gt;
+            &lt;md:OrganizationName xml:lang="nl"&gt;AD A&lt;/md:OrganizationName&gt;
+            &lt;md:OrganizationDisplayName xml:lang="nl"&gt;AD A&lt;/md:OrganizationDisplayName&gt;
+            &lt;md:OrganizationURL xml:lang="nl"&gt;https://...&lt;/md:OrganizationURL&gt;
+        &lt;/md:Organization&gt;
+    &lt;/md:EntityDescriptor&gt;
+
+    &lt;md:EntityDescriptor entityID="urn:etoegang:AD:..."&gt;
+        &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+            &lt;md:SingleSignOnService Location="https://..." Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" /&gt;
+        &lt;/md:IDPSSODescriptor&gt;
+        &lt;md:Organization&gt;
+            &lt;md:OrganizationName xml:lang="nl"&gt;AD B&lt;/md:OrganizationName&gt;
+            &lt;md:OrganizationDisplayName xml:lang="nl"&gt;AD B&lt;/md:OrganizationDisplayName&gt;
+            &lt;md:OrganizationURL xml:lang="nl"&gt;https://...&lt;/md:OrganizationURL&gt;
+        &lt;/md:Organization&gt;
+    &lt;/md:EntityDescriptor&gt;
+
+&lt;/md:EntitiesDescriptor&gt;</pre> 
+ </div>
+</div><h4 id="InterfacespecificationsDVHMRequestADlist-ProcessingrulesforProvideADlist"><strong>Processing rules for ProvideADlist</strong></h4><p>A responding HM:</p><ul><li>MUST provide a subset of the <a href="Network-metadata_118882616.html">Network metadata</a>, containing all applicable ADs for the requested service. The subset:<ul><li><span class="inline-comment-marker" data-ref="3787d41a-3087-45f7-8ed7-fc7726a24e4a">MUST contain all valid ADs supporting at least a LevelOfAssurance equal to or greater than the minimum requested level of assurance.</span><ul><li><span class="inline-comment-marker" data-ref="3787d41a-3087-45f7-8ed7-fc7726a24e4a">The eIDAS Berichtenservice (EB) MUST NOT be included as one of the valid ADs.</span></li></ul></li><li>MUST contain the requested NameIDFormat(s) (=EntityConcernedType).</li><li>MUST contain values holding an exact copy of the corresponding values in the <a href="Network-metadata_118882616.html">Network metadata</a>.</li><li>MUST be sorted alphabetically by OrganizationDisplayName.<span><br/></span></li><li>MUST not contain any other entries.</li></ul></li><li>MUST sign this metadata using its own certificate as listed in the Network metadata for signing.</li></ul><p>A receiving DV:</p><ul><li>MUST validate the signature on the response before processing the response.</li><li class="confluence-link">MUST display all ADs using the OrganizationDisplayName in the provided list when presenting a User the list for AD preselection.</li><li>MUST display all ADs in the order of the list provided by the HM.</li><li>MUST use the entityID of the EntityDescriptor and Location attribute of the SignleSignOnService element <span class="inline-comment-marker" data-ref="2cd1f02a-508b-49d9-bda1-61f736673b0c">corresponding with the User's selection</span> to populate the IDPEntry in the Scoping element.</li><li>In case of the <a href="118882363.html">eIDAS-berichtenservice (EB)</a>.</li><ul><li>The DV MUST use a separate login-link for the eIDAS-berichtenservice (EB), and MUST NOT present the EB in the eHerkenning list of AD's (see <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a>).</li><li>MAY use the ISOName to change the language settings for a user.</li></ul><li>SHOULD ignore other elements and attributes in the list.</li><li><span class="inline-comment-marker" data-ref="3e7e1697-1697-4282-9f13-55d9437fb34b">SHOULD take 'validFrom' and 'validUntil' of entries into account.</span></li><li><span class="inline-comment-marker" data-ref="63286c1f-4440-4e84-aa7e-ff4fb4d5734a">SHOULD cache the list received from an HM per service, for the duration of maximum 15 minutes. The DV MUST NOT use a list older than 30 minutes for presentation to a User; in case the list expires the DV MUST forwarded the User to the HM as if no pre-selection is implemented</span>.</li></ul>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882326/118883946.png">image2016-12-12 11:29:46.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

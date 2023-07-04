@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Use cases Single Sign-On</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Use cases Single Sign-On
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Sander Boer</span> on Dec 18, 2015
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In stap <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> of <a href="GUC2-Gebruiken-eToegang-als-vertegenwoordiger_118882555.html">GUC2 Gebruiken eToegang als vertegenwoordiger</a> kan de dienstverlener in de vraag specificeren dat single sign-on is toegestaan of dat een hernieuwde authenticatie wordt afgedwongen.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><span class="inline-comment-marker" data-ref="6cf47b0c-a550-4812-960a-18714a36d32e">Voor diensten die betrouwbaarheidsniveau 4 vereisen</span> is single sign-on nooit toegestaan.</div></div><p>In stap <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> wordt door een authenticatiedienst die SSO ondersteunt als volgt gehandeld:</p><ul><li>Indien door de dienstverlener een hernieuwde authenticatie wordt afgedwongen en er al eerder een aanlog door de gebruiker heeft plaatsgevonden waarvan de authenticatie bewaard is gebleven, MOET de nog niet verlopen authenticatie worden beëindigd. Daarnaast MAG na succesvolle authenticatie de optie worden geboden aan de gebruiker om aangelogd te blijven. Indien de gebruiker deze optie selecteert, wordt deze bewaard en kan vanaf dat moment SSO plaatsvinden. Tevens MOET de authenticatiedienst vanaf dit moment de timer van het maximum authenticatiedienst tijdsverloop starten;</li><li>Indien SSO is toegestaan en er al eerder een aanlog door de gebruiker heeft plaatsgevonden waarvan de authenticatie bewaard is en die nog niet verlopen is, wordt deze hergebruikt zonder interactie met de gebruiker en gaat het authenticatiedienst tijdsverloop opnieuw in;</li><li>Indien er geen eerdere (nog) geldige authenticatie is, MAG de optie worden geboden aan de gebruiker om aangelogd te blijven. Indien de gebruiker deze optie selecteert, wordt deze bewaard en kan vanaf dat moment SSO plaatsvinden. Tevens zal de authenticatiedienst vanaf dit moment de timer van het maximum authenticatiedienst tijdsverloop starten.</li></ul><p>Na het succesvol uitvoeren van <a href="GUC1-Gebruiken-eToegang-als-dienstafnemer_118882557.html">GUC1 Gebruiken eToegang als dienstafnemer</a> of <a href="GUC2-Gebruiken-eToegang-als-vertegenwoordiger_118882555.html">GUC2 Gebruiken eToegang als vertegenwoordiger</a> MOET de dienstverlener die SSO toepast lokaal de sessie bijhouden. Indien SSO wordt toegepast moet de dienstverlener een logoutfunctie aanbieden.</p><h3 id="UsecasesSingleSignOn-VariantenbijSingleSign-On">Varianten bij Single Sign-On</h3><p>Als onderdeel van de alternatieve flow voor Single Sign-On kunnen de volgende varianten voorkomen (die hier dus als alternatieve flow binnen de alternatieve flow van <a href="Use-cases-Single-Sign-On_118882536.html">Use cases Single Sign-On</a> beschreven worden).</p><p><ul class='childpages-macro'><li><a href="Geen-reactie-bij-lezen-of-schrijven-selectie-authenticatiedienst_118882537.html">Geen reactie bij lezen of schrijven selectie authenticatiedienst</a></li><li><a href="Single-Log-out_118882533.html">Single Log-out</a></li></ul></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

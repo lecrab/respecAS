@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : EncryptedAttribute</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribute-elements_118882784.html">Attribute elements</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="XACML-attribute-elements_118882752.html">XACML attribute elements</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : EncryptedAttribute
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified on Sep 30, 2015
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="sectionColumnWrapper"><div class="sectionMacro"><div class="sectionMacroRow"><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Description</strong></p></th><td class="confluenceTd"><p>An encrypted additional attribute whereby each encrypted attribute is assigned a unique Encrypted_DATA_ID  that is the same as the name of the attribute in the <a class="unresolved" href="#">Attribute catalog</a>.</p><p class="TableContents">The service provider's service certificate that is included in the service catalogue MUST be used for encryption. A level of assurance is also passed for each EncryptedAttribute. A cipher value is included in the encrypted attribute. This cipher value contains the encrypted value of the request attribute that is encrypted with the key of the DV in the service catalogue.</p></td></tr><tr><th class="confluenceTh"><p><strong>Example</strong></p></th><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Example attribute metadata</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse" data-theme="Eclipse">&lt;saml:Attribute NameFormat=&quot;urn:oasis:names:tc:SAML:2.0:attrname-format:uri&quot;
+				Name=&quot;urn:etoegang:1.9:attribute:FirstName&quot;
+				xmlns:ext=&quot;urn:oasis:names:tc:SAML:attribute:ext&quot;
+				ext:LastModified=&quot;2014-7-23T7:34:00Z&quot; 
+				ext:OriginalIssuer=&quot;urn:etoegang:1.9:attribute-sourceid:NLWID&quot;&gt;
+	&lt;saml:AttributeValue xsi:type=&quot;xs:string&quot;&gt;Maurice&lt;/saml:AttributeValue&gt;
+ &lt;/saml:Attribute&gt;</pre>
+</div></div><p>Example of a multivalued attribute:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Example multivalued attribute metadata</b></div><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse" data-theme="Eclipse">&lt;saml:Attribute NameFormat=&quot;urn:oasis:names:tc:SAML:2.0:attrname-format:uri&quot;
+                Name=&quot;urn:etoegang:1.9:attribute:Bankaccount&quot; 
+				xmlns:ext=&quot;urn:oasis:names:tc:SAML:attribute:ext&quot;
+				ext:LastModified=&quot;2014-7-23T7:34:00Z&quot; 
+				ext:OriginalIssuer=&quot;urn:etoegang:1.9:attribute-sourceid:0000000012312123100&quot;&gt;         
+    &lt;saml:AttributeValue xsi:type=&quot;xs:string&quot;&gt;NL91INGB0006481668&lt;/saml:AttributeValue&gt;        
+    &lt;saml:AttributeValue xsi:type=&quot;xs:string&quot;&gt;NL91INGB0003712814&lt;/saml:AttributeValue&gt;
+    &lt;saml:AttributeValue xsi:type=&quot;xs:string&quot;&gt;NL91INGB0006481665&lt;/saml:AttributeValue&gt;
+&lt;/saml:Attribute&gt;</pre>
+</div></div></td></tr></tbody></table></div></div></div></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

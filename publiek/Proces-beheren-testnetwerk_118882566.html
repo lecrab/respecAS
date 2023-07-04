@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Proces beheren testnetwerk</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Organisatie_118882774.html">Organisatie</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Operationeel-handboek_118882731.html">Operationeel handboek</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Proces beheren testnetwerk
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Sep 09, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Het testnetwerk is een netwerk van alle deelnemers. Het heeft als functie om nieuwe systemen van nieuwe toetreders of deelnemers te kunnen onderwerpen aan ketentesten. Hiermee kan in een netwerk, dat zich op hoofdlijnen gedraagt als het productienetwerk, worden gecontroleerd of aan alle eisen wordt voldaan.</p><h3 id="Procesbeherentestnetwerk-Uitgangspunten">Uitgangspunten</h3><p class="confluence-link">Een (aspirant) deelnemer zal afhankelijk van zijn rol (<a href="118882705.html">Herkenningsmakelaar (HM)</a>, <a href="118882719.html">Authenticatiedienst (AD)</a> of <a href="118882644.html">Middelenuitgever (MU)</a> één of meerdere systemen in het testnetwerk opgenomen hebben. Van elk systeem kan tevens zowel een acceptatie- als een preproductie-versie aanwezig zijn. Een (aspirant) deelnemer test zijn acceptatiecomponenten tegen de preproductiecomponenten van de overige deelnemers.</p><p>De voorwaarden om het testnetwerk te laten functioneren, zijn als volgt:</p><ul><li>De staat van de preproductiecomponenten in het testnetwerk benadert zo veel mogelijk het productienetwerk.</li><li>Een herkenningsmakelaar MAG dienstverleners via haar preproductiecomponent toegang verlenen tot AD/MR van andere deelnemers en de simulator, mits dit niet tot overlast leidt.</li><li>Het uitvoeren van stresstesten MAG toestemming vooraf van alle te raken deelnemers.</li><li>Deelnemers MOGEN testmiddelen verschaffen aan dienstverleners die zijn aangesloten via een andere deelnemer.</li><li>De acceptatieomgeving dient om de eigen software te testen tegen de preproductiecomponenten van andere deelnemers.</li><li>Een deelnemer MOET toestemming hebben om te testen tegen de acceptatieomgeving van een andere deelnemer.</li><li>Alle deelnemers hebben de beschikking over testmiddelen, voor de preproductiecomponenten in het testnetwerk, voor elke authenticatiedienst en machtigingenregister, op elk toegetreden (of nog toe te treden) betrouwbaarheidsniveau. De deelnemers leveren deze testmiddelen aan elkaar uit.</li><li>Bij het deployen van een systeem in het testnetwerk dient voor een deelnemer of de beheerorganisatie helder te zijn welke build versie het systeem heeft. (Bijvoorbeeld door naamgeving, het displayen van het build nummer op de pagina of in een afgeleide (file).) Dit zodat kan worden nagegaan tegen welke versie van een systeem aan wordt getest. Bij de <span class="inline-comment-marker" data-ref="b4278d88-8208-4079-8368-a3f6fb5fbfed">toetredingschecklists</span> <span class="inline-comment-marker" data-ref="887cdd50-a17f-4627-a104-56d859743566">wordt altijd aangegeven</span> tegen welke build versies is getest.</li><li>Acceptatiecomponenten in het testnetwerk MOETEN herkenbaar zijn aan de toevoeging (acc) in de displayname</li><li>Preproductiecomponenten in het testnetwerk MOETEN herkenbaar zijn aan de toevoeging (preprod) in de displayname</li><li>Voor beschikbaarheid van preproductiecomponenten in het testnetwerk wordt een inspanningsverplichting en een meldplicht van verstoringen afgesproken.</li><li>Verzoeken van deelnemers om meer informatie betreffende een fout (op een systeem) in het testnetwerk ZOU binnen één werkdag beantwoord MOETEN worden.</li><li>Het in bezit hebben van testmiddelen door deelnemers en dienstverleners impliceert dat deze testmiddelen ook te allen tijde kunnen werken. Dat wil zeggen dat de uitgevers van deze middelen zich hiermee verplichten een soortgelijk serviceniveau te leveren als bij productiemiddelen het geval is.</li><li>Issues en verstoringen betreffende het testnetwerk worden gemeld in de issuetracker <a href="https://issues.eherkenning.nl" class="external-link" rel="nofollow">Mantis</a>.</li><li>De metadata en dienstencatalogus voor het testnetwerk zullen <span class="inline-comment-marker" data-ref="d16596e8-1ca2-43bf-947f-68f45637610f">ad hoc</span> verspreid worden, als de noodzaak zich aandient. Deze zullen op dezelfde manier als binnen het productienetwerk worden aangeboden aan de deelnemers.</li><li><span class="inline-comment-marker" data-ref="2c1549ee-e106-46e2-ae28-f166c280be09">Een deelnemer MAG haar acceptatie- en preproductiecomponenten NIET afsluiten voor andere deelnemers.</span></li><li>De deelnemers MOETEN zowel voor de acceptatie- als de preproductieomgeving gebruik maken van <span class="external-link"><a href="PKIoverheid_118882760.html">PKIoverheid</a> </span>certificaten. Dit geldt voor zowel het signing- als encryptiecertificaat. <span>Deze omgevingen moeten immers zo veel als mogelijk gelijkwaardig aan de productieomgeving zijn.</span></li></ul><p><br/></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

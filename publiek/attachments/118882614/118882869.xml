@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<md:Extensions xmlns:eme="urn:etoegang:1.13:metadata-extension"
+
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+
+    xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+
+ 
+
+    <mdattr:EntityAttributes>
+
+        <saml:Attribute Name="urn:oasis:names:tc:SAML:attribute:assurance-certification" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+
+            <saml:AttributeValue>urn:etoegang:core:assurance-class:loa4</saml:AttributeValue>
+
+        </saml:Attribute>
+
+    </mdattr:EntityAttributes>
+
+    <eme:DeprecatedRelyingPartyID>
+
+        <eme:DeprecatedRecipientKeySetVersion>20001231</eme:DeprecatedRecipientKeySetVersion>
+
+        <eme:DeprecatedOIN>00000000000000000000</eme:DeprecatedOIN>
+
+    </eme:DeprecatedRelyingPartyID>
+
+    <eme:UserTypeRequested>urn:etoegang:2.0:EntityConcernedID:InternalPseudonym</eme:UserTypeRequested>     
+
+</md:Extensions>
+ 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Identificerende kenmerken</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribuutverstrekking_118882778.html">Attribuutverstrekking</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Identificerende kenmerken
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (joyceeering)</span> on Jan 26, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    Dit hoofdstuk beschrijft de identificerende kenmerken binnen Elektronische Toegangsdiensten.<p>Deze attributen zijn niet opgenomen in de <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a>.</p><h3 id="Identificerendekenmerken-Identificerendekenmerkenvandienstafnemers">Identificerende kenmerken van dienstafnemers</h3><p>Een speciale categorie attributen zijn de identificerende kenmerken van de verschillende soorten dienstafnemers, handelende personen of intermediairs.</p><p>Geleverde identificerende kenmerken hebben een attribuutnaam die begint met &quot;urn:etoegang:&lt;versie&gt;:EntityConcernedID:&quot;.</p><p>Een uitzondering hierop is het IntermediateEntityID attribuut dat t.b.v. Backward Compatibiliteit een identificerende kenmerk van een intermediair verstrekt met de attribuutnaam &quot;urn:etoegang:&lt;versie&gt;:IntermediateEntityID:KvK&quot;.</p><p>De volgende paragrafen beschrijven de typen identificerende kenmerken die Dienstverleners kunnen krijgen van de Belanghebbende, Handelende Personen en intermediairs.</p><ul><li>Indien ‘Belanghebbende’ het teken <img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> bevat, dan mag dit type identificerend kenmerk worden gebruikt voor een Belanghebbende (in het LegalSubjectID element). </li><li>Indien ‘Belanghebbende’ het teken <img class="emoticon emoticon-cross" src="images/icons/emoticons/error.svg" data-emoticon-name="cross" alt="(error)"/> bevat, dan mag dit type identificerend kenmerk NIET worden gebruikt voor een Belanghebbende (in het LegalSubjectID element). </li><li>Indien ‘Intermediairs’ het teken <img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> bevat, dan mag dit type identificerend kenmerk worden gebruikt voor een Intermediairs in een keten van machtigingen (in het IntermediateSubjectID element). </li><li>Indien 'Intermediairs' het teken <img class="emoticon emoticon-cross" src="images/icons/emoticons/error.svg" data-emoticon-name="cross" alt="(error)"/> bevat, dan mag dit type identificeren kenmerk NIET worden gebruikt voor een Intermediair in een keten van machtigingen (in het IntermediateSubjectID element). </li><li>Indien ‘HandelendePersoon met vertegenwoordiging’ het teken <img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> bevat, dan mag dit type identificerend kenmerk worden gebruikt voor een Handelende Persoon (in het ActingSubjectID element) in het geval van (keten- of directe-) vertegenwoordiging . </li><li>Indien ‘HandelendePersoon met vertegenwoordiging’ het teken <img class="emoticon emoticon-cross" src="images/icons/emoticons/error.svg" data-emoticon-name="cross" alt="(error)"/> bevat, dan mag dit type identificerend kenmerk NIET worden gebruikt voor een Handelende Persoon (in het ActingSubjectID element) in het geval van (keten- of directe-) vertegenwoordiging.</li><li>Indien ‘HandelendePersoon zonder vertegenwoordiging’ het teken <img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> bevat, dan mag dit type identificerend kenmerk worden gebruikt voor een Handelende Persoon (in het ActingSubjectID element) in het geval van dat er géén sprake is van vertegenwoordiging . </li><li>Indien ‘HandelendePersoon zonder vertegenwoordiging’ het teken <img class="emoticon emoticon-cross" src="images/icons/emoticons/error.svg" data-emoticon-name="cross" alt="(error)"/> bevat, dan mag dit type identificerend kenmerk NIET worden gebruikt voor een Handelende Persoon (in het ActingSubjectID element) in het geval van dat er géén sprake is van vertegenwoordiging.</li></ul><h3 id="Identificerendekenmerken-EncryptedID">EncryptedID</h3><p>Alle identificerende kenmerken binnen Elektronische Toegangsdiensten worden geleverd als SAML EncryptedID. Het type identificerend kenmerk wordt als NameQualifier van dit EncryptedID gecommuniceerd.</p><p>Voor identifiers die per ontvangende partij verschillen, zoals <a href="118882790.html">urn:etoegang:1.12:EntityConcernedID:PseudoID</a>, kan uit het 'Recipient' attribuut van de EncryptedKey worden afgeleid voor wie deze bestemd en bruikbaar is.</p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

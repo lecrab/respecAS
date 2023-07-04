@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : BSNk: activate</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-Auxillary-Systems_118882434.html">Interface Specifications Auxillary Systems</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-aux-MR---BSNk_118882431.html">Interface Specifications aux MR - BSNk</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : BSNk: activate
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified on Sep 13, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The most recent version of the technical BSNk specifications are available on <a rel="nofollow" class="external-link" href="https://wiki.bsn-koppelregister.nl/">https://wiki.bsn-koppelregister.nl/</a> or on request (beheerorganisatie BSNk through <a href="mailto:servicecentrum@logius.nl" rel="nofollow" class="external-link">servicecentrum@logius.nl)</a>. The information below is for information only.</p></div></div>This interface between a MachtigingsRegister and <span class="confluence-link">BSNk</span> is used to activate a user's social security number (<a href="BSN_118882698.html">BSN</a>) for government related electronic services. The activation requires a <a href="BSN_118882698.html">BSN</a> and validation data and will result in the <span class="inline-comment-marker" data-ref="95199355-00c8-4d28-80dc-71aefbca7ecb">provisioning</span> of <span>one or more</span> Polymorphic Pseudonymization structures (e.g. Polymorphic Identity and Polymorphic Pseudonym) by the <span class="confluence-link">BSNk</span>.<strong><br/></strong></p><p>The interface described in this document is used to implement the use case <span class="inline-comment-marker" data-ref="4e59fc81-f6d4-4800-853f-65bf27643e00">&quot;<a href="AUC6-Activeren-BSN_118882798.html">AUC6 Activeren BSN</a></span>&quot; (activate BSN) and MUST be implemented by every MachtigingsRegister.</p><h3 id="BSNk:activate-WSDL">WSDL</h3><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">WSDL activate</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:bsnk="urn:nl-gdi-eid:1.0:webservices"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+                  name="BSNK_activate"
+                  targetNamespace="urn:nl-gdi-eid:1.0:webservices"&gt;
+ 
+    &lt;wsdl:types&gt;
+        &lt;xsd:schema targetNamespace="urn:nl-gdi-eid:1.0:webservices"
+                    attributeFormDefault="unqualified"
+                    elementFormDefault="qualified"&gt;
+
+            &lt;xsd:import namespace="urn:oasis:names:tc:SAML:2.0:assertion" schemaLocation="saml-schema-assertion-2.0.xsd"/&gt;
+                    
+            &lt;xsd:element name="ProvidePPRequest" type="bsnk:ProvidePolymorphicRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Request message to provide PP for a
+                        specific user, for future use via ProvideEP queries.
+                        The 'BSNk' will generate one or more
+                        polymorphic pseudonym(s) for the identified user.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="ProvidePP_PPCAOptimizedRequest" type="bsnk:ProvidePolymorphicRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Request message to provide PP for a
+                        specific user, for future use via ProvideEP queries.
+                        The 'BSNk' will generate one or more
+                        polymorphic pseudonym(s) for the identified user. This
+                        request will result in one-or-more polymorphic
+                        pseudonyms in a form optimized for usage as a PPCA.  
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvidePolymorphicRequestType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideRequestBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="RequesterKeySetVersion" type="bsnk:KeyVersionType" /&gt;
+                            &lt;xsd:choice&gt;
+                                &lt;xsd:element name="BSN" type="bsnk:BSNType" /&gt;
+                                &lt;xsd:element name="EncryptedBSN" type="bsnk:EncryptedBSNType"/&gt;
+                                &lt;xsd:element name="EncryptedIdentity" type="bsnk:EncryptedIdentityType" /&gt;
+                                &lt;xsd:sequence&gt;
+                                    &lt;xsd:element name="eIDAS-UniquenessID" type="bsnk:eIDAS-UniquenessIDType"/&gt;
+                                    &lt;xsd:element name="EncryptedBSN" type="bsnk:EncryptedBSNType" minOccurs="0"/&gt;
+                                &lt;/xsd:sequence&gt;
+                            &lt;/xsd:choice&gt;
+                            &lt;xsd:element name="DocumentType" type="bsnk:DocumentTypeType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="DocumentID" type="bsnk:DocumentIDType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="GivenNames" type="bsnk:GivenNamesType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="SurName" type="bsnk:SurNameType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="DateOfBirth" type="bsnk:BirthDateType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="PlaceOfBirth" type="bsnk:PlaceOfBirthType" minOccurs="0" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideRequestBasetype" abstract="true"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Requester" type="bsnk:OINType" /&gt;
+                &lt;/xsd:sequence&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="RequestID" type="xsd:ID" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="KeyVersionType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Key(set) version type.&lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:positiveInteger"/&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="BSNType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;In case a BSN consists of a number of
+                       only 8 digits, the BSN shall be padded with a preceding
+                       '0' (digit zero).
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:length value="9" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="EncryptedIdentityType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Identity encrypted as an EncryptedIdentity
+                        according to Polymorphic Pseudonimization.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:base64Binary" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="eIDAS-UniquenessIDType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;To be used only in eIDAS context.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="EncryptedBSNType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;BSN encrypted in the form of a
+                        SAML2 EncryptedID.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element ref="saml2:EncryptedID" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="OINType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;OIN type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:length value="20" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="DocumentIDType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Document ID as appearing on the Identity
+                        Document referenced
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="15" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="DocumentTypeType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Type of Identity Document referenced.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NL-Paspoort" /&gt;
+                    &lt;xsd:enumeration value="NL-Identiteitskaart" /&gt;
+                    &lt;xsd:enumeration value="NL-Rijbewijs" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="GivenNamesType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Given names as these appear on the
+                        Identity Document referenced. If given names are not
+                        fully known than must contain all known initials.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="200" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="SurNameType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Surname as appears on the
+                        Identity Document referenced.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="210" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="BirthDateType"&gt;
+                &lt;xsd:union&gt;
+                    &lt;xsd:simpleType&gt;
+                        &lt;xsd:restriction base="xsd:date" /&gt;
+                    &lt;/xsd:simpleType&gt;
+                    &lt;xsd:simpleType &gt;
+                        &lt;xsd:restriction base="xsd:gYearMonth" /&gt;
+                    &lt;/xsd:simpleType&gt;
+                    &lt;xsd:simpleType &gt;
+                        &lt;xsd:restriction base="xsd:gYear" /&gt;
+                    &lt;/xsd:simpleType&gt;
+                &lt;/xsd:union&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="PlaceOfBirthType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;For Dutch places of birth this value
+                        must correspond to the exact value as listed in table
+                        33 of the logic design of the BRP. MUST NOT be used for
+                        foreign places of birth.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:maxLength value="40" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:element name="ProvidePPResponse" type="bsnk:ProvidePolymorphicResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Response to a ProvidePPRequest or
+                        ProvidePP_PPCAOptimizedRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="ProvidePP_PPCAOptimizedResponse" type="bsnk:ProvidePolymorphicResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Response to a ProvidePP_PPCAOptimizedRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvidePolymorphicResponseType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideResponseBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="PolymorphicPseudonym" type="bsnk:PolymorphicPseudonymType" maxOccurs="unbounded" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideResponseBasetype" abstract="true"&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="ResponseID" type="xsd:ID" use="required" /&gt;
+                &lt;xsd:attribute name="InResponseTo" type="xsd:NCName" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="PolymorphicPseudonymType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:base64Binary" /&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:element name="ProvidePolymorphicFault" type="bsnk:ProvidePolymorphicFaultType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Fault response to a ProvidePPRequest or
+                        ProvidePP_PPCAOptimizedRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvidePolymorphicFaultType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="FaultReason" type="bsnk:ProvidePolymorphicFaultReasonType" /&gt;
+                    &lt;xsd:element name="FaultDescription" type="bsnk:FaultDescriptionType" maxOccurs="unbounded" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="ProvidePolymorphicFaultReasonType"&gt;
+                &lt;xsd:union memberTypes="bsnk:FaultReasons bsnk:ProvidePolymorphicFaultReasons" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="FaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NotFound"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information results in
+                                zero matches.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="AuthorizationError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Authentication invalid or access denied.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="SyntaxError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request invalid.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="TemporarilyUnavailable"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request could temporarily not be
+                                processed. A new request for activation MAY be send
+                                at a later moment by the requesting party.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="ProvidePolymorphicFaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NotEnoughInfo"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information may resolve
+                                to a unique match, but not enough assurance
+                                (e.g. against typos) can be established.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="NotUnique"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information results in
+                                more than one match.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="DocumentRejected"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Document not accepted.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="ProvisioningRefused"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Activation refused for other
+                                (non-disclosed) reason.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="FaultDescriptionType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:string"&gt;
+                        &lt;xsd:attribute name="lang" type="xsd:language" /&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+        &lt;/xsd:schema&gt;
+    &lt;/wsdl:types&gt;
+
+    &lt;wsdl:message name="BSNK_ProvidePPRequest"&gt;
+        &lt;wsdl:part name="in" element="bsnk:ProvidePPRequest" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNK_ProvidePP_PPCAOptimizedRequest"&gt;
+        &lt;wsdl:part name="in" element="bsnk:ProvidePP_PPCAOptimizedRequest" /&gt;
+    &lt;/wsdl:message&gt;
+ 
+    &lt;wsdl:message name="BSNK_ProvidePPResponse"&gt;
+        &lt;wsdl:part name="out" element="bsnk:ProvidePPResponse" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNK_ProvidePP_PPCAOptimizedResponse"&gt;
+        &lt;wsdl:part name="out" element="bsnk:ProvidePP_PPCAOptimizedResponse" /&gt;
+    &lt;/wsdl:message&gt;
+ 
+    &lt;wsdl:message name="BSNK_ProvidePolymorphicFault"&gt;
+        &lt;wsdl:part name="fault" element="bsnk:ProvidePolymorphicFault" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:portType name="BSNK_Activate_Port"&gt;
+        &lt;wsdl:operation name="BSNK_ProvidePP"&gt;
+            &lt;wsdl:input message="bsnk:BSNK_ProvidePPRequest" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvidePPRequest" /&gt;
+            &lt;wsdl:output message="bsnk:BSNK_ProvidePPResponse" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvidePPResponse" /&gt;
+            &lt;wsdl:fault message="bsnk:BSNK_ProvidePolymorphicFault" name="BSNK_ProvidePolymorphic_Fault"/&gt;
+        &lt;/wsdl:operation&gt;
+        &lt;wsdl:operation name="BSNK_ProvidePP_PPCAOptimized"&gt;
+            &lt;wsdl:input message="bsnk:BSNK_ProvidePP_PPCAOptimizedRequest" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvidePP_PPCAOptimizedRequest" /&gt;
+            &lt;wsdl:output message="bsnk:BSNK_ProvidePP_PPCAOptimizedResponse" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvidePP_PPCAOptimizedResponse" /&gt;
+            &lt;wsdl:fault message="bsnk:BSNK_ProvidePolymorphicFault" name="BSNK_ProvidePolymorphic_Fault"/&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:portType&gt;
+
+    &lt;wsdl:binding name="BSNK_Activate_SOAP" type="bsnk:BSNK_Activate_Port"&gt;
+        &lt;soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" /&gt;
+        &lt;wsdl:operation name="BSNK_ProvidePP"&gt;
+            &lt;soap:operation soapAction="urn:nl-gdi-eid:1.0:webservices:ProvidePPRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="BSNK_ProvidePolymorphic_Fault"&gt;
+                &lt;soap:fault name="BSNK_ProvidePolymorphic_Fault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+        &lt;wsdl:operation name="BSNK_ProvidePP_PPCAOptimized"&gt;
+            &lt;soap:operation soapAction="urn:nl-gdi-eid:1.0:webservices:ProvidePP_PPCAOptimizedRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="BSNK_ProvidePolymorphic_Fault"&gt;
+                &lt;soap:fault name="BSNK_ProvidePolymorphic_Fault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:binding&gt;
+ 
+    &lt;wsdl:service name="BSNK_Activate_Service"&gt;
+        &lt;wsdl:port binding="bsnk:BSNK_Activate_SOAP" name="BSNK_Activate"&gt;
+            &lt;soap:address location="https://.../TODO/Activate" /&gt;
+        &lt;/wsdl:port&gt;
+    &lt;/wsdl:service&gt;
+
+&lt;/wsdl:definitions&gt;</pre> 
+ </div>
+</div><h3 id="BSNk:activate-Request">Request</h3><p><span>Consists</span> of a registration request message &lt;<span>ProvidePPRequest</span>&gt; in the <span>SOAP</span> body of the request message. SOAP should be implemented according to the Web services requirements. <span style="color: rgb(255,0,0);"><em><br/></em></span></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p>@DateTime</p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd">Time of issuing of the request.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@RequestID</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier for this Request</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;Requester&gt;</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="8dfd8041-c569-448c-ba28-72e6a8a2e67b">EntityID (</span>OIN<span class="inline-comment-marker" data-ref="8dfd8041-c569-448c-ba28-72e6a8a2e67b">) of the requesting MachtigingsRegister</span><span style="color: rgb(0,0,0);">.</span></td></tr><tr><th colspan="1" class="confluenceTh">&lt;RequesterKeySetVersion&gt;</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="8f842d7f-4613-425d-8b5c-703fab7aa471">Key set version</span> of the requesting MachtigingsRegister<span style="color: rgb(0,0,0);"> </span>.</td></tr><tr><th class="confluenceTh"><p><span class="inline-comment-marker" data-ref="a5a79801-9b98-4129-b574-48e7ce3850ed">&lt;BSN&gt;</span></p></th><td class="confluenceTd"><p>0..1</p></td><td class="confluenceTd"><p>Sector ID for Dutch citizens. String of 9 characters, in case a <a href="BSN_118882698.html">BSN</a> consists of a number of only 8 digits, the BSN shall be padded with a preceding '0' (digit zero). As verification data at least DocumentID and one or more other identity supporting elements (those other than DocumentType) MUST be provided. <br/>Either a <a href="BSN_118882698.html">BSN</a>, EncryptedBSN, EncryptedIdentity or eIDAS-uniquenessID MUST be provided.</p></td></tr><tr><th class="confluenceTh">&lt;EncryptedBSN&gt;</th><td class="confluenceTd">0..1</td><td class="confluenceTd">An encrypted <a href="BSN_118882698.html">BSN</a>. This <a href="BSN_118882698.html">BSN</a> MUST be encrypted using XML-encryption, <span class="inline-comment-marker" data-ref="95723a64-04a8-4238-b4c8-3632e8053e9b">as per </span>(XML/SAML) Encryption<span class="inline-comment-marker" data-ref="95723a64-04a8-4238-b4c8-3632e8053e9b">.</span> Either a BSN, EncryptedBSN, EncryptedIdentity or eIDAS-uniquenessID MUST be provided.</td></tr><tr><th colspan="1" class="confluenceTh">&lt;EncryptedIdentity&gt;</th><td colspan="1" class="confluenceTd">0..1</td><td colspan="1" class="confluenceTd">Identity (typically <a href="BSN_118882698.html">BSN</a>) encrypted as EncryptedIdentity under Polymorphic Pseudonimization. Either a <a href="BSN_118882698.html">BSN</a>, EncryptedBSN, or EncryptedIdentity MUST be provided.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;EncryptedBSN&gt;</span></th><td colspan="1" class="confluenceTd">0..1</td><td colspan="1" class="confluenceTd">At this moment an encryptedBSN is for exclusive use by an eIDAS-berichtenservice.</td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;<span class="inline-comment-marker" data-ref="217f5e93-4c06-4a76-b25b-ddb68db5867f">DocumentType</span>&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">String max 20 chars. Value represents the type of government-issued document that was used. Possible values are &quot;NL-Paspoort&quot;, &quot;NL-Identiteitskaart&quot; and &quot;NL-Rijbewijs&quot;.</span></td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;DocumentID&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">String max 15 chars. Value represents the ID of a government-issued document that was used. MUST be present together with &lt;DocumentType&gt;.</span></td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;GivenNames&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">String max 200 chars. Must contain all given names, if given names are not fully known than MUST contain all known Initials.</span><br/><br/><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">MUST be present together with </span><em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;SurName&gt;</span></em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">. An empty value can be used to specify the current subject has not registered a given name in the BRP.</span></p></td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;SurName&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">String max 210 chars. Surname including prefixes, as stated on the Identity Document. MUST be present together with </span><em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;GivenNames&gt;</span></em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">.</span></td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;DateOfBirth&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">Date of birth of the user. In XML-schema a choice between 'date', 'gYear' or 'gYearMonth' format. In case the specific day or month is unknown (also expressed as 1900-</span><em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">00</span></em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">-</span><em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">00</span></em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"> or 1900-03-</span><em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">00</span></em><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">), the value MUST be expressed as a gYear or gYearMonth.</span></td></tr><tr><th class="confluenceTh"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">&lt;PlaceOfBirth&gt;</span></th><td class="confluenceTd"><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">0..1</span></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598">String max 40 chars.</span></p><p><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="d97c48b3-ab9d-41a7-a3f4-9f7e1cf5d700"><span class="inline-comment-marker" data-ref="25dc2fba-5a76-4a02-8097-e60cd178ed6c">NB For Dutch places of birth this value MUST correspond to the exact value as listed in </span></span></span><span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="d97c48b3-ab9d-41a7-a3f4-9f7e1cf5d700"><span class="inline-comment-marker" data-ref="25dc2fba-5a76-4a02-8097-e60cd178ed6c">table 33 of the logic design of the BRP</span></span></span> (see <a href="https://publicaties.rvig.nl/" class="external-link" rel="nofollow">https://publicaties.rvig.nl/</a>) <span class="inline-comment-marker" data-ref="95a8a30e-857d-4730-a3f0-7d9486f13598"><span class="inline-comment-marker" data-ref="d97c48b3-ab9d-41a7-a3f4-9f7e1cf5d700"> MUST NOT be used for foreign places of birth.</span></span></p></td></tr></tbody></table></div><p>N.B. Only providing the <a href="BSN_118882698.html">BSN</a> is not deemed to identify a subject with sufficient assurance, additional information must be provided for verification. In general: the more information is provided in the request, the more chance of a unique match with sufficient assurance<span class="inline-comment-marker" data-ref="0bb94394-0b3a-49e0-aebb-2751ee74cbda">.</span></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>DocumentType and DocumentID will be deprecated and removed in future revisions of this interface.</p></div></div><h3 id="BSNk:activate-Response"><span class="inline-comment-marker" data-ref="f572122b-2dc6-4ebc-9e4a-bc6309f35095">Response</span></h3><p>Consists of a response message &lt;ProvidePPResponse&gt; in the SOAP body of the response message, containing one or more Polymorphic Pseudonyms. In case a response is received, the request resulted in a unique and valid match and the cryptographic transformation of the specified <a href="BSN_118882698.html">BSN</a> to a Polymorphic Pseudonym and/or Polymorphic Identity. In case an error occurs a SOAP fault will be used. The SOAP fault will contain error codes as &lt;FaultReason&gt; as described below, with one (or more) localized &lt;FaultDescription&gt;s<span>.</span></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p>@DateTime</p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd">Time of issuing of the response.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@ResponseID</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the Response</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@InResponseTo</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the Request this is a response to (@RequestID of request)</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;<span class="inline-comment-marker" data-ref="6581cca0-789a-4639-876c-fe28e344ee66">PolymorphicPseudonym</span>&gt;</span></th><td colspan="1" class="confluenceTd">1..n</td><td colspan="1" class="confluenceTd"><p>One or more s<span class="inline-comment-marker" data-ref="8954bf4a-51c1-41b7-bf1c-56bf9f636198">igned Polymorphic Pseudonymization</span> structure(s) for the User. At least one structure MUST be provided, the exact number depends on the request and requester:</p><ul style="list-style-type: square;"><li>A &lt;ProvicePPRequest&gt; will receive one Signed Polymorphic Identity and one Signed Polymorphic Pseudonym.</li><li>A &lt;ProvidePP_PPCAOptimizedRequest&gt; will receive one Signed PIP and one Signed Polymorphic Pseudonym.</li></ul></td></tr></tbody></table></div><p>For encoding of the Signed Polymorphic Identity / Pseudonym / PIP, see <a href="Handreiking-Polymorphic-Pseudonimization-Notation_118882801.html">Handreiking Polymorphic Pseudonimization Notation</a>.</p><h3 id="BSNk:activate-FaultReasons">FaultReasons</h3><p>The following response codes are used to indicate the status of a response.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>ResponseCode</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh">NotEnoughInfo</th><td class="confluenceTd">Request rejected. Provided information may resolve to a unique match, but not enough assurance (e.g. against typos) can be established.</td></tr><tr><th class="confluenceTh">NotUnique</th><td class="confluenceTd">Request rejected. Provided information results in more than one match.</td></tr><tr><th class="confluenceTh">NotFound</th><td class="confluenceTd">Request rejected. Provided information results in zero matches.</td></tr><tr><th class="confluenceTh">DocumentRejected</th><td class="confluenceTd">Request rejected. Document not accepted.</td></tr><tr><th colspan="1" class="confluenceTh">ProvisioningRefused</th><td colspan="1" class="confluenceTd">Request rejected. Activation refused for other non-disclosed reason.</td></tr><tr><th class="confluenceTh">AuthorizationError</th><td class="confluenceTd">Request rejected. Authentication invalid or access denied. A HTTP 403 status response MAY be given instead of a SOAP-fault with this response.</td></tr><tr><th class="confluenceTh">SyntaxError</th><td class="confluenceTd">Request rejected. Request invalid.</td></tr><tr><th colspan="1" class="confluenceTh">TemporarilyUnavailable</th><td colspan="1" class="confluenceTd">Request could temporarily not be processed. A new request for activation MAY be sent at a later moment by the requesting party.</td></tr></tbody></table></div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882433/118884830.png">image2015-9-28 10:20:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882433/118884831.png">image2015-9-28 10:21:0.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Attribuutcatalogus natuurlijke personen</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribuutverstrekking_118882778.html">Attribuutverstrekking</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Attribuutcatalogus natuurlijke personen
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Unknown User (liannedevries)</span> on Jun 25, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Voor eIDAS-outbound, levert de BRP de minimale vereisten attributenset van de handelende natuurlijke persoon. Deze worden niet geleverd door AD van het Afsprakenstelsel.</p></div></div><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner">URN</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Omschrijving</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Formaat</div></th><th colspan="1" class="confluenceTh">Bron</th><th colspan="1" class="confluenceTh"><div class="tablesorter-header-inner">Verplicht of optioneel?</div></th></tr></thead><tbody><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:FirstName</p></div></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="11b064ea-68a7-4872-8664-707d695cc4e3">Beschikbare voorna(a)m(en) van de gebruiker (beschikbaarheid is afhankelijk van de bron)</span></p></td><td class="confluenceTd"><p>String max 200</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Verplicht</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:Initials</p></div></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="e6201279-6fad-4450-a555-cc5bfd506780">Initialen van de voorna(a)m(en) van de gebruiker</span></p></td><td class="confluenceTd"><p>String max 35</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:<span class="inline-comment-marker" data-ref="c8a1310d-3da0-4283-b7d5-c270d0cd159d">FamilyNameInfix</span></p></div></td><td colspan="1" class="confluenceTd"><p>Voorvoegsel behorend bij Achternaam, conform Voorvoegseltabel GBA (Tabel 36). Zie <a href="https://www.rvig.nl/brp/documenten/richtlijnen/2015/01/15/logisch-ontwerp-gba-3-9" class="external-link" rel="nofollow">Logisch Ontwerp GBA-V</a> (element 02.30, blz. 236) voor uitleg over de toepassing van de tabel op een achternaam.</p></td><td colspan="1" class="confluenceTd">String max 10</td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Verplicht (indien van toepassing bij bijbehorende achternaam)</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:FamilyName</p></div></td><td class="confluenceTd"><p><span class="inline-comment-marker" data-ref="cb5d26a5-2e62-44b8-94a9-a355ada55daf">Achternaam (geslachtsnaam) van de gebruiker</span></p></td><td class="confluenceTd"><p>String max 200</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Verplicht </td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute:BirthName</p></div></td><td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="a82dcc1e-582a-4f06-9dc1-2428a82734dd">Naam van de gebruiker bij geboorte</span></td><td colspan="1" class="confluenceTd">String max 200 </td><td colspan="1" class="confluenceTd">eIDAS</td><td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="dcf42137-920d-4036-af1b-67a027c4acd3">-<br/></span></td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute:non-transliterated:FirstName</p></div></td><td colspan="1" class="confluenceTd">Voornaam van de gebruiker in ander alfabet</td><td colspan="1" class="confluenceTd">String max 200 </td><td colspan="1" class="confluenceTd">eIDAS</td><td colspan="1" class="confluenceTd">-</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute:non-transliterated:FamilyName</p></div></td><td colspan="1" class="confluenceTd">Achternaam van de gebruiker in ander alfabet</td><td colspan="1" class="confluenceTd">String max 200 </td><td colspan="1" class="confluenceTd">eIDAS</td><td colspan="1" class="confluenceTd">-</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute:non-transliterated:FirstNameAtBirth</p></div></td><td colspan="1" class="confluenceTd">Voornaam van de gebruiker bij geboorte in ander alfabet</td><td colspan="1" class="confluenceTd">String max 200 </td><td colspan="1" class="confluenceTd">eIDAS</td><td colspan="1" class="confluenceTd">-</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.11:attribute:non-transliterated:FamilyNameAtBirth</p></div></td><td colspan="1" class="confluenceTd">Achternaam van de gebruiker bij geboorte in ander alfabet</td><td colspan="1" class="confluenceTd">String max 200</td><td colspan="1" class="confluenceTd">eIDAS</td><td colspan="1" class="confluenceTd">-</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:DateOfBirth</p></div></td><td class="confluenceTd"><p>Geboortedatum van de gebruiker</p><p><em>Volgens de BRP zijn de volgende afwijkende datumformaten toegestaan: jjjj-mm-dd, jjjj-mm-00, jjjj-00-00, 0000-00-00</em></p></td><td class="confluenceTd"><p>String 10<br/>jjjj-mm-dd</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Verplicht</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:18OrOlder</p></div></td><td class="confluenceTd"><p>Is gebruiker ouder dan 18</p></td><td class="confluenceTd"><p>true/false</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:16OrOlder</p></div></td><td class="confluenceTd"><p>Is gebruiker ouder dan 16</p></td><td class="confluenceTd"><p>true/false </p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:12OrOlder</p></div></td><td class="confluenceTd"><p>Is gebruiker ouder dan 12</p></td><td class="confluenceTd"><p>true/false</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:65OrOlder</p></div></td><td class="confluenceTd"><p>Is gebruiker ouder dan 65</p></td><td class="confluenceTd"><p>true/false</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:PlaceOfBirth</p></div></td><td class="confluenceTd"><p>Geboorteplaats van de gebruiker</p></td><td class="confluenceTd"><p>String max 40</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:Gender</p></div></td><td class="confluenceTd"><p>Geslacht van de gebruiker</p></td><td class="confluenceTd"><p>&quot;M&quot;, &quot;F&quot;, &quot;U&quot;</p></td><td colspan="1" class="confluenceTd">ID, IDCopy, eIDAS</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:Email</p></div></td><td colspan="1" class="confluenceTd">E-mailadres van de gebruiker</td><td colspan="1" class="confluenceTd">URI, max 320; mailto:&lt;localname&gt;@&lt;domainname&gt; (<a href="https://tools.ietf.org/html/rfc6068" rel="nofollow" class="external-link">RFC6068</a>)</td><td colspan="1" class="confluenceTd">SelfDeclared</td><td colspan="1" class="confluenceTd">Optioneel</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>urn:etoegang:1.9:attribute:Mobile</p></div></td><td colspan="1" class="confluenceTd">Mobiele nummer van de gebruiker</td><td colspan="1" class="confluenceTd">URI, max 19; tel:+&lt;CountryCode&gt; &lt;phonenumber&gt; (<a href="https://tools.ietf.org/html/rfc3966" rel="nofollow" class="external-link">RFC3966</a>)</td><td colspan="1" class="confluenceTd">SelfDeclared</td><td colspan="1" class="confluenceTd">Optioneel</td></tr></tbody></table></div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

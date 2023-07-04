@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : GUC4 Aantonen bevoegdheid</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases_118882763.html">Use cases</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Use-cases-voor-Gebruik_118882556.html">Use cases voor Gebruik</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : GUC4 Aantonen bevoegdheid
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Mar 10, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>eIn deze use case raadpleegt de gebruiker de machtigingenregister. Het machtigingenregister stelt op basis van de eerder met <a href="GUC3-Aantonen-identiteit_118882553.html">GUC3 Aantonen identiteit</a> verkregen identiteit van de gebruiker en een eerder geregistreerde bevoegdheid (zie <a href="Use-cases-voor-Administratie_118882529.html">Use cases voor Administratie</a>), de identiteit van de vertegenwoordigde dienstafnemer en de pseudo-identiteit van de gebruiker vast en geeft hierover een verklaring af aan de Herkenningsmakelaar.<br/></p><p>De use case wordt hieronder in een activity diagram weergegeven.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" draggable="false" height="400" src="attachments/118882550/118884185.png" data-image-src="attachments/118882550/118884185.png" data-unresolved-comment-count="0" data-linked-resource-id="118884185" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="guc4 aantonenbevoegdheid.png" data-base-url="https://afsprakenstelsel.etoegang.nl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="118882550" data-linked-resource-container-version="29"></span></p><p>De verschillende acties voor use case GUC4 worden hier in meer detail beschreven.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh"><p>Nr.</p></th><th class="confluenceTh"><p>Actie</p></th><th class="confluenceTh"><p>Omschrijving</p></th></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Initiële staat</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De dienstverlener<sup><span class="inline-comment-marker" data-ref="34b84df3-650b-4097-ac60-6a4cee36e841">1</span></sup> heeft een vraag gesteld aan de Herkenningsmakelaar. De gebruiker is geïdentificeerd door een authenticatiedienst en de<strong style="text-align: left;"><span style="color: rgb(128,0,0);"> </span></strong><span style="color: rgb(0,0,0);">gebruiker heeft bij deze authenticatiedienst het beoogde machtigingsregister geselecteert<sup>2</sup>. </span>Herkenningsmakelaar heeft daarover een verklaring met een identificerend kenmerk <span style="color: rgb(0,0,0);">ten behoeve van het geselecteerde machtigingsregister </span>ontvangen.</p></div></td></tr><tr><td class="confluenceTd"><p>4.2</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Herkenningsmakelaar stelt vraag3 aan machtigingenregister</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>De Herkenningsmakelaar stuurt de gebruiker door naar het door de gebruiker geselecteerde machtigingenregister en stelt daarbij een vraag. Deze vraag bevat het identificerend kenmerk van zowel de betreffende dienstverlener als de betreffende dienst, het door de dienstverlener gewenste betrouwbaarheidsniveau en het identificerend kenmerk van de gebruiker.</p><p><strong>Alternatieve scenario's:</strong></p><ul><li><a href="GUC4.2-Machtigingenregister-vindt-geen-bevoegdheid-die-aan-de-vraag-voldoet_118882548.html">GUC4.2 Machtigingenregister vindt geen bevoegdheid die aan de vraag voldoet</a></li><li><a href="GUC4.3-Portaalfunctie_118882546.html">GUC4.3 Portaalfunctie</a></li><li><a href="GUC4.4-Verschillende-bevoegdheden-aanwezig_118882549.html">GUC4.4 Verschillende bevoegdheden aanwezig</a></li><li><a href="GUC4.5-Ketenmachtiging_118882547.html">GUC4.5 Ketenmachtiging</a></li></ul></div></td></tr><tr><td class="confluenceTd"><p>4.3</p></td><td class="confluenceTd"><p>Machtigingenregister stelt bevoegdheid gebruiker vast</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Het machtigingenregister bepaalt op basis van identificerend kenmerk voor welke dienstafnemer de gebruiker bevoegd is. Zie <a href="Verantwoordelijkheden-Machtigingenregister_118882385.html">Verantwoordelijkheden Machtigingenregister</a>. De wijze waarop de MR bepaald welke bevoegdheid van toepassing is wordt beschreven op de pagina <a href="Vaststellen-bevoegdheid_118882794.html">Vaststellen bevoegdheid</a>.</p><p>De gebruiker kan bevraagd worden over de te leveren attributen, bijvoorbeeld voor het geven van toestemming of het verstrekken van een attribuut dat nog niet eerder was vastgelegd. Dit heeft gevolgen voor de gebruikerservaring en de doorlooptijd van het authenticatieverzoek. Partijen dienen hier rekening mee te houden.</p></div></td></tr><tr><td class="confluenceTd"><p>4.4</p></td><td class="confluenceTd"><div class="content-wrapper"><p>Machtigingenregister beantwoordt<sup>3</sup> vraag van Herkenningsmakelaar met verklaring</p></div></td><td class="confluenceTd"><div class="content-wrapper"><p>Het machtigingenregister beantwoordt de vraag van de Herkenningsmakelaar. Dit antwoord bevat een verklaring over de bevoegdheid van de gebruiker met daarin het betrouwbaarheidsniveau van de verklaring, het identificerend kenmerk van de vertegenwoordigde dienstafnemer desgevraagd het identificerend kenmerk van de gebruiker.</p></div></td></tr><tr><td class="confluenceTd"><p><br/></p></td><td class="confluenceTd"><p>Finale staat</p></td><td class="confluenceTd"><div class="content-wrapper"><p>De bevoegdheid van de gebruiker namens de vertegenwoordigde dienstafnemer is aangetoond en de Herkenningsmakelaar heeft daar de benodigde informatie over ontvangen.</p></div></td></tr></tbody></table></div><p><br/></p><h4 id="GUC4Aantonenbevoegdheid-Voetnoten">Voetnoten</h4><ol><li>De vraag is als XACMLAuthzDecisionQuery in detail beschreven in<span> </span><a href="Interface-specifications-HM-MR_118882753.html">Interface specifications HM-MR</a>.</li><li><span style="color: rgb(0,0,0);">De keuze lijst met machtigingsregisters komt nauwelijks voor omdat de gebruiker meestal slechts een machtiging heeft bij dezelfde ETD-Leverancier.</span></li><li>Het antwoord is als XACMLAuthzDecision Response in detail beschreven in <a href="Interface-specifications-HM-MR_118882753.html">Interface specifications HM-MR</a>.</li></ol>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882550/118886487.png">image2015-12-23 16:32:8.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/118882550/118884185.png">guc4 aantonenbevoegdheid.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

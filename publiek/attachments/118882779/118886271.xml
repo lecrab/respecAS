@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<AttributeCatalogue xmlns="urn:etoegang:1.9:attribute-catalogue"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    IssueInstant="2015-05-01T12:00:00"
+    Version="urn:etoegang:1.9:attribute-catalogue:T:1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:etoegang:1.9:attribute-catalogue AttributeCatalog-1.9.xsd">
+
+    <ds:Signature>
+        <ds:SignedInfo>
+            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" />
+            <ds:Reference URI="">
+                <ds:Transforms>
+                    <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                    <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+                </ds:Transforms>
+                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+                <ds:DigestValue>MA==</ds:DigestValue>
+            </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>MA==</ds:SignatureValue>
+        <ds:KeyInfo>
+            <ds:X509Data>
+                <ds:X509Certificate>MA==</ds:X509Certificate>
+            </ds:X509Data>
+        </ds:KeyInfo>
+    </ds:Signature>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:FirstName</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Voornaam</FriendlyName>
+        <FriendlyName xml:lang="en">First name</FriendlyName>
+        <Description xml:lang="nl">Voornaam van de gebruiker</Description>
+        <Description xml:lang="en">First name of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:Initials</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Initialen</FriendlyName>
+        <FriendlyName xml:lang="en">Initials</FriendlyName>
+        <Description xml:lang="nl">Initialen van de gebruiker</Description>
+        <Description xml:lang="en">Initials of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:FamilyName</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Achternaam</FriendlyName>
+        <FriendlyName xml:lang="en">Surname</FriendlyName>
+        <Description xml:lang="nl">Achternaam van de gebruiker</Description>
+        <Description xml:lang="en">Surname of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:DateOfBirth</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Geboortedatum</FriendlyName>
+        <FriendlyName xml:lang="en">Date of birth</FriendlyName>
+        <Description xml:lang="nl">Geboortedatum van de gebruiker</Description>
+        <Description xml:lang="en">Date of birth of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:18OrOlder</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#boolean</Type>
+        <FriendlyName xml:lang="nl">Ouder dan 18</FriendlyName>
+        <FriendlyName xml:lang="en">Over 18</FriendlyName>
+        <Description xml:lang="nl">Is de gebruiker ouder dan 18 jaar</Description>
+        <Description xml:lang="en">Is the user over 18 years old</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:16OrOlder</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#boolean</Type>
+        <FriendlyName xml:lang="nl">Ouder dan 16</FriendlyName>
+        <FriendlyName xml:lang="en">Over 16</FriendlyName>
+        <Description xml:lang="nl">Is de gebruiker ouder dan 16 jaar</Description>
+        <Description xml:lang="en">Is the user over 16 years old</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:12OrOlder</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#boolean</Type>
+        <FriendlyName xml:lang="nl">Ouder dan 12</FriendlyName>
+        <FriendlyName xml:lang="en">Over 12</FriendlyName>
+        <Description xml:lang="nl">Is de gebruiker ouder dan 12 jaar</Description>
+        <Description xml:lang="en">Is the user over 12 years old</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:65OrOlder</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#boolean</Type>
+        <FriendlyName xml:lang="nl">Ouder dan 65</FriendlyName>
+        <FriendlyName xml:lang="en">Over 65</FriendlyName>
+        <Description xml:lang="nl">Is de gebruiker ouder dan 65 jaar</Description>
+        <Description xml:lang="en">Is the user over 65 years old</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:PlaceOfBirth</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Geboorteplaats</FriendlyName>
+        <FriendlyName xml:lang="en">Place of birth</FriendlyName>
+        <Description xml:lang="nl">Geboorteplaats van de gebruiker</Description>
+        <Description xml:lang="en">Place of birth of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+    <Attribute>
+        <Name>urn:etoegang:1.9:attribute:Gender</Name>
+        <Type>http://www.w3.org/2001/XMLSchema#string</Type>
+        <FriendlyName xml:lang="nl">Geslacht</FriendlyName>
+        <FriendlyName xml:lang="en">Gender</FriendlyName>
+        <Description xml:lang="nl">Geslacht van de gebruiker</Description>
+        <Description xml:lang="en">Gender of the user</Description>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWID</PermissableSource>
+        <PermissableSource>urn:etoegang:1.9:attribute-sourceid:NLWIDCopy</PermissableSource>
+    </Attribute>
+
+</AttributeCatalogue>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<md:EntitiesDescriptor
+
+    ID="[reference for dsig]"
+
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+
+    xmlns:eme="urn:etoegang:1.13:metadata-extension"
+
+    Name="urn:etoegang:1.13:metadata:P:23">
+
+  
+
+        <ds:Signature>...</ds:Signature>
+
+        <md:EntityDescriptor
+
+            entityID="urn:etoegang:AD:9999990000010000:entities:0001"
+
+            eme:version="1.9"
+
+            validUntil="2018-01-20T00:00:00Z">
+
+            ...
+
+        </md:EntityDescriptor>
+
+        <md:EntityDescriptor
+
+            entityID="urn:etoegang:AD:9999990000010000:entities:0001"
+
+            eme:version="1.11"
+
+            eme:validFrom="2018-01-20T00:00:00Z">
+
+            ...
+
+        </md:EntityDescriptor>
+
+  
+
+</md:EntitiesDescriptor>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : BSNk: transform</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-Auxillary-Systems_118882434.html">Interface Specifications Auxillary Systems</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-Specifications-aux-MR---BSNk_118882431.html">Interface Specifications aux MR - BSNk</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : BSNk: transform
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Sander Boer</span>, last modified on Sep 13, 2018
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The most recent version of the technical BSNk specifications are available on <a rel="nofollow" class="external-link" href="https://wiki.bsn-koppelregister.nl/">https://wiki.bsn-koppelregister.nl/</a> or on request (beheerorganisatie BSNk through <a href="mailto:servicecentrum@logius.nl" rel="nofollow" class="external-link">servicecentrum@logius.nl)</a>. The information below is for information only.</p></div></div></p><p>In order to realize step 7 in the <a href="AUC3.1-Registreren-bevoegdheid-eenmanszaken_118882458.html">AUC3.1 Registreren bevoegdheid eenmanszaken</a>  an interface is necessary beween the MR and BSNk. This interface wil implement <a href="AUC6-Activeren-BSN_118882798.html">AUC6 Activeren BSN</a><a class="createlink" href="/pages/createpage.action?spaceKey=BEHEERAS&amp;title=AUC6+Activeren+BSN+RFC2119B&amp;linkCreation=true&amp;fromPageId=118882432">&nbsp;</a>for the MR. In order to facilitate the transformation of the PI this interface will also implement <a href="AUC10-Transformeren_118882464.html">AUC10 Transformeren</a>. This will allow the MR to transform the PI  to the VI of the owner of the sole trader for the DV who requested this information.</p><p>This interface describes the message exchange between MR and BSNk. It fulfills two functions: obtaining a Polymorphic Pseudonym and Polymorphic Identity for a newly registered user with the MR (activate) and transforming a Polymorphic Pseudonym or Polymorphic Identity to an Encrypted Pseudonym or Encrypted Identity specialized for a Relying Party.</p><h3 id="BSNk:transform-InterfaceTransform">Interface Transform</h3><p>This interface between an Machtigingenregisterand BSNk transforms a given Polymophic Pseudonym to a Relying Party specific Encrypted Pseudonym or Polymorphic Identity to an Encrypted Identity. An Machtigingenregister uses this interface after authenticating an User.<br/></p><p><br/></p><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">WSDL transform</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:bsnk="urn:nl-gdi-eid:1.0:webservices"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  name="BSNk_transform"
+                  targetNamespace="urn:nl-gdi-eid:1.0:webservices"&gt;
+ 
+    &lt;wsdl:types&gt;
+        &lt;xsd:schema targetNamespace="urn:nl-gdi-eid:1.0:webservices"
+                    attributeFormDefault="unqualified"
+                    elementFormDefault="qualified"&gt;
+            &lt;xsd:element name="ProvideEPRequest" type="bsnk:ProvideEncryptedRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Request message to provide an encrypted
+                        pseudonym of a user for a specific relying party
+                        (service provider).
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="ProvideEIRequest" type="bsnk:ProvideEncryptedRequestType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Request message to provide an encrypted
+                        identity of a user for a specific relying party
+                        (service provider).
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvideEncryptedRequestType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideRequestBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="RelyingParty" type="bsnk:OINType" /&gt;
+                            &lt;xsd:element name="RelyingPartyKeySetVersion" type="bsnk:KeyVersionType" /&gt;
+                            &lt;xsd:element name="PolymorphicPseudonym" type="bsnk:PolymorphicPseudonymType" /&gt;
+                            &lt;xsd:element name="Role" type="bsnk:RoleType" minOccurs="0" /&gt;
+                            &lt;xsd:element name="TransactionID" type="bsnk:TransactionIDType" minOccurs="0" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideRequestBasetype" abstract="true"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Requester" type="bsnk:OINType" /&gt;
+                &lt;/xsd:sequence&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="RequestID" type="xsd:ID" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="PolymorphicPseudonymType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:base64Binary"/&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="KeyVersionType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Key(set) version type.&lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:positiveInteger"/&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="OINType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;OIN type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:length value="20" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="RoleType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;Role type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:integer"/&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="TransactionIDType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;TransactionID Type.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:length value="128" /&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+
+            &lt;xsd:element name="ProvideEPResponse" type="bsnk:ProvideEncryptedResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Response to a ProvideEPRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="ProvideEIResponse" type="bsnk:ProvideEncryptedResponseType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Response to a ProvideEIRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvideEncryptedResponseType"&gt;
+                &lt;xsd:complexContent&gt;
+                    &lt;xsd:extension base="bsnk:BSNkProvideResponseBasetype"&gt;
+                        &lt;xsd:sequence&gt;
+                            &lt;xsd:element name="EncryptedPseudonym" type="bsnk:EncryptedPseudonymType" /&gt;
+                        &lt;/xsd:sequence&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:complexContent&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:complexType name="BSNkProvideResponseBasetype" abstract="true"&gt;
+                &lt;xsd:attribute name="DateTime" type="xsd:dateTime" use="required" /&gt;
+                &lt;xsd:attribute name="ResponseID" type="xsd:ID" use="required" /&gt;
+                &lt;xsd:attribute name="InResponseTo" type="xsd:NCName" use="required" /&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="EncryptedPseudonymType"&gt;
+                &lt;xsd:restriction base="xsd:base64Binary" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:element name="ProvideEncryptedFault" type="bsnk:ProvideEncryptedFaultType"&gt;
+                &lt;xsd:annotation&gt;
+                    &lt;xsd:documentation&gt;
+                        Fault response to a ProvideEPRequest of ProvideEIRequest.
+                    &lt;/xsd:documentation&gt;
+                &lt;/xsd:annotation&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:complexType name="ProvideEncryptedFaultType"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="FaultReason" type="bsnk:ProvideEncryptedFaultReasonType" /&gt;
+                    &lt;xsd:element name="FaultDescription" type="bsnk:FaultDescriptionType" maxOccurs="unbounded" /&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+            &lt;xsd:simpleType name="ProvideEncryptedFaultReasonType"&gt;
+                &lt;xsd:union memberTypes="bsnk:FaultReasons bsnk:ProvideEncryptedFaultReasons" /&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="FaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="NotFound"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Provided information results in
+                                zero matches.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="AuthorizationError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Authentication invalid or access denied.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="SyntaxError"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request invalid.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                    &lt;xsd:enumeration value="TemporarilyUnavailable"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Request could temporarily not be
+                                processed. A new request for provisioning MAY be
+                                send at a later moment by the requesting party.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:simpleType name="ProvideEncryptedFaultReasons"&gt;
+                &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:enumeration value="ProvisioningRefused"&gt;
+                        &lt;xsd:annotation&gt;
+                            &lt;xsd:documentation&gt;Transformation refused for other
+                                (non-disclosed) reason.
+                            &lt;/xsd:documentation&gt;
+                        &lt;/xsd:annotation&gt;
+                    &lt;/xsd:enumeration&gt;
+                &lt;/xsd:restriction&gt;
+            &lt;/xsd:simpleType&gt;
+            &lt;xsd:complexType name="FaultDescriptionType"&gt;
+                &lt;xsd:simpleContent&gt;
+                    &lt;xsd:extension base="xsd:string"&gt;
+                        &lt;xsd:attribute name="lang" type="xsd:language" /&gt;
+                    &lt;/xsd:extension&gt;
+                &lt;/xsd:simpleContent&gt;
+            &lt;/xsd:complexType&gt;
+        &lt;/xsd:schema&gt;
+    &lt;/wsdl:types&gt;
+ 
+    &lt;wsdl:message name="BSNk_ProvideEPRequest"&gt;
+        &lt;wsdl:part name="in" element="bsnk:ProvideEPRequest" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNk_ProvideEIRequest"&gt;
+        &lt;wsdl:part name="in" element="bsnk:ProvideEIRequest" /&gt;
+    &lt;/wsdl:message&gt;
+ 
+    &lt;wsdl:message name="BSNk_ProvideEPResponse"&gt;
+        &lt;wsdl:part name="out" element="bsnk:ProvideEPResponse" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNk_ProvideEIResponse"&gt;
+        &lt;wsdl:part name="out" element="bsnk:ProvideEIResponse" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:message name="BSNk_ProvideEncryptedFault"&gt;
+        &lt;wsdl:part name="fault" element="bsnk:ProvideEncryptedFault" /&gt;
+    &lt;/wsdl:message&gt;
+
+    &lt;wsdl:portType name="BSNk_Transform_Port"&gt;
+        &lt;wsdl:operation name="BSNk_ProvideEP"&gt;
+            &lt;wsdl:input message="bsnk:BSNk_ProvideEPRequest" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvideEPRequest" /&gt;
+            &lt;wsdl:output message="bsnk:BSNk_ProvideEPResponse" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvideEPResponse" /&gt;
+            &lt;wsdl:fault message="bsnk:BSNk_ProvideEncryptedFault" name="BSNk_ProvideEncrypted_Fault"/&gt;
+        &lt;/wsdl:operation&gt;
+        &lt;wsdl:operation name="BSNk_ProvideEI"&gt;
+            &lt;wsdl:input message="bsnk:BSNk_ProvideEIRequest" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvideEIRequest" /&gt;
+            &lt;wsdl:output message="bsnk:BSNk_ProvideEIResponse" wsam:Action="urn:nl-gdi-eid:1.0:webservices:ProvideEIResponse" /&gt;
+            &lt;wsdl:fault message="bsnk:BSNk_ProvideEncryptedFault" name="BSNk_ProvideEncrypted_Fault"/&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:portType&gt;
+
+    &lt;wsdl:binding name="BSNk_Transform_SOAP" type="bsnk:BSNk_Transform_Port"&gt;
+        &lt;soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" /&gt;
+        &lt;wsdl:operation name="BSNk_ProvideEP"&gt;
+            &lt;soap:operation soapAction="urn:nl-gdi-eid:1.0:webservices:ProvideEPRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="BSNk_ProvideEncrypted_Fault"&gt;
+                &lt;soap:fault name="BSNk_ProvideEncrypted_Fault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+        &lt;wsdl:operation name="BSNk_ProvideEI"&gt;
+            &lt;soap:operation soapAction="urn:nl-gdi-eid:1.0:webservices:ProvideEIRequest" /&gt;
+            &lt;wsdl:input&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:input&gt;
+            &lt;wsdl:output&gt;
+                &lt;soap:body use="literal" /&gt;
+            &lt;/wsdl:output&gt;
+            &lt;wsdl:fault name="BSNk_ProvideEncrypted_Fault"&gt;
+                &lt;soap:fault name="BSNk_ProvideEncrypted_Fault" use="literal" /&gt;
+            &lt;/wsdl:fault&gt;
+        &lt;/wsdl:operation&gt;
+    &lt;/wsdl:binding&gt;
+ 
+    &lt;wsdl:service name="BSNk_Transform_Service"&gt;
+        &lt;wsdl:port binding="bsnk:BSNk_Transform_SOAP" name="BSNk_Transform"&gt;
+            &lt;soap:address location="https://.../TODO/Transform" /&gt;
+        &lt;/wsdl:port&gt;
+    &lt;/wsdl:service&gt;
+ 
+&lt;/wsdl:definitions&gt;</pre> 
+ </div>
+</div><h3 id="BSNk:transform-Request">Request</h3><p><span style="color: rgb(0,0,0);">Consists of a transformation request message &lt;ProvideEPRequest&gt; or &lt;ProvideEIRequest&gt; in</span> the SOAP body of the request message. SOAP should be implemented according to the Web services requirements .</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p><span style="color: rgb(0,0,0);">@DateTime</span></p></th><td class="confluenceTd"><p><span style="color: rgb(0,0,0);">1</span></p></td><td class="confluenceTd">Time of issuing of the request.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@RequestID</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">1</span></td><td colspan="1" class="confluenceTd">Unique identifier for this request.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;Requester&gt;</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">1</span></td><td colspan="1" class="confluenceTd">EntityID (OIN) of the requesting MachtigingsRegister.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;RelyingParty&gt;</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">1</span></td><td colspan="1" class="confluenceTd">EntityID (OIN) of the intended relying party.</td></tr><tr><th colspan="1" class="confluenceTh">&lt;RelyingPartyKeySetVersion&gt;</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Key set version to be used for relying party.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;PolymorphicPseudonym&gt;</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">1</span></td><td colspan="1" class="confluenceTd">Polymorphic Pseudonymization structure for the user to be transformed to an encrypted pseudonym or identity. Only one (non-signed) Polymorphic Pseudonym / Identity MUST be present, depending on the request type.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;Role&gt;</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">0..1</span></td><td colspan="1" class="confluenceTd"><p>Optional &quot;persoonsrol&quot;. Reserved for future use where the same user can act in different roles, e.g. private, volunteer and employee.</p></td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;TransactionID&gt;</span></th><td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">0..1</span></td><td colspan="1" class="confluenceTd">Optional &quot;transactie ID&quot;. Reserved for future use where privacy prohibits use of a persistent pseudonym. TransactionID can be used to create a transaction-, session- or case- specific pseudonym. Also for guarantees for the 4-eyes principle, TransactionID can be used in combination with the default Role (otherwise a person could break a 4-eyes signature by using two different Roles). Another example is eIDAS that requires a pseudonym per EU country, for which a countryID can be used als TransactionID to make the resulting pseudonym specific and persistent per country. </td></tr></tbody></table></div><p><br/></p><h4 id="BSNk:transform-RulesforprocessingaTransformationRequest">Rules for processing a Transformation Request</h4><p>A requesting MachtigingsRegister:</p><ul><li>MUST authenticate a User at the requested Level of Assurance before requesting a transformation.</li><li>MUST check the relying party is listed in the <a href="Autorisatielijst-BSN_118882456.html">Autorisatielijst BSN</a> as authorized before requesting transformation of a PI.<ul><li><span class="inline-comment-marker" data-ref="75df9280-9c5d-44ea-b075-45c9253fbaf2">For ETD this requirement is implemented via the (aggregation) of the ServiceCatalog (by the BO ETD)</span>.  </li></ul></li><li>MUST only provide a PP for a &lt;ProvideEPRequest&gt; and MUST only provide a PI for a &lt;ProvideEIRequest&gt;.</li><li>SHOULD randomize the PP/PI to be transformed before requesting a transformation, to enhance the privacy of the User.</li></ul><h3 id="BSNk:transform-Response">Response</h3><p>Consists of a response message &lt;ProvideEPResponse&gt; or &lt;ProvideEIResponse&gt; in the SOAP body of the response message, containing an Encrypted Pseudonym or Encrypted Identity for the requested Relying Party. In case an error occurs a SOAP fault will be used. The SOAP fault will contain error codes as &lt;FaultReason&gt; as described below, with one (or more) (localized) &lt;FaultDescription&gt;s.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Element/@Attribute</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>0..n</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th class="confluenceTh"><p>@DateTime</p></th><td class="confluenceTd"><p>1</p></td><td class="confluenceTd">Time of issuing of the response.</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@ResponseID</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the Response</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">@InResponseTo</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">Unique identifier of the Request this is a response to (@RequestID of request)</td></tr><tr><th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">&lt;EncryptedPseudonym&gt;</span></th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd"><p>Resulting encrypted form Polymorphic Pseudonymization structure resulting from the transformation. One Signed Encrypted Pseudonym or Signed Encrypted Identity structure for the User for the RelyingParty MUST be present, depending on the request type.</p></td></tr></tbody></table></div><p>For encoding of the (Signed) Encrypted Pseudonym / Identity, see <a href="Polymorphic-Pseudonymization-Notation_118882428.html">Polymorphic Pseudonymization Notation</a>.</p><h4 id="BSNk:transform-RulesforprocessingaTransformationResponse:">Rules for processing a Transformation Response:</h4><p>A receiving MachtigingsRegister:</p><ul><li>SHOULD pass the resulting Signed Encrypted Pseudonym or Signed Encrypted Identity structure unaltered to the relying party.</li></ul><h4 id="BSNk:transform-FaultReasons">FaultReasons</h4><p>The following response codes are used to indicate the status of a response.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><thead><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>ResponseCode</strong></p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p><strong>Description</strong></p></div></th></tr></thead><tbody><tr><th colspan="1" class="confluenceTh">ProvisioningRefused</th><td colspan="1" class="confluenceTd">Request rejected. Transformation of a Polymorphic Pseudonym refused for non-disclosed reason.</td></tr><tr><th class="confluenceTh">AuthorizationError</th><td class="confluenceTd">Request rejected. Authentication invalid or access denied. A HTTP 403 status response MAY be given instead of a SOAP-fault with this response.</td></tr><tr><th class="confluenceTh">SyntaxError</th><td class="confluenceTd">Request rejected. Request invalid.</td></tr><tr><th colspan="1" class="confluenceTh">TemporarilyUnavailable</th><td colspan="1" class="confluenceTd">Request could temporarily not be processed. A new request for transformation of a Polymorphic Pseudonym or Polymorphic Identity MAY be sent at a later moment by the requesting party.</td></tr></tbody></table></div><p><br/></p><p><br/></p>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

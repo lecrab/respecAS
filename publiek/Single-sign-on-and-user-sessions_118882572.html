@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : Single sign-on and user sessions</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Interface-specifications_118882754.html">Interface specifications</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : Single sign-on and user sessions
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified on Apr 20, 2016
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    Within certain boundaries, single sing-on and user sessions are allowed. This document describes the technical requirements.<p>For other requirements, see <a href="Use-cases-Single-Sign-On_118882536.html">Use cases Single Sign-On</a>.</p><h3 id="Singlesignonandusersessions-Sessionsatparticipants">Sessions at participants</h3><p>Participants MAY maintain a session for single sign-on if the user so indicated. The following data MAY be maintained in this session:</p><ul><li>an <a href="118882705.html">Herkenningsmakelaar (HM)</a> maintains user preferences (selected AD and MR).</li><li>an <a href="118882719.html">Authenticatiedienst (AD)</a> maintains the identity of the user. Based on this session, the AD MAY directly issue a new authentication assertion to the service providers making a request in which single sign-on is specified. The requirements for the maximum life span must be followed.</li><li>an <a href="118882626.html">Machtigingenregister (MR)</a> maintains user preferences (chosen party to represent).</li></ul><p>The maximum life span of a session at the AD is 2 hours unless a new authentication assertion is issued in the meantime whereby the session MAY be extended to a maximum of 2 hours.</p><p>Participants MAY provide a user the option to log out.</p><p>This option has the same function as logging out from a service provider (see below). Participants and service providers must ensure that cookies are deleted after logging out or after the expiry of an authentication session, and that previously received forms that are resubmitted generate an error.</p><h3 id="Singlesignonandusersessions-Shareddomaincookies">Shared domain cookies</h3><p>For cookies in which the choice for an preferred AD is saved, the Identity Provider Discovery Profile is applied as follows:</p><ul><li>The shared domain is '*.sso.eherkenning.nl'</li><li>The name of the cookie MUST be '_saml_idp'</li><li>The cookie MUST have the path prefix '/'.</li><li>The parameters Secure and HttpOnly MUST be used.</li><li>The cookie is persistent.</li><li>The content of the cookie consists of one or more Base-64 encoded URI values, each separated by a single space.</li><li>Each URI value represents the unique identification number for an AD as defined in <a href="EntityID_118882757.html">EntityID</a>. When there is no AD related to the value stored in the cookie, the HM MUST act as if no cookie was set and MUST uncheck the checkbox stating &quot;Bewaar selectie authenticatiedienst&quot;.</li></ul><p>To ensure that the common domain cookies are available for all HMs, they are sent from the browser of the user to a cookie server that belongs to the respective HM but placed in the shared domain. Redirects and/or a script can be used to include this information in the HTML page that is sent to the user.</p><p>If a script is used, cookie handling must be programmed in such a way that, if the cookie server does not respond, the process is continued as if a cookie value did not have to be read or written. If redirects or scripts are used, the HM SHOULD detect when a sent request is not being answered and the same request is being resubmitted. In that case, repeated requests must follow an alternative path without cookies. The objective of doing this is to prevent obstructing the process when cookies do not work.</p><p>See also <a href="Proces-onderhoud-cookieserver_118882562.html">Proces onderhoud cookieserver</a>.</p><h3 id="Singlesignonandusersessions-Sessionsatserviceproviders">Sessions at service providers</h3><p>A service provider using SSO is responsible for local session management. During the session, the service provider MUST permanently offer and display a log-out option. A service provider must implement the log-out functionality as follows:</p><ul><li>Session cookies must be deleted and the session must be destroyed</li><li>Submitted forms must be deleted (so that resubmitting the same form from the browser generates an error message)</li><li>The session is then redirected to the HM and a logout message sent according to <a href="Interface-specifications-DV-HM_118882577.html">Interface specifications DV-HM</a></li></ul>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

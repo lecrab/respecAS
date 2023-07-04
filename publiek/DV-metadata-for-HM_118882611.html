@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beheer Afsprakenstelsel eToegang : DV metadata for HM</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Beheer Afsprakenstelsel eToegang</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Startpagina_118882759.html">Startpagina</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Techniek-en-functionaliteit_118882772.html">Techniek en functionaliteit</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SAML-metadata_118882580.html">SAML metadata</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Beheer Afsprakenstelsel eToegang : DV metadata for HM
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maurice Pasman</span>, last modified by <span class='editor'> Maarten van Bree</span> on Jul 01, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>For each service, a <a href="118882704.html">Dienstverlener (DV)</a> MUST supply metadata to the HM as a valid SAML file according to urn:oasis:names:tc:SAML:2.0:metadata with one signed EntityDescriptor element.Signing metadata MUST meet the requirements for signing and encrypting, see <a href="Digital-signature_118882764.html">Digital signature</a>. For eIDAS-outbound the EB and BRP MUST act in the same way as a Dienstverlener.</p><h2 id="DVmetadataforHM-Metadata:">Metadata:</h2><p>This section describes the layout of the metadata. Elements not listed in this table MUST NOT be included in the metadata.</p><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th colspan="1" class="confluenceTh"><strong>Element/@Attribute</strong></th><th colspan="1" class="confluenceTh"><strong>0..n</strong></th><th colspan="1" class="confluenceTh"><strong>Description</strong></th></tr><tr><th class="confluenceTh"><p>EntityDesciptor</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: Required element to start Metadata</p></td></tr><tr><th class="confluenceTh"><p>  @EntityId</p></th><td class="confluenceTd">1</td><td class="confluenceTd"><p>SAML: MUST contain the <a href="EntityID_118882757.html">EntityID</a>;</p></td></tr><tr><th colspan="1" class="confluenceTh">  @Version</th><td colspan="1" class="confluenceTd"> 0..1</td><td colspan="1" class="confluenceTd">Elektronische toegangsdiensten: MAY contain an additional version attribute containing the version of the interface specifications on which the entity communicates;</td></tr><tr><th colspan="1" class="confluenceTh">Signature</th><td colspan="1" class="confluenceTd">1</td><td colspan="1" class="confluenceTd">SAML:  MUST be included to verify the integrity of the message.</td></tr><tr><th colspan="1" class="confluenceTh">SPSSODescriptor</th><td colspan="1" class="confluenceTd">1 </td><td colspan="1" class="confluenceTd">SAML: the SPSSODescriptor implements profiles specific to service providers </td></tr><tr><th colspan="1" class="confluenceTh">  @AuthnRequestsSigned</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">Elektronische toegangsdiensten: Must be set to true</td></tr><tr><th colspan="1" class="confluenceTh">  @WantsAssertionsSigned</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">Elektronische toegangsdiensten: Must be set to true</td></tr><tr><th colspan="1" class="confluenceTh">  @ProtocolSupportEnumeration</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">SAML: Denotes the protocols which can be used. Currently scoped to SAML2.</td></tr><tr><th colspan="1" class="confluenceTh">KeyDescriptor </th><td colspan="1" class="confluenceTd"> 1..n</td><td colspan="1" class="confluenceTd">SAML: An SPSSODescriptor element MUST contain one or more KeyDescriptor elements with the use XML attribute with value &quot;signing&quot; and one or more KeyDescriptor elements with the use XML attribute with the value &quot;encryption&quot;. Alternatively, at least one KeyDescriptor without a use XML attribute MAY be included, indicating the default that the key is for both signing and encryption. Every KeyDescriptor element marked for &quot;signing&quot; MUST contain a KeyName element and a valid <a href="PKIoverheid_118882760.html">PKIoverheid</a> certificate with which the service provider its SAML messages and/or direct TLS connections can be authenticated. KeyDescriptors marked for &quot;signing&quot; are also the keys that will be used to specify the attesting Entity through Holder-of-Key-Subjectconfirmation in case of DienstBemiddeling. KeyDescriptors marked for &quot;signing' MUST be valid and comply with the requirements in <a href="Secure-connection_118882762.html">Secure connection</a>. <br/><p>Every KeyDescriptor element marked for &quot;encryption&quot; MUST contain a KeyName element and a valid PKIoverheid certificate to be used to encrypt IDs and attributes for the DV. Note: HMs must process all of the described KeyDescriptor elements. KeyName in the signatures and protocol messages indicates which certificate in the metadata is used for the signature. </p></td></tr><tr><th colspan="1" class="confluenceTh">ArtifactResolutionService </th><td colspan="1" class="confluenceTd"> 1..n</td><td colspan="1" class="confluenceTd"><p>Elektronische toegangsdiensten: The ArtifactResolutionService MUST be implemented at least once per service.</p></td></tr><tr><th colspan="1" class="confluenceTh">  @Binding</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>SAML:  The binding parameter denotes the type of binding used. In theArtifactResolutionService this is the SAML-SOAP binding only. The value of this attribute is an urn relating to: <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf" rel="nofollow" class="external-link">http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf</a></p></div></td></tr><tr><th colspan="1" class="confluenceTh">  @Location</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">SAML:  The URL of the SAML artifact resolution endpoint</td></tr><tr><th colspan="1" class="confluenceTh">  @Index</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">SAML:  The index of the binding, MUST be unique for all ArtifactResolutionService elements</td></tr><tr><th colspan="1" class="confluenceTh">AssertionConsumerService </th><td colspan="1" class="confluenceTd">1..n </td><td colspan="1" class="confluenceTd"><p>SAML: The most common AssertionConsumerService is the HTTP-Artifact service binding. This binding is used by the web interface specifications. See <a href="Interface-specifications_118882754.html">Interface specifications</a> for more information.</p><p>A Service of a Dienstverlener (Service Provider) MAY be offered using only an endpoint with SOAP binding in the AssertionConsumerService of the SPSSODescriptor. In such a case, the Service MUST only be consumed via Dienstbemiddeling (service intermediation). A Service with both a HTTP (Artifact, GET or POST) and SOAP binding, is accessible directly and using Dienstbemiddeling</p></td></tr><tr><th colspan="1" class="confluenceTh">  @Binding</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>SAML:  The binding parameter denotes the type of binding used. This is an urn relating to: <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf" rel="nofollow" class="external-link">http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf</a></p></div></td></tr><tr><th colspan="1" class="confluenceTh">  @Location</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">SAML:  The URL of the SAML endpoint</td></tr><tr><th colspan="1" class="confluenceTh">  @Index</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">SAML:  The index of the binding, MUST be unique for all AssertionConsumerService elements.</td></tr><tr><th colspan="1" class="confluenceTh">  @isDefault</th><td colspan="1" class="confluenceTd"> 0..1</td><td colspan="1" class="confluenceTd"> If several AssertionConsumerService entries are included, one of these entries MUST be flagged as default by setting the isDefault XML attribute with value &quot;true&quot;.</td></tr><tr><th colspan="1" class="confluenceTh">AttributeConsumingService </th><td colspan="1" class="confluenceTd"> 1..n</td><td colspan="1" class="confluenceTd"><p> A service provider MUST include at least one service AttributeConsumingService element in which the service provider indicates which attributes are requested by default. A Service provider MAY include additional AttributeConsumingService elements containing different sets of attributes it wants to receive for the respective additional services.</p><p>Multiple AttributeConsumingService elements MAY be present and can be mapped to the same ServiceID. This allows DVs to request authentication for a single service with varying attributes depending on the context. The union of all attributes that may be queried for a ServiceID MUST be declared in the Service Catalog.</p></td></tr><tr><th colspan="1" class="confluenceTh">  @Index</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">The index of the binding, has to be unique for each AttributeConsumingService.</td></tr><tr><th colspan="1" class="confluenceTh">  @isDefault</th><td colspan="1" class="confluenceTd"> 0..1</td><td colspan="1" class="confluenceTd"> In case multiple AttributeConsumingServices are defined, the 'isDefault' XML attribute on that AttributeConsumingService element MUST be used to indicate the default service.</td></tr><tr><th colspan="1" class="confluenceTh">ServiceName</th><td colspan="1" class="confluenceTd"> 1..n</td><td colspan="1" class="confluenceTd">SAML: Name of the service</td></tr><tr><th colspan="1" class="confluenceTh">  @lang </th><td colspan="1" class="confluenceTd"> 0..1</td><td colspan="1" class="confluenceTd">SAML: Localized name of the service, must be in ISO 31661 alpha2 format</td></tr><tr><th colspan="1" class="confluenceTh">RequestedAttribute</th><td colspan="1" class="confluenceTd"> 1..n</td><td colspan="1" class="confluenceTd"><p> Each AttributeConsumingService MUST contain exactly one attribute with the same name as <a href="ServiceID_118882758.html">ServiceID</a>. This ServiceID MUST reference the entry for the Service of the requesting Dienstverlener (Service Provider) in the <a href="Service-catalog_118882581.html">Service catalog</a>. In case of Dienstbemiddeling (service intermediation) this ServiceID MUST reference the entry for the Service of the Dienstbemiddelaar (service intermediary).</p><p>The AttributeConsumingService MAY contain one or more RequestedAttributes that are in the <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a>. </p></td></tr><tr><th colspan="1" class="confluenceTh">  @Name</th><td colspan="1" class="confluenceTd"> 1</td><td colspan="1" class="confluenceTd">The name of the requested attribute. MUST correspond with attributes from <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a>.</td></tr><tr><th colspan="1" class="confluenceTh">  @isRequired</th><td colspan="1" class="confluenceTd"> 0..1</td><td colspan="1" class="confluenceTd">For each requested attribute that is included, the service provider MAY use isRequired to indicate whether the attribute is required for the DV application to work properly. If isRequired is not defined, the default value 'false' is implied.</td></tr></tbody></table></div><p><br/></p><p>The XML schema for the DV Metadata is that of the SAML 2.0 Metadata specification (see <a href="https://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd" class="external-link" rel="nofollow">https://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd</a>). The optional version attribute is identical to the version attribute as defined in the <a href="Metadata-for-participants_118882614.html">Metadata for participants</a>, to be used on the EntityDescriptor.</p><h2 id="DVmetadataforHM-ProcessingRulesfortheHM">Processing Rules for the HM</h2><ul><li>The HM MUST validate the metadata provided by the DV.</li><li>The HM MUST validate the Required attributes based on the <a href="Attribuutcatalogus_118882779.html">Attribuutcatalogus</a>.</li><li>The HM MUST validate the metadata based on the SAML specification</li><li>The HM MAY validate the URL Location parameters in the AssertionConsumerService  and ArtifactResolutionService.</li><li>After successfull validation the HM MUST use the DV metadata. The HM MUST NOT use self generated metadata when DV metadata is available </li><li>After successfull validation the HM MUST use the supplied DV metadata as input to create a derivative for the <a href="118882704.html">Dienstverlener (DV)</a>. The HM MAY use additional information as log as it does not overwrite the DV metadata.</li><li>After successfull validation the HM MUST add the PKIoverheid certificate's in the KeyDescriptor element(s) marked for &quot;encryption&quot; into the ServiceCertificate of the corresponding ServiceInstance in the <a href="Service-catalog_118882581.html">Service catalog</a> . Note: In the case of DV's employing versions 1.9 or lower, the HM MAY add a valid PKIoverheid certificate of it's own (containing the OIN of the HM) for decryption purposes.</li><li>The HM MAY archive this metadata for future use. <br/><br/></li></ul><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DV Metadata</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Eclipse; collapse: true" data-theme="Eclipse">&lt;md:EntityDescriptor entityID="urn:etoegang:DV:..."&gt;
+    &lt;ds:Signature&gt;...&lt;/ds:Signature&gt;
+    &lt;md:SPSSODescriptor ...&gt;
+        ...
+   &nbsp;&lt;/md:SPSSODescriptor&gt;
+&lt;/md:EntityDescriptor&gt;</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DV SPSSODescriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:SPSSODescriptor AuthnRequestsSigned="true"
+    WantAssertionsSigned="true"
+    protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+
+    &lt;md:KeyDescriptor&gt;...&lt;/md:KeyDescriptor&gt;
+
+   &nbsp;&lt;md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://..." index="0" /&gt;
+    &lt;md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://..." index="1" isDefault="true"/&gt;
+    &lt;md:AssertionConsumerService Binding="urn:etoegang:1.11:binding:native-app" Location="my-app://..." index="2"/&gt;
+
+   &nbsp;&lt;md:AttributeConsumingService isDefault="true" index="1"&gt;
+        &lt;md:ServiceName xml:lang="nl"&gt;Voorbeeld Dienst 1&lt;/md:ServiceName&gt;
+        &lt;md:RequestedAttribute Name="urn:etoegang:DV:0000000312345678000:services:0001"/&gt;
+        &lt;md:RequestedAttribute isRequired="false"
+            Name="urn:etoegang:attribute:FirstName"/&gt;
+        &lt;md:RequestedAttribute isRequired="true"
+            Name="urn:etoegang:attribute:18OrOlder"/&gt;
+        &lt;md:RequestedAttribute isRequired="false"
+            Name="urn:etoegang:attribute:PlaceOfBirth"/&gt;
+    &lt;/md:AttributeConsumingService&gt;
+    &lt;md:AttributeConsumingService isDefault="false" index="2"&gt;
+        &lt;md:ServiceName xml:lang="nl"&gt;Voorbeeld Dienst 50&lt;/md:ServiceName&gt;
+        &lt;md:RequestedAttribute Name="urn:etoegang:DV:0000000312345678000:services:0050"/&gt;
+        &lt;md:RequestedAttribute isRequired="false"
+            Name="urn:etoegang:attribute:Gender"/&gt;
+        &lt;md:RequestedAttribute isRequired="true"  
+            Name="urn:etoegang:attribute:DateOfBirth"/&gt;
+    &lt;/md:AttributeConsumingService&gt;
+&lt;/md:SPSSODescriptor&gt;
+...</pre> 
+ </div>
+</div><div class="code panel pdl" style="border-width: 1px;">
+ <div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+  <b class="code-title">Example DV KeyDescriptor</b><span class="collapse-source expand-control" style="display:none;"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span><span class="collapse-spinner-wrapper"></span>
+ </div>
+ <div class="codeContent panelContent pdl hide-toolbar"> 
+  <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: true; theme: Eclipse; collapse: true" data-theme="Eclipse">...
+&lt;md:KeyDescriptor use="signing"&gt;
+        &lt;ds:KeyInfo&gt;
+              &lt;ds:KeyName&gt;
+2fd4e1c6 7a2d28fc ed849ee1 bb76e739 1b93eb12
+              &lt;/ds:KeyName&gt;
+              &lt;ds:X509Data&gt;
+                  &lt;ds:X509Certificate&gt;
+...
+                   &lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+&lt;/md:KeyDescriptor&gt;
+&lt;md:KeyDescriptor use="encryption"&gt;
+        &lt;ds:KeyInfo&gt;
+              &lt;ds:KeyName&gt;
+acfe784b 391916f1 0aedf8e7 9c503658 c71b437e
+              &lt;/ds:KeyName&gt;
+              &lt;ds:X509Data&gt;
+                  &lt;ds:X509Certificate&gt;
+...
+                   &lt;/ds:X509Certificate&gt;
+                &lt;/ds:X509Data&gt;
+          &lt;/ds:KeyInfo&gt;
+&lt;/md:KeyDescriptor&gt;...</pre> 
+ </div>
+</div>
+                    </div>
+
+                                        
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Jul 04, 2023 14:10</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
